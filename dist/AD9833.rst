@@ -1,0 +1,494 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.0.4 #11922 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module AD9833
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _AD_REG_VAL
+                                     12 	.globl _AD_REG_ADDRESS
+                                     13 	.globl _AD9833_WriteReg
+                                     14 	.globl _AD9833_Init
+                                     15 	.globl _AD9833_Reset
+                                     16 	.globl _AD9833_SetFreq
+                                     17 	.globl _AD9833_SetPhase
+                                     18 	.globl _AD9833_SetMode
+                                     19 ;--------------------------------------------------------
+                                     20 ; ram data
+                                     21 ;--------------------------------------------------------
+                                     22 	.area DATA
+                                     23 ;--------------------------------------------------------
+                                     24 ; ram data
+                                     25 ;--------------------------------------------------------
+                                     26 	.area INITIALIZED
+      000001                         27 _AD_REG_ADDRESS::
+      000001                         28 	.ds 5
+      000006                         29 _AD_REG_VAL::
+      000006                         30 	.ds 10
+                                     31 ;--------------------------------------------------------
+                                     32 ; absolute external ram data
+                                     33 ;--------------------------------------------------------
+                                     34 	.area DABS (ABS)
+                                     35 
+                                     36 ; default segment ordering for linker
+                                     37 	.area HOME
+                                     38 	.area GSINIT
+                                     39 	.area GSFINAL
+                                     40 	.area CONST
+                                     41 	.area INITIALIZER
+                                     42 	.area CODE
+                                     43 
+                                     44 ;--------------------------------------------------------
+                                     45 ; global & static initialisations
+                                     46 ;--------------------------------------------------------
+                                     47 	.area HOME
+                                     48 	.area GSINIT
+                                     49 	.area GSFINAL
+                                     50 	.area GSINIT
+                                     51 ;--------------------------------------------------------
+                                     52 ; Home
+                                     53 ;--------------------------------------------------------
+                                     54 	.area HOME
+                                     55 	.area HOME
+                                     56 ;--------------------------------------------------------
+                                     57 ; code
+                                     58 ;--------------------------------------------------------
+                                     59 	.area CODE
+                                     60 ;	./AD9833_reg.h: 12: static inline uint16_t calcPhase(float phase){return (uint16_t)((512.0 * (phase/10) / 45) + 0.5);}
+                                     61 ;	-----------------------------------------
+                                     62 ;	 function calcPhase
+                                     63 ;	-----------------------------------------
+      0080AD                         64 _calcPhase:
+      0080AD 5F               [ 1]   65 	clrw	x
+      0080AE 89               [ 2]   66 	pushw	x
+      0080AF 4B 20            [ 1]   67 	push	#0x20
+      0080B1 4B 41            [ 1]   68 	push	#0x41
+      0080B3 1E 09            [ 2]   69 	ldw	x, (0x09, sp)
+      0080B5 89               [ 2]   70 	pushw	x
+      0080B6 1E 09            [ 2]   71 	ldw	x, (0x09, sp)
+      0080B8 89               [ 2]   72 	pushw	x
+      0080B9 CD 8B 82         [ 4]   73 	call	___fsdiv
+      0080BC 5B 08            [ 2]   74 	addw	sp, #8
+      0080BE 89               [ 2]   75 	pushw	x
+      0080BF 90 89            [ 2]   76 	pushw	y
+      0080C1 5F               [ 1]   77 	clrw	x
+      0080C2 89               [ 2]   78 	pushw	x
+      0080C3 4B 00            [ 1]   79 	push	#0x00
+      0080C5 4B 44            [ 1]   80 	push	#0x44
+      0080C7 CD 85 18         [ 4]   81 	call	___fsmul
+      0080CA 5B 08            [ 2]   82 	addw	sp, #8
+      0080CC 4B 00            [ 1]   83 	push	#0x00
+      0080CE 4B 00            [ 1]   84 	push	#0x00
+      0080D0 4B 34            [ 1]   85 	push	#0x34
+      0080D2 4B 42            [ 1]   86 	push	#0x42
+      0080D4 89               [ 2]   87 	pushw	x
+      0080D5 90 89            [ 2]   88 	pushw	y
+      0080D7 CD 8B 82         [ 4]   89 	call	___fsdiv
+      0080DA 5B 08            [ 2]   90 	addw	sp, #8
+      0080DC 4B 00            [ 1]   91 	push	#0x00
+      0080DE 4B 00            [ 1]   92 	push	#0x00
+      0080E0 4B 00            [ 1]   93 	push	#0x00
+      0080E2 4B 3F            [ 1]   94 	push	#0x3f
+      0080E4 89               [ 2]   95 	pushw	x
+      0080E5 90 89            [ 2]   96 	pushw	y
+      0080E7 CD 87 2B         [ 4]   97 	call	___fsadd
+      0080EA 5B 08            [ 2]   98 	addw	sp, #8
+      0080EC 89               [ 2]   99 	pushw	x
+      0080ED 90 89            [ 2]  100 	pushw	y
+      0080EF CD 89 AC         [ 4]  101 	call	___fs2uint
+      0080F2 5B 04            [ 2]  102 	addw	sp, #4
+      0080F4 81               [ 4]  103 	ret
+                                    104 ;	./AD9833_reg.h: 14: static inline uint32_t calcFreq(float freq){return (uint32_t)((freq * (1UL << 28)/AD_MCLK) + 0.5);}
+                                    105 ;	-----------------------------------------
+                                    106 ;	 function calcFreq
+                                    107 ;	-----------------------------------------
+      0080F5                        108 _calcFreq:
+      0080F5 1E 05            [ 2]  109 	ldw	x, (0x05, sp)
+      0080F7 89               [ 2]  110 	pushw	x
+      0080F8 1E 05            [ 2]  111 	ldw	x, (0x05, sp)
+      0080FA 89               [ 2]  112 	pushw	x
+      0080FB 5F               [ 1]  113 	clrw	x
+      0080FC 89               [ 2]  114 	pushw	x
+      0080FD 4B 80            [ 1]  115 	push	#0x80
+      0080FF 4B 4D            [ 1]  116 	push	#0x4d
+      008101 CD 85 18         [ 4]  117 	call	___fsmul
+      008104 5B 08            [ 2]  118 	addw	sp, #8
+      008106 4B 20            [ 1]  119 	push	#0x20
+      008108 4B BC            [ 1]  120 	push	#0xbc
+      00810A 4B BE            [ 1]  121 	push	#0xbe
+      00810C 4B 4B            [ 1]  122 	push	#0x4b
+      00810E 89               [ 2]  123 	pushw	x
+      00810F 90 89            [ 2]  124 	pushw	y
+      008111 CD 8B 82         [ 4]  125 	call	___fsdiv
+      008114 5B 08            [ 2]  126 	addw	sp, #8
+      008116 4B 00            [ 1]  127 	push	#0x00
+      008118 4B 00            [ 1]  128 	push	#0x00
+      00811A 4B 00            [ 1]  129 	push	#0x00
+      00811C 4B 3F            [ 1]  130 	push	#0x3f
+      00811E 89               [ 2]  131 	pushw	x
+      00811F 90 89            [ 2]  132 	pushw	y
+      008121 CD 87 2B         [ 4]  133 	call	___fsadd
+      008124 5B 08            [ 2]  134 	addw	sp, #8
+      008126 89               [ 2]  135 	pushw	x
+      008127 90 89            [ 2]  136 	pushw	y
+      008129 CD 86 D5         [ 4]  137 	call	___fs2ulong
+      00812C 5B 04            [ 2]  138 	addw	sp, #4
+      00812E 81               [ 4]  139 	ret
+                                    140 ;	AD9833.c: 5: void AD9833_WriteReg(uint8_t reg)
+                                    141 ;	-----------------------------------------
+                                    142 ;	 function AD9833_WriteReg
+                                    143 ;	-----------------------------------------
+      00812F                        144 _AD9833_WriteReg:
+      00812F 52 03            [ 2]  145 	sub	sp, #3
+                                    146 ;	AD9833.c: 7: uint8_t addr=AD_REG_ADDRESS[reg];
+      008131 5F               [ 1]  147 	clrw	x
+      008132 7B 06            [ 1]  148 	ld	a, (0x06, sp)
+      008134 97               [ 1]  149 	ld	xl, a
+      008135 D6 00 01         [ 1]  150 	ld	a, (_AD_REG_ADDRESS, x)
+      008138 6B 01            [ 1]  151 	ld	(0x01, sp), a
+                                    152 ;	AD9833.c: 10: uint8_t byte0 = (uint8_t)( (addr|(uint8_t)(AD_REG_VAL[reg] >>8)));
+      00813A 7B 06            [ 1]  153 	ld	a, (0x06, sp)
+      00813C 5F               [ 1]  154 	clrw	x
+      00813D 97               [ 1]  155 	ld	xl, a
+      00813E 58               [ 2]  156 	sllw	x
+      00813F 1C 00 06         [ 2]  157 	addw	x, #(_AD_REG_VAL + 0)
+      008142 FE               [ 2]  158 	ldw	x, (x)
+      008143 9E               [ 1]  159 	ld	a, xh
+      008144 0F 02            [ 1]  160 	clr	(0x02, sp)
+      008146 1A 01            [ 1]  161 	or	a, (0x01, sp)
+      008148 6B 03            [ 1]  162 	ld	(0x03, sp), a
+                                    163 ;	AD9833.c: 11: uint8_t byte1 = (uint8_t)AD_REG_VAL[reg];
+      00814A 90 93            [ 1]  164 	ldw	y, x
+                                    165 ;	AD9833.c: 15: while(SPI_GetFlagStatus(SPI_FLAG_BSY));  //check to ensure SPI is ready before we begin.
+      00814C                        166 00101$:
+                                    167 ;	inc/stm8s_spi.h: 613: if ((SPI->SR & (uint8_t) SPI_FLAG) != (uint8_t) RESET) {
+      00814C C6 52 03         [ 1]  168 	ld	a, 0x5203
+      00814F 2B FB            [ 1]  169 	jrmi	00101$
+                                    170 ;	inc/stm8s_gpio.h: 296: GPIOx->ODR &= (uint8_t) (~PortPins);
+      008151 72 17 50 00      [ 1]  171 	bres	20480, #3
+                                    172 ;	inc/stm8s_spi.h: 476: SPI->DR = Data; /* Write in the DR register the data to be sent*/
+      008155 AE 52 04         [ 2]  173 	ldw	x, #0x5204
+      008158 7B 03            [ 1]  174 	ld	a, (0x03, sp)
+      00815A F7               [ 1]  175 	ld	(x), a
+                                    176 ;	AD9833.c: 19: while(!SPI_GetFlagStatus(SPI_FLAG_TXE)); //wait until the buffer is empty before we add another byte to it
+      00815B                        177 00104$:
+                                    178 ;	inc/stm8s_spi.h: 613: if ((SPI->SR & (uint8_t) SPI_FLAG) != (uint8_t) RESET) {
+      00815B C6 52 03         [ 1]  179 	ld	a, 0x5203
+      00815E A5 02            [ 1]  180 	bcp	a, #0x02
+      008160 27 F9            [ 1]  181 	jreq	00104$
+                                    182 ;	inc/stm8s_spi.h: 476: SPI->DR = Data; /* Write in the DR register the data to be sent*/
+      008162 AE 52 04         [ 2]  183 	ldw	x, #0x5204
+      008165 90 9F            [ 1]  184 	ld	a, yl
+      008167 F7               [ 1]  185 	ld	(x), a
+                                    186 ;	AD9833.c: 22: while(SPI_GetFlagStatus(SPI_FLAG_BSY));  //wait until SPI has finished transmitting before we release CS.
+      008168                        187 00107$:
+                                    188 ;	inc/stm8s_spi.h: 613: if ((SPI->SR & (uint8_t) SPI_FLAG) != (uint8_t) RESET) {
+      008168 C6 52 03         [ 1]  189 	ld	a, 0x5203
+      00816B 2B FB            [ 1]  190 	jrmi	00107$
+                                    191 ;	inc/stm8s_gpio.h: 283: GPIOx->ODR |= (uint8_t) PortPins;
+      00816D 72 16 50 00      [ 1]  192 	bset	20480, #3
+                                    193 ;	AD9833.c: 23: GPIO_WriteHigh(GPIOA, GPIO_PIN_3);
+                                    194 ;	AD9833.c: 31: }
+      008171 5B 03            [ 2]  195 	addw	sp, #3
+      008173 81               [ 4]  196 	ret
+                                    197 ;	AD9833.c: 33: void AD9833_Init(void)
+                                    198 ;	-----------------------------------------
+                                    199 ;	 function AD9833_Init
+                                    200 ;	-----------------------------------------
+      008174                        201 _AD9833_Init:
+                                    202 ;	AD9833.c: 38: BITS_SET(AD_REG_VAL[AD_REG_CTL],(BIT(AD_CTL_RESET) | BIT(AD_CTL_B28)));
+      008174 CE 00 06         [ 2]  203 	ldw	x, _AD_REG_VAL+0
+      008177 9E               [ 1]  204 	ld	a, xh
+      008178 AA 21            [ 1]  205 	or	a, #0x21
+      00817A 95               [ 1]  206 	ld	xh, a
+      00817B CF 00 06         [ 2]  207 	ldw	_AD_REG_VAL+0, x
+                                    208 ;	AD9833.c: 39: AD9833_WriteReg(AD_REG_CTL);
+      00817E 4B 00            [ 1]  209 	push	#0x00
+      008180 CD 81 2F         [ 4]  210 	call	_AD9833_WriteReg
+      008183 84               [ 1]  211 	pop	a
+                                    212 ;	AD9833.c: 40: }
+      008184 81               [ 4]  213 	ret
+                                    214 ;	AD9833.c: 42: void AD9833_Reset(bool reset)
+                                    215 ;	-----------------------------------------
+                                    216 ;	 function AD9833_Reset
+                                    217 ;	-----------------------------------------
+      008185                        218 _AD9833_Reset:
+                                    219 ;	AD9833.c: 44: reset==1?BIT_SET(AD_REG_VAL[AD_REG_CTL],AD_CTL_RESET):\
+      008185 7B 03            [ 1]  220 	ld	a, (0x03, sp)
+      008187 4A               [ 1]  221 	dec	a
+      008188 26 0C            [ 1]  222 	jrne	00103$
+      00818A CE 00 06         [ 2]  223 	ldw	x, _AD_REG_VAL+0
+      00818D 9E               [ 1]  224 	ld	a, xh
+      00818E AA 01            [ 1]  225 	or	a, #0x01
+      008190 95               [ 1]  226 	ld	xh, a
+      008191 CF 00 06         [ 2]  227 	ldw	_AD_REG_VAL+0, x
+      008194 20 0A            [ 2]  228 	jra	00104$
+      008196                        229 00103$:
+      008196 CE 00 06         [ 2]  230 	ldw	x, _AD_REG_VAL+0
+      008199 9E               [ 1]  231 	ld	a, xh
+      00819A A4 FE            [ 1]  232 	and	a, #0xfe
+      00819C 95               [ 1]  233 	ld	xh, a
+      00819D CF 00 06         [ 2]  234 	ldw	_AD_REG_VAL+0, x
+      0081A0                        235 00104$:
+                                    236 ;	AD9833.c: 46: AD9833_WriteReg(AD_REG_CTL);
+      0081A0 4B 00            [ 1]  237 	push	#0x00
+      0081A2 CD 81 2F         [ 4]  238 	call	_AD9833_WriteReg
+      0081A5 84               [ 1]  239 	pop	a
+                                    240 ;	AD9833.c: 47: }
+      0081A6 81               [ 4]  241 	ret
+                                    242 ;	AD9833.c: 50: void AD9833_SetFreq(float frequency)
+                                    243 ;	-----------------------------------------
+                                    244 ;	 function AD9833_SetFreq
+                                    245 ;	-----------------------------------------
+      0081A7                        246 _AD9833_SetFreq:
+      0081A7 52 04            [ 2]  247 	sub	sp, #4
+                                    248 ;	AD9833.c: 54: uint32_t freqreg = calcFreq(frequency);
+      0081A9 1E 09            [ 2]  249 	ldw	x, (0x09, sp)
+      0081AB 16 07            [ 2]  250 	ldw	y, (0x07, sp)
+      0081AD 89               [ 2]  251 	pushw	x
+      0081AE 90 89            [ 2]  252 	pushw	y
+      0081B0 5F               [ 1]  253 	clrw	x
+      0081B1 89               [ 2]  254 	pushw	x
+      0081B2 4B 80            [ 1]  255 	push	#0x80
+      0081B4 4B 4D            [ 1]  256 	push	#0x4d
+      0081B6 CD 85 18         [ 4]  257 	call	___fsmul
+      0081B9 5B 08            [ 2]  258 	addw	sp, #8
+      0081BB 4B 20            [ 1]  259 	push	#0x20
+      0081BD 4B BC            [ 1]  260 	push	#0xbc
+      0081BF 4B BE            [ 1]  261 	push	#0xbe
+      0081C1 4B 4B            [ 1]  262 	push	#0x4b
+      0081C3 89               [ 2]  263 	pushw	x
+      0081C4 90 89            [ 2]  264 	pushw	y
+      0081C6 CD 8B 82         [ 4]  265 	call	___fsdiv
+      0081C9 5B 08            [ 2]  266 	addw	sp, #8
+      0081CB 4B 00            [ 1]  267 	push	#0x00
+      0081CD 4B 00            [ 1]  268 	push	#0x00
+      0081CF 4B 00            [ 1]  269 	push	#0x00
+      0081D1 4B 3F            [ 1]  270 	push	#0x3f
+      0081D3 89               [ 2]  271 	pushw	x
+      0081D4 90 89            [ 2]  272 	pushw	y
+      0081D6 CD 87 2B         [ 4]  273 	call	___fsadd
+      0081D9 5B 08            [ 2]  274 	addw	sp, #8
+      0081DB 89               [ 2]  275 	pushw	x
+      0081DC 90 89            [ 2]  276 	pushw	y
+      0081DE CD 86 D5         [ 4]  277 	call	___fs2ulong
+      0081E1 5B 04            [ 2]  278 	addw	sp, #4
+      0081E3 17 01            [ 2]  279 	ldw	(0x01, sp), y
+                                    280 ;	AD9833.c: 63: AD_REG_VAL[AD_REG_FREQ0] = (uint16_t)(freqreg & 0x3FFF);
+      0081E5 90 93            [ 1]  281 	ldw	y, x
+      0081E7 9E               [ 1]  282 	ld	a, xh
+      0081E8 A4 3F            [ 1]  283 	and	a, #0x3f
+      0081EA 90 95            [ 1]  284 	ld	yh, a
+      0081EC 90 CF 00 08      [ 2]  285 	ldw	_AD_REG_VAL+2, y
+                                    286 ;	AD9833.c: 64: AD9833_WriteReg(AD_REG_FREQ0);
+      0081F0 89               [ 2]  287 	pushw	x
+      0081F1 4B 01            [ 1]  288 	push	#0x01
+      0081F3 CD 81 2F         [ 4]  289 	call	_AD9833_WriteReg
+      0081F6 84               [ 1]  290 	pop	a
+      0081F7 85               [ 2]  291 	popw	x
+                                    292 ;	AD9833.c: 67: AD_REG_VAL[AD_REG_FREQ0] = (uint16_t)((freqreg>>14)&0x3FFF); 
+      0081F8 16 01            [ 2]  293 	ldw	y, (0x01, sp)
+      0081FA A6 0E            [ 1]  294 	ld	a, #0x0e
+      0081FC                        295 00104$:
+      0081FC 90 54            [ 2]  296 	srlw	y
+      0081FE 56               [ 2]  297 	rrcw	x
+      0081FF 4A               [ 1]  298 	dec	a
+      008200 26 FA            [ 1]  299 	jrne	00104$
+      008202 9E               [ 1]  300 	ld	a, xh
+      008203 A4 3F            [ 1]  301 	and	a, #0x3f
+      008205 95               [ 1]  302 	ld	xh, a
+      008206 CF 00 08         [ 2]  303 	ldw	_AD_REG_VAL+2, x
+                                    304 ;	AD9833.c: 68: AD9833_WriteReg(AD_REG_FREQ0);
+      008209 4B 01            [ 1]  305 	push	#0x01
+      00820B CD 81 2F         [ 4]  306 	call	_AD9833_WriteReg
+                                    307 ;	AD9833.c: 69: }
+      00820E 5B 05            [ 2]  308 	addw	sp, #5
+      008210 81               [ 4]  309 	ret
+                                    310 ;	AD9833.c: 71: void AD9833_SetPhase(float phase)
+                                    311 ;	-----------------------------------------
+                                    312 ;	 function AD9833_SetPhase
+                                    313 ;	-----------------------------------------
+      008211                        314 _AD9833_SetPhase:
+                                    315 ;	AD9833.c: 73: AD_REG_VAL[AD_REG_PHASE0] = calcPhase(phase);
+      008211 1E 05            [ 2]  316 	ldw	x, (0x05, sp)
+      008213 16 03            [ 2]  317 	ldw	y, (0x03, sp)
+                                    318 ;	./AD9833_reg.h: 12: static inline uint16_t calcPhase(float phase){return (uint16_t)((512.0 * (phase/10) / 45) + 0.5);}
+      008215 4B 00            [ 1]  319 	push	#0x00
+      008217 4B 00            [ 1]  320 	push	#0x00
+      008219 4B 20            [ 1]  321 	push	#0x20
+      00821B 4B 41            [ 1]  322 	push	#0x41
+      00821D 89               [ 2]  323 	pushw	x
+      00821E 90 89            [ 2]  324 	pushw	y
+      008220 CD 8B 82         [ 4]  325 	call	___fsdiv
+      008223 5B 08            [ 2]  326 	addw	sp, #8
+      008225 89               [ 2]  327 	pushw	x
+      008226 90 89            [ 2]  328 	pushw	y
+      008228 5F               [ 1]  329 	clrw	x
+      008229 89               [ 2]  330 	pushw	x
+      00822A 4B 00            [ 1]  331 	push	#0x00
+      00822C 4B 44            [ 1]  332 	push	#0x44
+      00822E CD 85 18         [ 4]  333 	call	___fsmul
+      008231 5B 08            [ 2]  334 	addw	sp, #8
+      008233 4B 00            [ 1]  335 	push	#0x00
+      008235 4B 00            [ 1]  336 	push	#0x00
+      008237 4B 34            [ 1]  337 	push	#0x34
+      008239 4B 42            [ 1]  338 	push	#0x42
+      00823B 89               [ 2]  339 	pushw	x
+      00823C 90 89            [ 2]  340 	pushw	y
+      00823E CD 8B 82         [ 4]  341 	call	___fsdiv
+      008241 5B 08            [ 2]  342 	addw	sp, #8
+      008243 4B 00            [ 1]  343 	push	#0x00
+      008245 4B 00            [ 1]  344 	push	#0x00
+      008247 4B 00            [ 1]  345 	push	#0x00
+      008249 4B 3F            [ 1]  346 	push	#0x3f
+      00824B 89               [ 2]  347 	pushw	x
+      00824C 90 89            [ 2]  348 	pushw	y
+      00824E CD 87 2B         [ 4]  349 	call	___fsadd
+      008251 5B 08            [ 2]  350 	addw	sp, #8
+      008253 89               [ 2]  351 	pushw	x
+      008254 90 89            [ 2]  352 	pushw	y
+      008256 CD 89 AC         [ 4]  353 	call	___fs2uint
+      008259 5B 04            [ 2]  354 	addw	sp, #4
+                                    355 ;	AD9833.c: 73: AD_REG_VAL[AD_REG_PHASE0] = calcPhase(phase);
+      00825B CF 00 0C         [ 2]  356 	ldw	_AD_REG_VAL+6, x
+                                    357 ;	AD9833.c: 74: AD9833_WriteReg(AD_REG_PHASE0);
+      00825E 4B 03            [ 1]  358 	push	#0x03
+      008260 CD 81 2F         [ 4]  359 	call	_AD9833_WriteReg
+      008263 84               [ 1]  360 	pop	a
+                                    361 ;	AD9833.c: 75: }
+      008264 81               [ 4]  362 	ret
+                                    363 ;	AD9833.c: 77: void AD9833_SetMode(uint8_t mode)
+                                    364 ;	-----------------------------------------
+                                    365 ;	 function AD9833_SetMode
+                                    366 ;	-----------------------------------------
+      008265                        367 _AD9833_SetMode:
+                                    368 ;	AD9833.c: 79: switch(mode){
+      008265 7B 03            [ 1]  369 	ld	a, (0x03, sp)
+      008267 A1 00            [ 1]  370 	cp	a, #0x00
+      008269 27 13            [ 1]  371 	jreq	00101$
+      00826B 7B 03            [ 1]  372 	ld	a, (0x03, sp)
+      00826D 4A               [ 1]  373 	dec	a
+      00826E 27 1A            [ 1]  374 	jreq	00102$
+      008270 7B 03            [ 1]  375 	ld	a, (0x03, sp)
+      008272 A1 02            [ 1]  376 	cp	a, #0x02
+      008274 27 27            [ 1]  377 	jreq	00103$
+      008276 7B 03            [ 1]  378 	ld	a, (0x03, sp)
+      008278 A1 03            [ 1]  379 	cp	a, #0x03
+      00827A 27 34            [ 1]  380 	jreq	00104$
+      00827C 20 43            [ 2]  381 	jra	00105$
+                                    382 ;	AD9833.c: 80: case SINE     : //SIN : OPBITEN=0, MODE=0, DIV2=x
+      00827E                        383 00101$:
+                                    384 ;	AD9833.c: 81: BITS_RST(AD_REG_VAL[AD_REG_CTL], (BIT(AD_CTL_MODE)|BIT(AD_CTL_OPBITEN)));
+      00827E CE 00 06         [ 2]  385 	ldw	x, _AD_REG_VAL+0
+      008281 9F               [ 1]  386 	ld	a, xl
+      008282 A4 DD            [ 1]  387 	and	a, #0xdd
+      008284 97               [ 1]  388 	ld	xl, a
+      008285 CF 00 06         [ 2]  389 	ldw	_AD_REG_VAL+0, x
+                                    390 ;	AD9833.c: 82: break;
+      008288 20 37            [ 2]  391 	jra	00105$
+                                    392 ;	AD9833.c: 83: case TRIANGLE : //TRIANGLE : OPBITEN=0, MODE=1, DIV2=x
+      00828A                        393 00102$:
+                                    394 ;	AD9833.c: 84: BIT_SET(AD_REG_VAL[AD_REG_CTL],AD_CTL_MODE);
+      00828A CE 00 06         [ 2]  395 	ldw	x, _AD_REG_VAL+0
+      00828D 9F               [ 1]  396 	ld	a, xl
+      00828E AA 02            [ 1]  397 	or	a, #0x02
+      008290 97               [ 1]  398 	ld	xl, a
+      008291 CF 00 06         [ 2]  399 	ldw	_AD_REG_VAL+0, x
+                                    400 ;	AD9833.c: 85: BIT_RST(AD_REG_VAL[AD_REG_CTL],AD_CTL_OPBITEN);
+      008294 9F               [ 1]  401 	ld	a, xl
+      008295 A4 DF            [ 1]  402 	and	a, #0xdf
+      008297 97               [ 1]  403 	ld	xl, a
+      008298 CF 00 06         [ 2]  404 	ldw	_AD_REG_VAL+0, x
+                                    405 ;	AD9833.c: 86: break;
+      00829B 20 24            [ 2]  406 	jra	00105$
+                                    407 ;	AD9833.c: 87: case SQUARE   : //SQUARE : OPBITEN=1, MODE=0, DIV2=0
+      00829D                        408 00103$:
+                                    409 ;	AD9833.c: 88: BIT_SET(AD_REG_VAL[AD_REG_CTL],AD_CTL_OPBITEN);
+      00829D CE 00 06         [ 2]  410 	ldw	x, _AD_REG_VAL+0
+      0082A0 9F               [ 1]  411 	ld	a, xl
+      0082A1 AA 20            [ 1]  412 	or	a, #0x20
+      0082A3 97               [ 1]  413 	ld	xl, a
+      0082A4 CF 00 06         [ 2]  414 	ldw	_AD_REG_VAL+0, x
+                                    415 ;	AD9833.c: 89: BITS_RST(AD_REG_VAL[AD_REG_CTL],(BIT(AD_CTL_MODE)|BIT(AD_CTL_DIV2)));
+      0082A7 9F               [ 1]  416 	ld	a, xl
+      0082A8 A4 F5            [ 1]  417 	and	a, #0xf5
+      0082AA 97               [ 1]  418 	ld	xl, a
+      0082AB CF 00 06         [ 2]  419 	ldw	_AD_REG_VAL+0, x
+                                    420 ;	AD9833.c: 90: break;
+      0082AE 20 11            [ 2]  421 	jra	00105$
+                                    422 ;	AD9833.c: 91: case SQUARE2  : //SQUARE2 : OPBITEN=1, MODE=0, DIV2=1
+      0082B0                        423 00104$:
+                                    424 ;	AD9833.c: 92: BITS_SET(AD_REG_VAL[AD_REG_CTL],(BIT(AD_CTL_OPBITEN)|BIT(AD_CTL_MODE)));
+      0082B0 CE 00 06         [ 2]  425 	ldw	x, _AD_REG_VAL+0
+      0082B3 9F               [ 1]  426 	ld	a, xl
+      0082B4 AA 22            [ 1]  427 	or	a, #0x22
+      0082B6 97               [ 1]  428 	ld	xl, a
+      0082B7 CF 00 06         [ 2]  429 	ldw	_AD_REG_VAL+0, x
+                                    430 ;	AD9833.c: 93: BIT_RST(AD_REG_VAL[AD_REG_CTL],AD_CTL_DIV2);
+      0082BA 9F               [ 1]  431 	ld	a, xl
+      0082BB A4 F7            [ 1]  432 	and	a, #0xf7
+      0082BD 97               [ 1]  433 	ld	xl, a
+      0082BE CF 00 06         [ 2]  434 	ldw	_AD_REG_VAL+0, x
+                                    435 ;	AD9833.c: 95: }
+      0082C1                        436 00105$:
+                                    437 ;	AD9833.c: 96: AD9833_WriteReg(AD_REG_CTL);
+      0082C1 4B 00            [ 1]  438 	push	#0x00
+      0082C3 CD 81 2F         [ 4]  439 	call	_AD9833_WriteReg
+      0082C6 84               [ 1]  440 	pop	a
+                                    441 ;	AD9833.c: 97: }
+      0082C7 81               [ 4]  442 	ret
+                                    443 	.area CODE
+                                    444 	.area CONST
+      008046                        445 _AWU_Init_APR_Array_65536_122:
+      008046 00                     446 	.db #0x00	; 0
+      008047 1E                     447 	.db #0x1e	; 30
+      008048 1E                     448 	.db #0x1e	; 30
+      008049 1E                     449 	.db #0x1e	; 30
+      00804A 1E                     450 	.db #0x1e	; 30
+      00804B 1E                     451 	.db #0x1e	; 30
+      00804C 1E                     452 	.db #0x1e	; 30
+      00804D 1E                     453 	.db #0x1e	; 30
+      00804E 1E                     454 	.db #0x1e	; 30
+      00804F 1E                     455 	.db #0x1e	; 30
+      008050 1E                     456 	.db #0x1e	; 30
+      008051 1E                     457 	.db #0x1e	; 30
+      008052 1E                     458 	.db #0x1e	; 30
+      008053 3D                     459 	.db #0x3d	; 61
+      008054 17                     460 	.db #0x17	; 23
+      008055 17                     461 	.db #0x17	; 23
+      008056 3E                     462 	.db #0x3e	; 62
+      008057                        463 _AWU_Init_TBR_Array_65536_122:
+      008057 00                     464 	.db #0x00	; 0
+      008058 01                     465 	.db #0x01	; 1
+      008059 02                     466 	.db #0x02	; 2
+      00805A 03                     467 	.db #0x03	; 3
+      00805B 04                     468 	.db #0x04	; 4
+      00805C 05                     469 	.db #0x05	; 5
+      00805D 06                     470 	.db #0x06	; 6
+      00805E 07                     471 	.db #0x07	; 7
+      00805F 08                     472 	.db #0x08	; 8
+      008060 09                     473 	.db #0x09	; 9
+      008061 0A                     474 	.db #0x0a	; 10
+      008062 0B                     475 	.db #0x0b	; 11
+      008063 0C                     476 	.db #0x0c	; 12
+      008064 0C                     477 	.db #0x0c	; 12
+      008065 0E                     478 	.db #0x0e	; 14
+      008066 0F                     479 	.db #0x0f	; 15
+      008067 0F                     480 	.db #0x0f	; 15
+                                    481 	.area INITIALIZER
+      00808A                        482 __xinit__AD_REG_ADDRESS:
+      00808A 00                     483 	.db #0x00	; 0
+      00808B 40                     484 	.db #0x40	; 64
+      00808C 80                     485 	.db #0x80	; 128
+      00808D C0                     486 	.db #0xc0	; 192
+      00808E E0                     487 	.db #0xe0	; 224
+      00808F                        488 __xinit__AD_REG_VAL:
+      00808F 00 00                  489 	.dw #0x0000
+      008091 00 00                  490 	.dw #0x0000
+      008093 00 00                  491 	.dw #0x0000
+      008095 00 00                  492 	.dw #0x0000
+      008097 00 00                  493 	.dw #0x0000
+                                    494 	.area CABS (ABS)
