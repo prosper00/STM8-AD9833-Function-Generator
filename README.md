@@ -8,6 +8,7 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 - I developed this using an STM8S103F3 'bluepill'/'minimum development board'. It should be possible to modify this for use on other STM8 boards fairly easily
 - I'm using the hardware SPI pins on the STM8: 'C6' is the MOSI, and connects to the AD9833 'DAT' pin. 'C5' is the CLK pin, and connects to the AD9833 'CLK' pin. A3 is the CS pin, and connects to the AD9833 'FNC' pin.
 - I'm reading a pot on pin D2 (pot middle pin to D2, and the outer pins to Vcc and GND respectively), which will be used to control the frequency
+- Other than stm8flash and SDCC, everything you need to compile should be included. Do a 'git clone,' and then 'make' to compile and 'make flash' to compile and flash your board
 
 ### Note
 This is compiled against a modified version of STMicro's SPL library. Library has been modified for compatibility with SDCC, and has been altered to use inlined functions becasue SDCC can't otherwise trim out unused functions. This saves a ton of flash space (see https://github.com/MightyPork/stm8s_inline_spl). This should compile against the 'full' SPL as well, though I haven't tested it, and it's possible that such a version wouldn't fit into 8K of flash.
