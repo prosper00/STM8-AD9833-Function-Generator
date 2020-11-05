@@ -20,25 +20,19 @@ void main(void)
 //    UART1_Config();
     SPI_Config();
     AD9833_Init();
-    AD9833_SetFreq(100000);
     AD9833_SetPhase(0);
-    AD9833_Reset(0);
- 
-
-  while (1)
-  {                                                
-    delay_ms(10000);
-    AD9833_Reset(1);
-    AD9833_SetFreq(100000);
-    AD9833_SetMode(TRIANGLE);
-    AD9833_Reset(0);
-    delay_ms(10000);
-    AD9833_Reset(1);
     AD9833_SetFreq(100000);
     AD9833_SetMode(SINE);
-    AD9833_Reset(0);   
+    AD9833_Reset(0);
     
-    int PotVal=ADC1_GetConversionValue();
+  while (1)
+  {                                                
+    delay_ms(100);
+
+    uint32_t raw=(ADC1_GetConversionValue());
+    float frequency=raw*raw; //raw = 0-1024, so frequency = 0-1048576Hz with an exponential taper
+    AD9833_SetFreq(frequency);
+    //todo: a better way to set frequency. Perhaps a 'coarse' and a 'fine' adjustment? (1 exponential, 1 linear?)
   } 
 }
 
@@ -88,12 +82,12 @@ static void SPI_Config(void)
    
 	SPI_DeInit();
 	SPI_Init(SPI_FIRSTBIT_MSB,\      //datasheet : "MSBFIRST"
-           SPI_BAUDRATEPRESCALER_16,\//datasheet : "Up to 40MHz sck"
+           SPI_BAUDRATEPRESCALER_2,\//datasheet : "Up to 40MHz sck"
            SPI_MODE_MASTER,\
-           SPI_CLOCKPOLARITY_HIGH,\ //datasheet : "SCK idles high between write operations" (CPOL1)
-           SPI_CLOCKPHASE_1EDGE,\   //datasheet : "Data is valid on the SCK falling edge" (CPHA0)
+           SPI_CLOCKPOLARITY_HIGH,\  //datasheet : "SCK idles high between write operations (CPOL=1)"
+           SPI_CLOCKPHASE_1EDGE,\    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
            SPI_DATADIRECTION_1LINE_TX,\
-           SPI_NSS_SOFT,\           //use software SS pin
+           SPI_NSS_SOFT,\            //use software SS pin
            (uint8_t) 0x00);
     SPI_Cmd(ENABLE);
 }

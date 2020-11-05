@@ -1,7 +1,5 @@
 //file AD9833.h - AD9833 external function declarations
-
-#define DEBUG
-#include "stdio.h"
+//#include "stdio.h"
 
 //Initializes to default settings
 void AD9833_Init(void);
@@ -24,7 +22,7 @@ enum AD_MODES{
 	SINE,
 	TRIANGLE,
 	SQUARE,
-	SQUARE2
+	SQUARE2 //Square at 1/2 of the base frequency
 };
 
 //debug stuff

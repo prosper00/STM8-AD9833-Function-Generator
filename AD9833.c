@@ -49,8 +49,6 @@ void AD9833_Reset(bool reset)
 
 void AD9833_SetFreq(float frequency)
 {
-//	printf("\n\r\tSetFreq(%lu)\n\r",(uint32_t)frequency);
-		
 	uint32_t freqreg = calcFreq(frequency);
 	
 	/* If the user wants to change the entire contents of a frequency register, 
@@ -84,13 +82,13 @@ void AD9833_SetMode(uint8_t mode)
 			BIT_SET(AD_REG_VAL[AD_REG_CTL],AD_CTL_MODE);
 			BIT_RST(AD_REG_VAL[AD_REG_CTL],AD_CTL_OPBITEN);
 			break;
-		case SQUARE   : //SQUARE : OPBITEN=1, MODE=0, DIV2=0
+		case SQUARE2   : //SQUARE : OPBITEN=1, MODE=0, DIV2=0
 			BIT_SET(AD_REG_VAL[AD_REG_CTL],AD_CTL_OPBITEN);
 			BITS_RST(AD_REG_VAL[AD_REG_CTL],(BIT(AD_CTL_MODE)|BIT(AD_CTL_DIV2)));
 			break;
-		case SQUARE2  : //SQUARE2 : OPBITEN=1, MODE=0, DIV2=1
-   			BITS_SET(AD_REG_VAL[AD_REG_CTL],(BIT(AD_CTL_OPBITEN)|BIT(AD_CTL_MODE)));
-			BIT_RST(AD_REG_VAL[AD_REG_CTL],AD_CTL_DIV2);
+		case SQUARE  : //SQUARE2 : OPBITEN=1, MODE=0, DIV2=1
+   			BITS_SET(AD_REG_VAL[AD_REG_CTL],(BIT(AD_CTL_OPBITEN)|BIT(AD_CTL_DIV2)));
+			BIT_RST(AD_REG_VAL[AD_REG_CTL],AD_REG_CTL);
 			break;
 	}
 	AD9833_WriteReg(AD_REG_CTL);

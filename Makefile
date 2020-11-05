@@ -22,11 +22,11 @@ PROGRAMMER = stlinkv2
 # set compiler path & parameters
 CC_ROOT =
 CC      = sdcc
-CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110
+CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 --out-fmt-elf --debug
 
 # set output folder and target name
 OUTPUT_DIR = ./dist
-TARGET     := $(addprefix $(OUTPUT_DIR)/, $(notdir $(CURDIR))).hex
+TARGET     := $(addprefix $(OUTPUT_DIR)/, $(notdir $(CURDIR))).elf
 
 # set project folder and files (all *.c)
 PRJ_ROOT    = .
@@ -71,14 +71,14 @@ $(OUTPUT_DIR)/%.rel: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -D$(DEVICE) -c $? -o $@
 
 $(TARGET): $(PRJ_OBJECTS) $(SPL_OBJECTS)
-	$(CC) $(CFLAGS) -o $(TARGET:.hex=.ihx) $^
-	packihx $(TARGET:.hex=.ihx) > $(TARGET)
-	stm8-size $(TARGET)
+	$(CC) $(CFLAGS) -o $(TARGET) $^
+	stm8-objcopy -O ihex -R DATA -R INITIALIZED -R SSEG $(TARGET) $(TARGET).ihx
+	stm8-size -A $(TARGET)
 
 clean:
 	rm -rf $(OUTPUT_DIR)
 
 flash: all
-	stm8flash -c $(PROGRAMMER) -p $(PARTNO) -w $(TARGET)
+	stm8flash -c $(PROGRAMMER) -p $(PARTNO) -w $(TARGET).ihx
 
 .PHONY: clean flash
