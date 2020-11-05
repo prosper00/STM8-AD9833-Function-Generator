@@ -4,6 +4,7 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 ### Requirements:
 - sdcc - I used version 4.0
 - stm8flash - https://github.com/vdudouyt/stm8flash
+- stm8 binutils - https://stm8-binutils-gdb.sourceforge.io/
 - Edit the Makefile so that it can find SDCC (and its libs) and stm8flash. If you installed them into your system path, no changes should be needed
 - I developed this using an STM8S103F3 'bluepill'/'minimum development board'. It should be possible to modify this for use on other STM8 boards fairly easily
 - I'm using the hardware SPI pins on the STM8: 'C6' is the MOSI, and connects to the AD9833 'DAT' pin. 'C5' is the CLK pin, and connects to the AD9833 'CLK' pin. A3 is the CS pin, and connects to the AD9833 'FNC' pin.
