@@ -1,6 +1,6 @@
 #include "stm8s.h"
-#include <AD9833.h>
-#include <AD9833_reg.h>
+#include "AD9833.h"
+#include "AD9833_reg.h"
 
 void AD9833_WriteReg(uint8_t reg)
 {

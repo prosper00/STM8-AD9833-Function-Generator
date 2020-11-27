@@ -1,5 +1,4 @@
 //file AD9833.h - AD9833 external function declarations
-//#include "stdio.h"
 
 //Initializes to default settings
 void AD9833_Init(void);
@@ -26,6 +25,8 @@ enum AD_MODES{
 };
 
 //debug stuff
+//		e.g. a 16-bit printf();
+//			printf("\n\rRegVal: "BYTE_TO_BINARY_PATTERN" "BYTE_TO_BINARY_PATTERN,BYTE_TO_BINARY(AD_REG_VAL[reg]>>8), BYTE_TO_BINARY(AD_REG_VAL[reg]));
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)  \
   (byte & 0x80 ? '1' : '0'), \

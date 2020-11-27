@@ -9,9 +9,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
-#include <AD9833.h>
-#include <main.h>
-#include <delay.h>
+#include "AD9833.h"
+#include "main.h"
+#include "delay.h"
+#include "HD44780.h"
 
 void main(void)
 {                                                  
@@ -20,6 +21,9 @@ void main(void)
 //    UART1_Config();
     SPI_Config();
     AD9833_Init();
+    LCD_Begin();
+    LCD_Clear();
+    
     AD9833_SetPhase(0);
     AD9833_SetFreq(100000);
     AD9833_SetMode(SINE);
@@ -30,8 +34,12 @@ void main(void)
     delay_ms(100);
 
     uint32_t raw=(ADC1_GetConversionValue());
-    float frequency=raw*raw; //raw = 0-1024, so frequency = 0-1048576Hz with an exponential taper
-    AD9833_SetFreq(frequency);
+    //float frequency=raw*raw; //raw = 0-1024, so frequency = 0-1048576Hz with an exponential taper
+    //AD9833_SetFreq(frequency);
+    LCD_Set_Cursor(1,1);
+    LCD_Print_String("Mode: SINE");
+    LCD_Set_Cursor(2,1);
+    LCD_Print_String("Freq: Something?");
     //todo: a better way to set frequency. Perhaps a 'coarse' and a 'fine' adjustment? (1 exponential, 1 linear?)
   } 
 }
@@ -39,27 +47,24 @@ void main(void)
 static void CLK_Config(void)
 {
   CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);
-  //CLK_SYSCLKConfig(CLK_PRESCALER_CPUDIV1);
   CLK_SYSCLKConfig(CLK_PRESCALER_HSIDIV1);
   /* Configure the system clock to use HSI clock source and to run at 16Mhz */
   CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
+  #define F_CPU 16000000UL
 }
 
 static void ADC_Config(void)
 {
   //pin mode D2 - input, floating, no interrupt:
-  GPIO_Init(GPIOD, GPIO_PIN_2, GPIO_MODE_IN_FL_NO_IT);
+  GPIO_Init(POTPIN, GPIO_MODE_IN_FL_NO_IT);
   
   //load ADC1 default registers
   ADC1_DeInit();
   
   //per the datasheet, PortD2 is AIN3
-  ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS, ADC1_CHANNEL_3, ADC1_PRESSEL_FCPU_D2, \
+  ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS, POTCH, ADC1_PRESSEL_FCPU_D2, \
 		  ADC1_EXTTRIG_TIM, DISABLE, ADC1_ALIGN_RIGHT, ADC1_SCHMITTTRIG_CHANNEL3, \
 		  DISABLE);
-
-  //Disable EOC interrupt
-  //ADC1_ITConfig(DISABLE);
 
   //Start scanning AIN
   ADC1_StartConversion();
@@ -68,8 +73,6 @@ static void ADC_Config(void)
 static void UART1_Config(void)
 {
 /*	UART1_DeInit();
-	//GPIO D5 (tx) to OUTPUT, push-pull
-	//GPIO_Init(GPIOD, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_SLOW);
 	UART1_Init(115200,  UART1_WORDLENGTH_8D,  UART1_STOPBITS_1,  UART1_PARITY_NO,  UART1_SYNCMODE_CLOCK_DISABLE,  UART1_MODE_TXRX_ENABLE);
 */
 }
@@ -78,21 +81,22 @@ static void SPI_Config(void)
 {
 	//setup SS pin as an output
 	//pin mode PA3 - output, pushpull-high, 2MHz
-	GPIO_Init(GPIOA, GPIO_PIN_3, GPIO_MODE_OUT_PP_HIGH_FAST);
+	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST);
    
 	SPI_DeInit();
 	SPI_Init(SPI_FIRSTBIT_MSB,\      //datasheet : "MSBFIRST"
-           SPI_BAUDRATEPRESCALER_2,\//datasheet : "Up to 40MHz sck"
-           SPI_MODE_MASTER,\
-           SPI_CLOCKPOLARITY_HIGH,\  //datasheet : "SCK idles high between write operations (CPOL=1)"
-           SPI_CLOCKPHASE_1EDGE,\    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
-           SPI_DATADIRECTION_1LINE_TX,\
-           SPI_NSS_SOFT,\            //use software SS pin
-           (uint8_t) 0x00);
+             SPI_BAUDRATEPRESCALER_2,\//datasheet : "Up to 40MHz sck"
+             SPI_MODE_MASTER,\
+             SPI_CLOCKPOLARITY_HIGH,\  //datasheet : "SCK idles high between write operations (CPOL=1)"
+             SPI_CLOCKPHASE_1EDGE,\    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
+             SPI_DATADIRECTION_1LINE_TX,\
+             SPI_NSS_SOFT,\            //use software SS pin
+             (uint8_t) 0x00);
     SPI_Cmd(ENABLE);
 }
 
-/*
+/* Needed for printf();
+
 int putchar(int c)
 {
   UART1_SendData8(c);

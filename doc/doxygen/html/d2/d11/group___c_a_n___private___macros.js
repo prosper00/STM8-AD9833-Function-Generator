@@ -1,0 +1,26 @@
+var group___c_a_n___private___macros =
+[
+    [ "CAN_IT_CONFIG_MASK", "d2/d11/group___c_a_n___private___macros.html#gac067ab4071f4c38407d4c9b0c2e8ab7a", null ],
+    [ "IS_CAN_BITSEG1_OK", "d2/d11/group___c_a_n___private___macros.html#ga3c0fcdf949b613f4365514164a798922", null ],
+    [ "IS_CAN_BITSEG2_OK", "d2/d11/group___c_a_n___private___macros.html#ga25084b067b7f52c3112572b37af2e207", null ],
+    [ "IS_CAN_DLC_OK", "d2/d11/group___c_a_n___private___macros.html#gade8b277dfd3983c2872c0a77f9753bfd", null ],
+    [ "IS_CAN_EXTID_OK", "d2/d11/group___c_a_n___private___macros.html#gacf92472dd8cfff95d79935754a69ceb1", null ],
+    [ "IS_CAN_FILTER_MODE_OK", "d2/d11/group___c_a_n___private___macros.html#gaa478dc4d6f690f4ba9c3e531fc6683ee", null ],
+    [ "IS_CAN_FILTER_NUMBER_OK", "d2/d11/group___c_a_n___private___macros.html#gafdd4fce551af3f65b0afdb69a93dbd56", null ],
+    [ "IS_CAN_FILTER_SCALE_OK", "d2/d11/group___c_a_n___private___macros.html#ga38f8c3ba03674addd586124790938ed1", null ],
+    [ "IS_CAN_FLAG_CLEAR_OK", "d2/d11/group___c_a_n___private___macros.html#ga23ff3e14814274da52b3723f6df9d85b", null ],
+    [ "IS_CAN_FLAG_STATUS_OK", "d2/d11/group___c_a_n___private___macros.html#gae2b68c0959540f18cbc941a7d2529673", null ],
+    [ "IS_CAN_IDTYPE_OK", "d2/d11/group___c_a_n___private___macros.html#gadab8ef1b80fe3c15c2cc498fa753d17f", null ],
+    [ "IS_CAN_IT_PENDING_BIT_OK", "d2/d11/group___c_a_n___private___macros.html#gaa21767c1d436cc8411dd802922931043", null ],
+    [ "IS_CAN_IT_STATUS_OK", "d2/d11/group___c_a_n___private___macros.html#ga79fdf4c1b1f0c07000e01d6ab80fa590", null ],
+    [ "IS_CAN_LAST_ERROR_CODE_OK", "d2/d11/group___c_a_n___private___macros.html#gaaed6e670df5140c4a5ccd9a0e730283e", null ],
+    [ "IS_CAN_MASTERCTRL_OK", "d2/d11/group___c_a_n___private___macros.html#ga50bc52e7b410c3ad6de33f6d47542d79", null ],
+    [ "IS_CAN_MODE_OK", "d2/d11/group___c_a_n___private___macros.html#ga666a4b38ad9dbaf5908ba4994a47b889", null ],
+    [ "IS_CAN_OPERATINGMODE_OK", "d2/d11/group___c_a_n___private___macros.html#ga5806c65929160cc492ae65e50fdacacb", null ],
+    [ "IS_CAN_PRESCALER_OK", "d2/d11/group___c_a_n___private___macros.html#ga4cfe01663900f2587ea654632915f446", null ],
+    [ "IS_CAN_RTR_OK", "d2/d11/group___c_a_n___private___macros.html#ga7cc16c9c87fe9937328314303de3412b", null ],
+    [ "IS_CAN_ST7_COMPATIBILITY_OK", "d2/d11/group___c_a_n___private___macros.html#ga21cb00daf29dac226ea8aca33f97462d", null ],
+    [ "IS_CAN_STDID_OK", "d2/d11/group___c_a_n___private___macros.html#ga748046d84ee4ce6d72ed4f50b48abbac", null ],
+    [ "IS_CAN_SYNJUMPWIDTH_OK", "d2/d11/group___c_a_n___private___macros.html#gafd2f5b53feda321c2c45fd3e03e9569b", null ],
+    [ "IS_CAN_TRANSMITMAILBOX_OK", "d2/d11/group___c_a_n___private___macros.html#ga18fab14af2470630e1a71d72863cec3b", null ]
+];

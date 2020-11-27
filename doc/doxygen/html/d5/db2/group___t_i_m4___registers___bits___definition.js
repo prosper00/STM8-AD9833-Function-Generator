@@ -1,0 +1,25 @@
+var group___t_i_m4___registers___bits___definition =
+[
+    [ "TIM4_ARR_ARR", "d5/db2/group___t_i_m4___registers___bits___definition.html#gaeefbcedf88f6340aa9c2f40280689dc2", null ],
+    [ "TIM4_ARR_ARR", "d5/db2/group___t_i_m4___registers___bits___definition.html#gaeefbcedf88f6340aa9c2f40280689dc2", null ],
+    [ "TIM4_CNTR_CNT", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga924d1aa92e1a76165cf7dbf8f99b9274", null ],
+    [ "TIM4_CNTR_CNT", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga924d1aa92e1a76165cf7dbf8f99b9274", null ],
+    [ "TIM4_CR1_ARPE", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga3310e53c5e014595648bd8208213d538", null ],
+    [ "TIM4_CR1_ARPE", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga3310e53c5e014595648bd8208213d538", null ],
+    [ "TIM4_CR1_CEN", "d5/db2/group___t_i_m4___registers___bits___definition.html#gacdcf4e81c6793c625106b2d9b75f4ea5", null ],
+    [ "TIM4_CR1_CEN", "d5/db2/group___t_i_m4___registers___bits___definition.html#gacdcf4e81c6793c625106b2d9b75f4ea5", null ],
+    [ "TIM4_CR1_OPM", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga722923bfda83f04bd8f84d99741ec89e", null ],
+    [ "TIM4_CR1_OPM", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga722923bfda83f04bd8f84d99741ec89e", null ],
+    [ "TIM4_CR1_UDIS", "d5/db2/group___t_i_m4___registers___bits___definition.html#gaa8f85bea0fae9ac232854022758f1b1c", null ],
+    [ "TIM4_CR1_UDIS", "d5/db2/group___t_i_m4___registers___bits___definition.html#gaa8f85bea0fae9ac232854022758f1b1c", null ],
+    [ "TIM4_CR1_URS", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga55400df0d37d3550a9d7188053b9d765", null ],
+    [ "TIM4_CR1_URS", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga55400df0d37d3550a9d7188053b9d765", null ],
+    [ "TIM4_EGR_UG", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga933ce7891923e334ec762d195d04efe2", null ],
+    [ "TIM4_EGR_UG", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga933ce7891923e334ec762d195d04efe2", null ],
+    [ "TIM4_IER_UIE", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga51d45ec6b3ac976082776591ca91a543", null ],
+    [ "TIM4_IER_UIE", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga51d45ec6b3ac976082776591ca91a543", null ],
+    [ "TIM4_PSCR_PSC", "d5/db2/group___t_i_m4___registers___bits___definition.html#gacfba02fde6763cb79e7c191c45bfce0c", null ],
+    [ "TIM4_PSCR_PSC", "d5/db2/group___t_i_m4___registers___bits___definition.html#gacfba02fde6763cb79e7c191c45bfce0c", null ],
+    [ "TIM4_SR1_UIF", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga925e587e55d96319f23f7a74f8a2f4fe", null ],
+    [ "TIM4_SR1_UIF", "d5/db2/group___t_i_m4___registers___bits___definition.html#ga925e587e55d96319f23f7a74f8a2f4fe", null ]
+];

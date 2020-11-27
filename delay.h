@@ -1,47 +1,21 @@
-/* 
- * delay utilite for STM8 family
- * COSMIC and SDCC
- * Terentiev Oleg
- * t.oleg@ymail.com
- */
-
-#ifndef _UTIL_DELAY_H_
-#define _UTIL_DELAY_H_ 1
-
-#define F_CPU 16000000UL
+#ifndef DELAY_H
+#define DELAY_H
 
 #ifndef F_CPU
-#warning F_CPU is not defined!
+#warning "F_CPU not defined, using 16MHz by default"
+#define F_CPU 16000000UL
 #endif
 
-/* 
- * Func delayed N cycles, where N = 3 + ( ticks * 3 )
- * so, ticks = ( N - 3 ) / 3, minimum delay is 6 CLK
- * when tick = 1, because 0 equels 65535
- */
+//#include <stdint.h>
 
-static inline void _delay_cycl( uint16_t __ticks )
-{
-  #define T_COUNT(x) (( F_CPU * x / 1000000UL )-5)/5)
-	__asm__("nop\n nop\n"); 
-	do { 		// ASM: ldw X, #tick; lab$: decw X; tnzw X; jrne lab$
-                __ticks--;//      2c;                 1c;     2c    ; 1/2c   
-        } while ( __ticks );
-	__asm__("nop\n");
+inline void delay_us(uint32_t us) {
+    for (uint32_t i = 0; i < ((F_CPU / 18 / 1000000UL) * us); i++) {
+        __asm__("nop");
+    }
 }
 
-static inline void delay_us( uint16_t __us )
-{
-	_delay_cycl( (uint16_t)( T_COUNT(__us) );
+inline void delay_ms(uint32_t ms) {
+     delay_us(1000 * ms);
 }
 
-static inline void delay_ms( uint16_t __ms )
-{
-	while ( __ms-- )
-	{
-		delay_us( 1000 );
-	}
-}
-
-#endif
-
+#endif /* DELAY_H */

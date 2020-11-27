@@ -28,14 +28,23 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=6
-FILE_NAME_0=3030;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
-FILE_NAME_1=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
-FILE_NAME_2=1551;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
-FILE_NAME_3=58;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.h;0;4
-FILE_NAME_4=1150;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833_reg.h;0;4
-FILE_NAME_5=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
-FILE_NAME_6=0;Make;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FMakefile;0;4
+current_page=0
+FILE_NAME_0=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
+FILE_NAME_1=938;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
+FILE_NAME_2=245;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FHD44780.h;0;4
+FILE_NAME_3=56;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.h;0;4
+FILE_NAME_4=134;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
+FILE_NAME_5=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833_reg.h;0;4
+FILE_NAME_6=359;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
 
 [VTE]
 last_dir=/home/bdroy
+
+[build-menu]
+C++FT_00_LB=_Compile
+C++FT_00_CM=make clean; make
+C++FT_00_WD=
+C++FT_01_LB=_Build
+C++FT_01_CM=make clean; make flash
+C++FT_01_WD=
+filetypes=C++;

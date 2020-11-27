@@ -1,0 +1,28 @@
+var stm8s__clk_8c =
+[
+    [ "CLK_AdjustHSICalibrationValue", "d3/def/group___c_l_k___public___functions.html#ga0269b075fde509b9aa0fc408c364ff5e", null ],
+    [ "CLK_CCOCmd", "d3/def/group___c_l_k___public___functions.html#ga25013bfdfaf102563d0ea8703e10080d", null ],
+    [ "CLK_CCOConfig", "d3/def/group___c_l_k___public___functions.html#ga37bd543f2041a879ae67a89464fe0724", null ],
+    [ "CLK_ClearITPendingBit", "d3/def/group___c_l_k___public___functions.html#ga278f71c8d3f77f67e3e2aa35e6587474", null ],
+    [ "CLK_ClockSecuritySystemEnable", "d3/def/group___c_l_k___public___functions.html#gad1bb45d35ea2a30c731f7f4882837825", null ],
+    [ "CLK_ClockSwitchCmd", "d3/def/group___c_l_k___public___functions.html#ga5bc4dc63dbb41d2cd04f8341eeb1027e", null ],
+    [ "CLK_ClockSwitchConfig", "d3/def/group___c_l_k___public___functions.html#ga72690e18690e6f95fb82d9884617262e", null ],
+    [ "CLK_DeInit", "d3/def/group___c_l_k___public___functions.html#ga7aa3910abf18b164ca4a05c7312da863", null ],
+    [ "CLK_FastHaltWakeUpCmd", "d3/def/group___c_l_k___public___functions.html#gaffe62ba873c7b82fcfcb0505c39dd0ae", null ],
+    [ "CLK_GetClockFreq", "d3/def/group___c_l_k___public___functions.html#ga2d27cbf7ffb73aa74f9cb03e3afdbf8f", null ],
+    [ "CLK_GetFlagStatus", "d3/def/group___c_l_k___public___functions.html#gad186dd022bf40550e44be1ebb56f1732", null ],
+    [ "CLK_GetITStatus", "d3/def/group___c_l_k___public___functions.html#gabc7d33f466770b3e3dc5254b0ece47c6", null ],
+    [ "CLK_GetSYSCLKSource", "d3/def/group___c_l_k___public___functions.html#ga915138ac20aaeb06b5eb9d41258bf756", null ],
+    [ "CLK_HSECmd", "d3/def/group___c_l_k___public___functions.html#ga5b4d0d607f0267b52afa78dba9e64b86", null ],
+    [ "CLK_HSICmd", "d3/def/group___c_l_k___public___functions.html#ga1d9e1ea1623f87ad8355dadc77b90b7b", null ],
+    [ "CLK_HSIPrescalerConfig", "d3/def/group___c_l_k___public___functions.html#gab1406c34d5e49575264544949bd576ee", null ],
+    [ "CLK_ITConfig", "d3/def/group___c_l_k___public___functions.html#ga48308478205c6b628ddbecb54aa09257", null ],
+    [ "CLK_LSICmd", "d3/def/group___c_l_k___public___functions.html#ga8e0c429dc148bc34557b855a524262c6", null ],
+    [ "CLK_PeripheralClockConfig", "d3/def/group___c_l_k___public___functions.html#gabbb45bdfac7093a30d73b714322322b2", null ],
+    [ "CLK_SlowActiveHaltWakeUpCmd", "d3/def/group___c_l_k___public___functions.html#gae32e225ae25ee2023663a18bb839a75c", null ],
+    [ "CLK_SWIMConfig", "d3/def/group___c_l_k___public___functions.html#ga9852cd186e5fb633e45800c43d7ee959", null ],
+    [ "CLK_SYSCLKConfig", "d3/def/group___c_l_k___public___functions.html#gae55591b82847e1f74ebe7dc9415dfbb7", null ],
+    [ "CLK_SYSCLKEmergencyClear", "d3/def/group___c_l_k___public___functions.html#gad97f4fa3f810b6bf61ac3fa28e6e6b71", null ],
+    [ "CLKPrescTable", "dc/d89/group___c_l_k___private___constants.html#ga94ca03ba5b29955baa3e9a23c106d54e", null ],
+    [ "HSIDivFactor", "dc/d89/group___c_l_k___private___constants.html#ga0d337c358ba95806975e282608625d57", null ]
+];

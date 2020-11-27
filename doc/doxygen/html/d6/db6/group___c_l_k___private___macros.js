@@ -1,0 +1,28 @@
+var group___c_l_k___private___macros =
+[
+    [ "STM8S_StdPeriph_Driver", "d7/d93/group___s_t_m8_s___std_periph___driver.html", "d7/d93/group___s_t_m8_s___std_periph___driver" ],
+    [ "IS_CLK_CSSCONFIG_OK", "d6/db6/group___c_l_k___private___macros.html#ga2216834f13338037448dc60ce65aad27", null ],
+    [ "IS_CLK_CSSCONFIG_OK", "d6/db6/group___c_l_k___private___macros.html#ga2216834f13338037448dc60ce65aad27", null ],
+    [ "IS_CLK_CURRENTCLOCKSTATE_OK", "d6/db6/group___c_l_k___private___macros.html#ga3a3a632cd3f9cc92641049c5d05ed4df", null ],
+    [ "IS_CLK_CURRENTCLOCKSTATE_OK", "d6/db6/group___c_l_k___private___macros.html#ga3a3a632cd3f9cc92641049c5d05ed4df", null ],
+    [ "IS_CLK_FLAG_OK", "d6/db6/group___c_l_k___private___macros.html#gaeeaae3c0f6d1d70c5a934f5fc5f7a4f3", null ],
+    [ "IS_CLK_FLAG_OK", "d6/db6/group___c_l_k___private___macros.html#gaeeaae3c0f6d1d70c5a934f5fc5f7a4f3", null ],
+    [ "IS_CLK_HSIPRESCALER_OK", "d6/db6/group___c_l_k___private___macros.html#ga7c8ef17722bfab3163d064d93cbb12c9", null ],
+    [ "IS_CLK_HSIPRESCALER_OK", "d6/db6/group___c_l_k___private___macros.html#ga7c8ef17722bfab3163d064d93cbb12c9", null ],
+    [ "IS_CLK_HSITRIMVALUE_OK", "d6/db6/group___c_l_k___private___macros.html#ga461ff3a12ac20b05fececdb01f61c0d3", null ],
+    [ "IS_CLK_HSITRIMVALUE_OK", "d6/db6/group___c_l_k___private___macros.html#ga461ff3a12ac20b05fececdb01f61c0d3", null ],
+    [ "IS_CLK_IT_OK", "d6/db6/group___c_l_k___private___macros.html#ga4f69166c4fe75989d9f3267ec1f72e2f", null ],
+    [ "IS_CLK_IT_OK", "d6/db6/group___c_l_k___private___macros.html#ga4f69166c4fe75989d9f3267ec1f72e2f", null ],
+    [ "IS_CLK_OUTPUT_OK", "d6/db6/group___c_l_k___private___macros.html#gaf7fcfe2b35a9e7a8c477cdaa1fc4aadb", null ],
+    [ "IS_CLK_OUTPUT_OK", "d6/db6/group___c_l_k___private___macros.html#gaf7fcfe2b35a9e7a8c477cdaa1fc4aadb", null ],
+    [ "IS_CLK_PERIPHERAL_OK", "d6/db6/group___c_l_k___private___macros.html#ga1f72f1f07d24692cd29c7564c833cf81", null ],
+    [ "IS_CLK_PERIPHERAL_OK", "d6/db6/group___c_l_k___private___macros.html#ga1f72f1f07d24692cd29c7564c833cf81", null ],
+    [ "IS_CLK_PRESCALER_OK", "d6/db6/group___c_l_k___private___macros.html#ga0b7de18d1663521daf9b34d60ba58f98", null ],
+    [ "IS_CLK_PRESCALER_OK", "d6/db6/group___c_l_k___private___macros.html#ga0b7de18d1663521daf9b34d60ba58f98", null ],
+    [ "IS_CLK_SOURCE_OK", "d6/db6/group___c_l_k___private___macros.html#gaae36db25d0f690771bd72478abf34613", null ],
+    [ "IS_CLK_SOURCE_OK", "d6/db6/group___c_l_k___private___macros.html#gaae36db25d0f690771bd72478abf34613", null ],
+    [ "IS_CLK_SWIMDIVIDER_OK", "d6/db6/group___c_l_k___private___macros.html#gacdc0e8f14dc2e5c5698aef2816f20dc9", null ],
+    [ "IS_CLK_SWIMDIVIDER_OK", "d6/db6/group___c_l_k___private___macros.html#gacdc0e8f14dc2e5c5698aef2816f20dc9", null ],
+    [ "IS_CLK_SWITCHMODE_OK", "d6/db6/group___c_l_k___private___macros.html#gaf02fe717b1f2be2c71a8e1d042c04015", null ],
+    [ "IS_CLK_SWITCHMODE_OK", "d6/db6/group___c_l_k___private___macros.html#gaf02fe717b1f2be2c71a8e1d042c04015", null ]
+];
