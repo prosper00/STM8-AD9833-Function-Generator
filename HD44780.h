@@ -6,6 +6,7 @@
  */
 #ifndef __HD44780_H
 #define __HD44780_H
+#define __HD44780_H
 
 /* Public functions */
 void LCD_Begin(void);

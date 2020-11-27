@@ -28,14 +28,16 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
-FILE_NAME_1=938;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
-FILE_NAME_2=245;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FHD44780.h;0;4
+current_page=6
+FILE_NAME_0=122;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
+FILE_NAME_1=3010;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
+FILE_NAME_2=3463;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FHD44780.h;0;4
 FILE_NAME_3=56;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.h;0;4
 FILE_NAME_4=134;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
 FILE_NAME_5=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833_reg.h;0;4
-FILE_NAME_6=359;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
+FILE_NAME_6=246;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
+FILE_NAME_7=441;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.c;0;4
+FILE_NAME_8=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fcommon%2Fstm8s_conf.h;0;4
 
 [VTE]
 last_dir=/home/bdroy
@@ -48,3 +50,12 @@ C++FT_01_LB=_Build
 C++FT_01_CM=make clean; make flash
 C++FT_01_WD=
 filetypes=C++;
+NF_00_LB=Git Add
+NF_00_CM=git add -A
+NF_00_WD=
+NF_01_LB=Git Commit
+NF_01_CM=git commit -am
+NF_01_WD=
+NF_02_LB=Git Push
+NF_02_CM=git push
+NF_02_WD=

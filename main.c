@@ -20,36 +20,39 @@ void main(void)
     ADC_Config();
 //    UART1_Config();
     SPI_Config();
+    TIM4_Config();
     AD9833_Init();
-    LCD_Begin();
-    LCD_Clear();
-    
+    AD9833_SetFreq(30000);
     AD9833_SetPhase(0);
-    AD9833_SetFreq(100000);
-    AD9833_SetMode(SINE);
     AD9833_Reset(0);
-    
+
   while (1)
   {                                                
-    delay_ms(100);
 
-    uint32_t raw=(ADC1_GetConversionValue());
-    //float frequency=raw*raw; //raw = 0-1024, so frequency = 0-1048576Hz with an exponential taper
-    //AD9833_SetFreq(frequency);
+    AD9833_SetMode(TRIANGLE);
+    delay_ms(2000);
+    
+    AD9833_SetMode(SINE);
+    delay_ms(2000);
+    
+    AD9833_SetMode(SQUARE);
+    delay_ms(2000);
+    
     LCD_Set_Cursor(1,1);
     LCD_Print_String("Mode: SINE");
     LCD_Set_Cursor(2,1);
     LCD_Print_String("Freq: Something?");
-    //todo: a better way to set frequency. Perhaps a 'coarse' and a 'fine' adjustment? (1 exponential, 1 linear?)
-  } 
+
+    uint32_t PotVal=ADC1_GetConversionValue();
+  }
 }
 
 static void CLK_Config(void)
 {
-  CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);
-  CLK_SYSCLKConfig(CLK_PRESCALER_HSIDIV1);
+  CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1); //Set to 16MHz
+  //CLK_SYSCLKConfig(CLK_PRESCALER_HSIDIV1);
   /* Configure the system clock to use HSI clock source and to run at 16Mhz */
-  CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
+  //CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
   #define F_CPU 16000000UL
 }
 
@@ -62,9 +65,9 @@ static void ADC_Config(void)
   ADC1_DeInit();
   
   //per the datasheet, PortD2 is AIN3
-  ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS, POTCH, ADC1_PRESSEL_FCPU_D2, \
-		  ADC1_EXTTRIG_TIM, DISABLE, ADC1_ALIGN_RIGHT, ADC1_SCHMITTTRIG_CHANNEL3, \
-		  DISABLE);
+  ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS, POTCH, ADC1_PRESSEL_FCPU_D2,
+		    ADC1_EXTTRIG_TIM, DISABLE, ADC1_ALIGN_RIGHT, ADC1_SCHMITTTRIG_CHANNEL3,
+		    DISABLE);
 
   //Start scanning AIN
   ADC1_StartConversion();
@@ -95,20 +98,20 @@ static void SPI_Config(void)
     SPI_Cmd(ENABLE);
 }
 
-/* Needed for printf();
+// Needed for printf();
 
 int putchar(int c)
 {
-  UART1_SendData8(c);
-  while(UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET);
+  LCD_Print_Char(c);
+  //UART1_SendData8(c);
+  //while(UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET);
   return (c);
 }
 
-int getchar(void)
+/*int getchar(void)
 {
   int c = 0;
   while(UART1_GetFlagStatus(UART1_FLAG_RXNE)==RESET);
     c = UART1_ReceiveData8();
   return (c);
-}
-*/
+}*/

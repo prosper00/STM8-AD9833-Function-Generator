@@ -1,21 +1,15 @@
 #ifndef DELAY_H
 #define DELAY_H
 
-#ifndef F_CPU
-#warning "F_CPU not defined, using 16MHz by default"
-#define F_CPU 16000000UL
-#endif
+/** Global tick */
+extern volatile uint16_t time_ms;
 
-//#include <stdint.h>
+/** Millis tick handler */
+void TIM4_UPD_OVF_IRQHandler(void) INTERRUPT(23);
+void TIM4_Config(void);
 
-inline void delay_us(uint32_t us) {
-    for (uint32_t i = 0; i < ((F_CPU / 18 / 1000000UL) * us); i++) {
-        __asm__("nop");
-    }
-}
+void Delay(uint16_t ms);
+#define delay_ms(ms) Delay(ms)
 
-inline void delay_ms(uint32_t ms) {
-     delay_us(1000 * ms);
-}
 
-#endif /* DELAY_H */
+#endif //DELAY_H
