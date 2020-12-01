@@ -13,6 +13,7 @@
 #include "main.h"
 #include "delay.h"
 #include "HD44780.h"
+#include <stdio.h> // ouch. this costs about 2k flash for one printf()
 
 void main(void)
 {                                                  
@@ -25,34 +26,44 @@ void main(void)
     AD9833_SetFreq(30000);
     AD9833_SetPhase(0);
     AD9833_Reset(0);
+    LCD_Begin();
+    LCD_Clear();
 
   while (1)
   {                                                
+    LCD_Set_Cursor(2,1);
+    printf("Freq:   30000"); 
 
+    
     AD9833_SetMode(TRIANGLE);
+    LCD_Set_Cursor(1,1);
+    LCD_Print_String("Mode: TRIANGLE");
     delay_ms(2000);
     
     AD9833_SetMode(SINE);
+    LCD_Set_Cursor(1,1);
+    LCD_Print_String("Mode: SINE    ");
     delay_ms(2000);
     
     AD9833_SetMode(SQUARE);
+    LCD_Set_Cursor(1,1);
+    LCD_Print_String("Mode: SQUARE  ");
     delay_ms(2000);
     
-    LCD_Set_Cursor(1,1);
-    LCD_Print_String("Mode: SINE");
-    LCD_Set_Cursor(2,1);
-    LCD_Print_String("Freq: Something?");
-
     uint32_t PotVal=ADC1_GetConversionValue();
+    
+
+    LCD_Set_Cursor(2,1);
+    printf("Freq: 7%d",PotVal); 
   }
 }
 
 static void CLK_Config(void)
 {
   CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1); //Set to 16MHz
-  //CLK_SYSCLKConfig(CLK_PRESCALER_HSIDIV1);
+  CLK_SYSCLKConfig(CLK_PRESCALER_HSIDIV1);
   /* Configure the system clock to use HSI clock source and to run at 16Mhz */
-  //CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
+  CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
   #define F_CPU 16000000UL
 }
 

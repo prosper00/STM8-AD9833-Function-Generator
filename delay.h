@@ -9,7 +9,7 @@ void TIM4_UPD_OVF_IRQHandler(void) INTERRUPT(23);
 void TIM4_Config(void);
 
 void Delay(uint16_t ms);
-#define delay_ms(ms) Delay(ms)
+#define delay_ms(ms) Delay(ms>>1)
 
 
 #endif //DELAY_H
