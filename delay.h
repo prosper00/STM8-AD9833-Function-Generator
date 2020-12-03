@@ -8,8 +8,7 @@ extern volatile uint16_t time_ms;
 void TIM4_UPD_OVF_IRQHandler(void) INTERRUPT(23);
 void TIM4_Config(void);
 
-void Delay(uint16_t ms);
-#define delay_ms(ms) Delay(ms>>1)
+void delay_ms(uint16_t ms);
 
 
 #endif //DELAY_H

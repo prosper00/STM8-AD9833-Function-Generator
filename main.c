@@ -6,6 +6,7 @@
   * @version V0.11 - Frequency selection working, mode selection working, init and reset working
   * @date    02-Nov-2020
   *****************************************************************************/ 
+#define F_CPU 16000000UL
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
@@ -17,54 +18,49 @@
 
 void main(void)
 {                                                  
-    CLK_Config();
-    ADC_Config();
+	CLK_Config();
+	ADC_Config();
 //    UART1_Config();
-    SPI_Config();
-    TIM4_Config();
-    AD9833_Init();
-    AD9833_SetFreq(30000);
-    AD9833_SetPhase(0);
-    AD9833_Reset(0);
-    LCD_Begin();
-    LCD_Clear();
+	SPI_Config();
+	TIM4_Config();
+	GPIO_Config();
+	AD9833_Init();
+	AD9833_SetFreq(1000);
+	AD9833_SetPhase(0);
+	AD9833_Reset(0);
+	LCD_Begin();
+	LCD_Clear();
+	enableInterrupts();
+	uint8_t current_mode = SINE;
+	
+	LCD_Set_Cursor(2,1);
+	printf("Freq:"); 
+	LCD_Set_Cursor(1,1);
+	printf("Mode: SINE");
 
-  while (1)
-  {                                                
-    LCD_Set_Cursor(2,1);
-    printf("Freq:   30000"); 
+	while (1)
+	{                                                
+		uint16_t PotVal=ADC1_GetConversionValue();
+		LCD_Set_Cursor(2,7);
+		printf("%7d",PotVal); 
+		AD9833_SetFreq(PotVal);
+		
+		if(mode_btn_event==1){
+			mode_btn_event=0;
+			current_mode++;
+			if(current_mode>=3)
+				current_mode=SINE;
 
-    
-    AD9833_SetMode(TRIANGLE);
-    LCD_Set_Cursor(1,1);
-    LCD_Print_String("Mode: TRIANGLE");
-    delay_ms(2000);
-    
-    AD9833_SetMode(SINE);
-    LCD_Set_Cursor(1,1);
-    LCD_Print_String("Mode: SINE    ");
-    delay_ms(2000);
-    
-    AD9833_SetMode(SQUARE);
-    LCD_Set_Cursor(1,1);
-    LCD_Print_String("Mode: SQUARE  ");
-    delay_ms(2000);
-    
-    uint32_t PotVal=ADC1_GetConversionValue();
-    
-
-    LCD_Set_Cursor(2,1);
-    printf("Freq: 7%d",PotVal); 
-  }
+			AD9833_SetMode(current_mode);
+			LCD_Set_Cursor(1,7);
+			printf("%s",modes[current_mode]); 
+		}
+	}
 }
 
 static void CLK_Config(void)
 {
   CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1); //Set to 16MHz
-  CLK_SYSCLKConfig(CLK_PRESCALER_HSIDIV1);
-  /* Configure the system clock to use HSI clock source and to run at 16Mhz */
-  CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
-  #define F_CPU 16000000UL
 }
 
 static void ADC_Config(void)
@@ -98,25 +94,24 @@ static void SPI_Config(void)
 	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST);
    
 	SPI_DeInit();
-	SPI_Init(SPI_FIRSTBIT_MSB,\      //datasheet : "MSBFIRST"
-             SPI_BAUDRATEPRESCALER_2,\//datasheet : "Up to 40MHz sck"
+	SPI_Init(SPI_FIRSTBIT_MSB,\        //datasheet : "MSBFIRST"
+             SPI_BAUDRATEPRESCALER_2,\ //datasheet : "Up to 40MHz sck"
              SPI_MODE_MASTER,\
              SPI_CLOCKPOLARITY_HIGH,\  //datasheet : "SCK idles high between write operations (CPOL=1)"
              SPI_CLOCKPHASE_1EDGE,\    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
              SPI_DATADIRECTION_1LINE_TX,\
              SPI_NSS_SOFT,\            //use software SS pin
              (uint8_t) 0x00);
-    SPI_Cmd(ENABLE);
+	SPI_Cmd(ENABLE);
 }
 
 // Needed for printf();
-
 int putchar(int c)
 {
-  LCD_Print_Char(c);
+	LCD_Print_Char(c);
   //UART1_SendData8(c);
   //while(UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET);
-  return (c);
+	return (c);
 }
 
 /*int getchar(void)
@@ -126,3 +121,19 @@ int putchar(int c)
     c = UART1_ReceiveData8();
   return (c);
 }*/
+
+INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
+{
+	if (!GPIO_ReadInputPin(MODE_BTN))
+		mode_btn_event=1;
+	if (!GPIO_ReadInputPin(RANGE_BTN))
+		range_btn_event=1;
+}
+
+void GPIO_Config(void)
+{
+	GPIO_Init(MODE_BTN,GPIO_MODE_IN_PU_IT);
+	GPIO_Init(RANGE_BTN,GPIO_MODE_IN_PU_IT);
+	EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_FALL_ONLY);
+	EXTI_SetTLISensitivity(EXTI_TLISENSITIVITY_FALL_ONLY);
+}

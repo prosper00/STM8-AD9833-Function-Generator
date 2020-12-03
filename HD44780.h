@@ -1,6 +1,7 @@
 //file HD44780.h - LCD external function declarations
  /*LCD Header file to interface 16x2 LCD with STM8S103F
- * Website: https://circuitdigest.com
+ * Website:
+ * https://circuitdigest.com/microcontroller-projects/interfacing-16x2-lcd-display-with-stm8-microcontroller
  * Code by: Aswinth Raj
  * Adapted by: Brad Roy
  */
@@ -69,7 +70,7 @@ void LCD_Begin(void)
    delay_ms(10);
  
    LCD_SetBit(0x00);
-   delay_ms(1000);  //for(int i=1065244; i<=0; i--)  
+   delay_ms(1000);
 
    LCD_Cmd(0x03);
    delay_ms(5);
@@ -119,17 +120,13 @@ void LCD_Print_Char(char data)  //Send 8-bits through 4-bit mode
    char Lower_Nibble,Upper_Nibble;
    Lower_Nibble = data&0x0F;
    Upper_Nibble = data&0xF0;
-   GPIO_WriteHigh(LCD_RS);             // => RS = 1
+   GPIO_WriteHigh(LCD_RS);      // => RS = 1
 
-   LCD_SetBit(Upper_Nibble>>4);             //Send upper half by shifting by 4
-   GPIO_WriteHigh(LCD_EN); //EN = 1
-   delay_ms(5); //for(int i=2130483; i<=0; i--)  NOP(); 
-   GPIO_WriteLow(LCD_EN); //EN = 0
+   LCD_SetBit(Upper_Nibble>>4); //Send upper half by shifting by 4
+   LCD_Enable();
 
-   LCD_SetBit(Lower_Nibble); //Send Lower half
-   GPIO_WriteHigh(LCD_EN); //EN = 1
-   delay_ms(5); //for(int i=2130483; i<=0; i--)  NOP();
-   GPIO_WriteLow(LCD_EN); //EN = 0
+   LCD_SetBit(Lower_Nibble);    //Send Lower half
+   LCD_Enable();
 }
 
 void LCD_Print_String(char *a)

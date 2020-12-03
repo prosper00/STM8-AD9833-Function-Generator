@@ -6,14 +6,15 @@ volatile uint16_t time_ms;
 
 void TIM4_Config(void)
 {
-	TIM4_UpdateRequestConfig(TIM4_UPDATESOURCE_REGULAR);
-	TIM4_PrescalerConfig(TIM4_PRESCALER_128, TIM4_PSCRELOADMODE_IMMEDIATE);
-	TIM4_SetAutoreload(0xFF);
-	TIM4_ARRPreloadConfig(ENABLE);
-	TIM4_ITConfig(TIM4_IT_UPDATE, ENABLE);
-	TIM4_Cmd(ENABLE);
+	CLK_PeripheralClockConfig (CLK_PERIPHERAL_TIMER4 , ENABLE); 
 
-	enableInterrupts();
+	TIM4_DeInit();
+	TIM4_TimeBaseInit(TIM4_PRESCALER_128, 125); //TimerClock = 16000000 / 128 / 125 = 1000Hz
+	TIM4_ClearFlag(TIM4_FLAG_UPDATE);
+	TIM4_ITConfig(TIM4_IT_UPDATE, ENABLE);
+
+	enableInterrupts(); // global interrupt enable
+	TIM4_Cmd(ENABLE);  //Start Timer 4
 }
 
 INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
@@ -23,7 +24,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
 }
 
 /** Delay ms */
-void Delay(uint16_t ms)
+void delay_ms(uint16_t ms)
 {
 	uint16_t start = time_ms;
 	uint16_t t2;
@@ -33,19 +34,4 @@ void Delay(uint16_t ms)
 			break;
 		}
 	}
-}
-
-/** Delay N seconds */
-void Delay_s(uint16_t s)
-{
-	while (s != 0) {
-		Delay(1000);
-		s--;
-	}
-}
-
-/*void delay_ms(u32 ms){  //hack. Kinda-sorta approximates 1ms. Kinda.
-	for(u32 j=0;j<ms;j++)
-		for(u32 i=0;i<1000;i++)
-			__asm__("nop");
-}*/
+} 

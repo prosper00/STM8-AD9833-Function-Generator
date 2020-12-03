@@ -12,6 +12,9 @@ void AD9833_SetPhase(float phase);
 //Sets the output wave shape
 void AD9833_SetMode(uint8_t mode);
 
+//returns the last-set mode
+uint8_t AD9833_GetMode(void);
+
 //Sets/unsets the Reset register. 'reset==1' means to reset, reset==0 releases reset
 void AD9833_Reset(bool reset);
 
