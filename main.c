@@ -32,6 +32,7 @@ void main(void)
 	LCD_Clear();
 	enableInterrupts();
 	uint8_t current_mode = SINE;
+	uint16_t PotVal=0;
 	
 	LCD_Set_Cursor(2,1);
 	printf("Freq:"); 
@@ -40,15 +41,20 @@ void main(void)
 
 	while (1)
 	{                                                
-		uint16_t PotVal=ADC1_GetConversionValue();
-		LCD_Set_Cursor(2,7);
-		printf("%7d",PotVal); 
-		AD9833_SetFreq(PotVal);
+		uint16_t raw=ADC1_GetConversionValue();  //Check Potentiometer setting
+		if((raw>PotVal+3)||(raw<PotVal-3)){      //if it's changed since last time
+			if(raw>1000)                      //ADC gets twitchy at the top of the range
+				raw=1000;
+			PotVal=raw;                      //then set the new frequency
+			LCD_Set_Cursor(2,7);
+			printf("%7d",PotVal); 
+			AD9833_SetFreq(PotVal);
+		}
 		
-		if(mode_btn_event==1){
+		if(mode_btn_event==1){                   //Check if the mode button was pressed
 			mode_btn_event=0;
-			current_mode++;
-			if(current_mode>=3)
+			current_mode++;                      //set next mode
+			if(current_mode>=3)                  //roll back to the first mode
 				current_mode=SINE;
 
 			AD9833_SetMode(current_mode);
