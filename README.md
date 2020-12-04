@@ -1,6 +1,20 @@
 # STM8-AD9833-Function-Generator
 A library and simple project for the STM8 processor, controlling an AD9833 Waveform generator. See the wiki here: https://github.com/prosper00/STM8-AD9833-Function-Generator/wiki
 
+### Implemented:
+- AD9833 control library
+- HD44780 LCD library
+- interrupt-based millisecond delay function
+- ADC-read from a potentiometer to set the frequency
+- external port interrupts to read buttons, to select frequency range and waveshape
+
+### To-Do's
+- Op-amp to control amplitude (possibly use a peak detector and an ADC to display Vpp?)
+- Kicad drawings
+- PWM mode? (would need another control for duty cycle adjust)
+- Frequency pot function tweaks - maybe implement a software logarithmic taper?
+- finish documentation and wiki pages
+
 ### Requirements:
 - sdcc - I used version 4.0
 - stm8flash - https://github.com/vdudouyt/stm8flash
@@ -18,7 +32,7 @@ Currently, this library only supports one 9833 module, although it's feasible to
 
 There are a bunch of possible configurations of the AD9833 that I don't fully understand, or rather, can't imagine a use case for, and as such, aren't supported directly. And example is the FSELECT register: there are two registers which can each hold a frequency value, and a control register bit that specifies which frequency register to use. This could be used to switch back and forth between two different output frequencies - but - I don't understand why I would need to do that, or why that's more desirable than just updating the frequency register that I'm already using. However, this library should be easily extensible to send any concievable combination of commands to the module.
 
-### Usage
+### Library Usage
 #include AD9833.h in your project. It's up to you to setup hardware SPI before using this library (see the SPI_Config() in 'main.c'). Functions provided:
 #### AD9833_Init(void);
   Initializes the AD9833 module to default values. Should be done on powerup.

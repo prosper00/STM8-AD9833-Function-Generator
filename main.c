@@ -45,10 +45,11 @@ void main(void)
 	while (1)
 	{                                                
 		PotRaw=0;
-		for(int i=1;i<=16;i++){          //take 16 readings from the ADC and average them
-			PotRaw+=(uint32_t)(ADC1_GetConversionValue()>>4);
+		for(int i=1;i<=32;i++){          //take 32 readings from the ADC and average them
+			PotRaw+=(uint32_t)(ADC1_GetConversionValue());
 			delay_ms(1);
 		}
+		PotRaw>>=6;// divide by 64, val=0-512
 
 		PotRaw<<=current_range;
 		if( (PotRaw>(FreqVal)) || (PotRaw<(FreqVal)) ){      //if it's changed since last time
