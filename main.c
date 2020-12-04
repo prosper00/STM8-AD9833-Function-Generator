@@ -27,36 +27,51 @@ void main(void)
 	AD9833_Init();
 	AD9833_SetFreq(1000);
 	AD9833_SetPhase(0);
+	AD9833_SetMode(SINE);
 	AD9833_Reset(0);
 	LCD_Begin();
 	LCD_Clear();
 	enableInterrupts();
 	uint8_t current_mode = SINE;
-	uint16_t PotVal=0;
+	uint8_t current_range = 0;
+	uint32_t FreqVal=0;        //the range-adjusted frequency setting
+	uint32_t PotRaw=0;         //our raw ADC reading from the potentiometer
 	
 	LCD_Set_Cursor(2,1);
 	printf("Freq:"); 
 	LCD_Set_Cursor(1,1);
-	printf("Mode: SINE");
+	printf("Mode: SQUARE");
 
 	while (1)
 	{                                                
-		uint16_t raw=ADC1_GetConversionValue();  //Check Potentiometer setting
-		if((raw>PotVal+3)||(raw<PotVal-3)){      //if it's changed since last time
-			if(raw>1000)                      //ADC gets twitchy at the top of the range
-				raw=1000;
-			PotVal=raw;                      //then set the new frequency
+		PotRaw=0;
+		for(int i=1;i<=16;i++){          //take 16 readings from the ADC and average them
+			PotRaw+=(uint32_t)(ADC1_GetConversionValue()>>4);
+			delay_ms(1);
+		}
+
+		PotRaw<<=current_range;
+		if( (PotRaw>(FreqVal)) || (PotRaw<(FreqVal)) ){      //if it's changed since last time
+			FreqVal=PotRaw;                      //then set the new frequency
 			LCD_Set_Cursor(2,7);
-			printf("%7d",PotVal); 
-			AD9833_SetFreq(PotVal);
+			printf("%7ld",FreqVal); 
+			AD9833_SetFreq(FreqVal);
 		}
 		
-		if(mode_btn_event==1){                   //Check if the mode button was pressed
+		if(range_btn_event){
+			range_btn_event=0;
+			current_range++;
+			if(current_range==11)
+				current_range=0;
+			LCD_Set_Cursor(2,15);
+			printf("%2d",current_range);
+		}
+		
+		if(mode_btn_event){                   //Check if the mode button was pressed
 			mode_btn_event=0;
 			current_mode++;                      //set next mode
 			if(current_mode>=3)                  //roll back to the first mode
 				current_mode=SINE;
-
 			AD9833_SetMode(current_mode);
 			LCD_Set_Cursor(1,7);
 			printf("%s",modes[current_mode]); 
@@ -78,9 +93,14 @@ static void ADC_Config(void)
   ADC1_DeInit();
   
   //per the datasheet, PortD2 is AIN3
-  ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS, POTCH, ADC1_PRESSEL_FCPU_D2,
-		    ADC1_EXTTRIG_TIM, DISABLE, ADC1_ALIGN_RIGHT, ADC1_SCHMITTTRIG_CHANNEL3,
-		    DISABLE);
+  ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS,
+			POTCH,
+			ADC1_PRESSEL_FCPU_D18,
+			ADC1_EXTTRIG_TIM,
+			DISABLE,
+			ADC1_ALIGN_RIGHT,
+			ADC1_SCHMITTTRIG_CHANNEL3,
+			DISABLE);
 
   //Start scanning AIN
   ADC1_StartConversion();
@@ -100,13 +120,13 @@ static void SPI_Config(void)
 	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST);
    
 	SPI_DeInit();
-	SPI_Init(SPI_FIRSTBIT_MSB,\        //datasheet : "MSBFIRST"
-             SPI_BAUDRATEPRESCALER_2,\ //datasheet : "Up to 40MHz sck"
-             SPI_MODE_MASTER,\
-             SPI_CLOCKPOLARITY_HIGH,\  //datasheet : "SCK idles high between write operations (CPOL=1)"
-             SPI_CLOCKPHASE_1EDGE,\    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
-             SPI_DATADIRECTION_1LINE_TX,\
-             SPI_NSS_SOFT,\            //use software SS pin
+	SPI_Init(SPI_FIRSTBIT_MSB,        //datasheet : "MSBFIRST"
+             SPI_BAUDRATEPRESCALER_2, //datasheet : "Up to 40MHz sck"
+             SPI_MODE_MASTER,
+             SPI_CLOCKPOLARITY_HIGH,  //datasheet : "SCK idles high between write operations (CPOL=1)"
+             SPI_CLOCKPHASE_1EDGE,    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
+             SPI_DATADIRECTION_1LINE_TX,
+             SPI_NSS_SOFT,            //use software SS pin
              (uint8_t) 0x00);
 	SPI_Cmd(ENABLE);
 }

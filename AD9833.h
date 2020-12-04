@@ -18,9 +18,9 @@ void AD9833_Reset(bool reset);
 
 //Output waveshapes
 enum AD_MODES{
-	SINE,
-	TRIANGLE,
-	SQUARE,
+	SINE,     //==0
+	TRIANGLE, //==1
+	SQUARE,   //==2
 	SQUARE2 //Square at 1/2 of the base frequency
 };
 
