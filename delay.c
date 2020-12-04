@@ -1,3 +1,14 @@
+/**
+  ******************************************************************************
+  * Delay.c - Interrupt-based tick and millisecond delay function
+  * Requires a 16MHz CPU to product millisecond ticks. 
+  * Edit this line for other clock rates:
+  *   TIM4_TimeBaseInit(TIM4_PRESCALER_128, 125); //TimerClock = 16000000 / 128 / 125 = 1000Hz
+  *
+  * @author  Brad Roy
+  * @version V1.0 All major functions implemented and working.
+  * @date    04-Dec-2020
+  *****************************************************************************/ 
 #include "stm8s.h"
 #include "delay.h"
 
@@ -34,4 +45,4 @@ void delay_ms(uint16_t ms)
 			break;
 		}
 	}
-} 
+}

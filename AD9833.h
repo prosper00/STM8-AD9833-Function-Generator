@@ -1,4 +1,14 @@
-//file AD9833.h - AD9833 external function declarations
+/**
+  ******************************************************************************
+  * AD9833.h - STM8 library to control an AD9833 function generator module.
+  * 
+  * #include this header in your main project file
+  * 
+  * @author  Brad Roy
+  * @version V1.0 All major functions implemented and working.
+  * @date    04-Dec-2020
+  * @site    https://github.com/prosper00/STM8-AD9833-Function-Generator
+  *****************************************************************************/
 
 //Initializes to default settings
 void AD9833_Init(void);
@@ -23,17 +33,3 @@ enum AD_MODES{
 	SQUARE,   //==2
 	SQUARE2 //Square at 1/2 of the base frequency
 };
-
-//debug stuff
-//		e.g. a 16-bit printf();
-//			printf("\n\rRegVal: "BYTE_TO_BINARY_PATTERN" "BYTE_TO_BINARY_PATTERN,BYTE_TO_BINARY(AD_REG_VAL[reg]>>8), BYTE_TO_BINARY(AD_REG_VAL[reg]));
-#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
-#define BYTE_TO_BINARY(byte)  \
-  (byte & 0x80 ? '1' : '0'), \
-  (byte & 0x40 ? '1' : '0'), \
-  (byte & 0x20 ? '1' : '0'), \
-  (byte & 0x10 ? '1' : '0'), \
-  (byte & 0x08 ? '1' : '0'), \
-  (byte & 0x04 ? '1' : '0'), \
-  (byte & 0x02 ? '1' : '0'), \
-  (byte & 0x01 ? '1' : '0') 
