@@ -8,11 +8,12 @@
   * @date    04-Dec-2020
   * @site    https://github.com/prosper00/STM8-AD9833-Function-Generator
   *****************************************************************************/
-/*
+  
+/******************************************************************************
  * Documentation references: 
  * https://www.analog.com/media/en/technical-documentation/data-sheets/AD9833.pdf
  * https://www.analog.com/media/en/technical-documentation/application-notes/AN-1070.pdf
- */
+ ******************************************************************************/
  
 #define AD_MCLK   25000000UL  // Clock speed of the AD9833 reference clock in Hz
 
