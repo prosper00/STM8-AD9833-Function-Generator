@@ -25,20 +25,20 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 - Other than stm8flash and SDCC, everything you need to compile should be included. Do a 'git clone,' and then 'make' to compile and 'make flash' to compile and flash your board
 
 ### Hardware Map:
-> - Connect a potentiometer to pin D2
-> - Two momentary switches (to ground) to pins D4 and D6
-> - HD44780 16x2 LCD:
->> - 'D7': C4
->> - 'D6': C3
->> - 'D5': B4 (10k pullup to Vcc)
->> - 'D4': B5 (10k pullup to Vcc)
->> - 'EN': A2
->> - 'RS': A1
-> - AD9833 module:
->> - 'FNC': A3
->> - 'DAT': C6
->> - 'CLK': C7
-> - Bridge/Connect STM8 'bluepill' pins '5V' to '3.3V', to run on 5V. (unless you're using a 3v3 LCD)
+- Connect a potentiometer to pin D2
+- Two momentary switches (to ground) to pins D4 and D6
+- HD44780 16x2 LCD:
+> - 'D7': C4
+> - 'D6': C3
+> - 'D5': B4 (10k pullup to Vcc)
+> - 'D4': B5 (10k pullup to Vcc)
+> - 'EN': A2
+> - 'RS': A1
+ - AD9833 module:
+> - 'FNC': A3
+> - 'DAT': C6
+> - 'CLK': C7
+ - Bridge/Connect STM8 'bluepill' pins '5V' to '3.3V', to run on 5V. (unless you're using a 3v3 LCD)
 
 ### Note
 This is compiled against a modified version of STMicro's SPL library. Library has been modified for compatibility with SDCC, and has been altered to use inlined functions becasue SDCC can't otherwise trim out unused functions. This saves a ton of flash space (see https://github.com/MightyPork/stm8s_inline_spl). This should compile against the 'full' SPL as well, though I haven't tested it, and it's likely that such a version wouldn't fit into 8K of flash.
