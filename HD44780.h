@@ -48,7 +48,9 @@ void LCD_Enable(void)
 {
     GPIO_WriteHigh(LCD_EN);    //EN  = 1         
     delay_ms(2);
-    GPIO_WriteLow(LCD_EN);     //EN  = 0      
+    GPIO_WriteLow(LCD_EN);     //EN  = 0   
+    GPIO_WriteHigh(LCD_DB4);   //Turn off LED (shared with bit 4)
+   
 }
 
 void LCD_Cmd(char a)

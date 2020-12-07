@@ -41,32 +41,35 @@ void main(void)
 	
 	//Variable setup and initialization
 	uint8_t current_mode = SINE;
-	uint8_t current_range = 0;
+	int8_t current_range = 0;
 	uint32_t FreqVal=0;        //the range-adjusted frequency setting
-	uint32_t PotRaw=0;         //our raw ADC reading from the potentiometer
+	uint32_t PotVal=0;         //our raw ADC reading from the potentiometer
 
 	//Loop forever
 	while (1)
 	{                                                
-		PotRaw=0;
-		for(int i=1;i<=32;i++){          //take 32 readings from the ADC and average them
-			PotRaw+=(uint32_t)(ADC1_GetConversionValue());
-			delay_ms(1);
+		PotVal=0;
+		
+		//Oversampling, and filtering/averaging ADC readings
+		for(int i=1;i<=1024;i++){          //take 1024 readings from the ADC and average them
+			PotVal+=(uint32_t)(ADC1_GetConversionValue());
+			while(!(ADC1_GetFlagStatus(ADC1_FLAG_EOC))); //wait for the next reading to complete
 		}
-		PotRaw>>=6;  // divide by 64, val=0-512
-
-		PotRaw<<=current_range;
-		if( (PotRaw>(FreqVal)) || (PotRaw<(FreqVal)) ){  //if it's changed since last time
-			FreqVal=PotRaw;                              //then set the new frequency
+		PotVal>>=8;  // divide by 256, range~0-4096 (4x oversample)
+		PotVal*=PotVal; // Square it: gives an exponential response, range ~0-16.7M
+		PotVal>>=(16-current_range); // Reduce the range by 2^n
+		
+		if( (PotVal>(FreqVal)) || (PotVal<(FreqVal)) ){  //if it's changed since last time
+			FreqVal=PotVal;                              //then set the new frequency
 			LCD_Set_Cursor(2,7);
 			printf("%7ld",FreqVal); 
-			AD9833_SetFreq(FreqVal);
+			AD9833_SetFreq((float)FreqVal);
 		}
 		
 		if(range_btn_event){            //Check if our 'range' button has been pressed
 			range_btn_event=0;
-			current_range++;
-			if(current_range==11)
+			current_range+=2;
+			if(current_range>=14)
 				current_range=0;
 			LCD_Set_Cursor(2,15);
 			printf("%2d",current_range);
@@ -100,7 +103,7 @@ static void ADC_Config(void)
   //per the datasheet, PortD2 is AIN3
   ADC1_Init(ADC1_CONVERSIONMODE_CONTINUOUS,
 			POTCH,
-			ADC1_PRESSEL_FCPU_D18,
+			ADC1_PRESSEL_FCPU_D6, //2.67MHz ADC CLK (<4MHz is optimal)
 			ADC1_EXTTRIG_TIM,
 			DISABLE,
 			ADC1_ALIGN_RIGHT,

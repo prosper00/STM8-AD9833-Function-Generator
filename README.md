@@ -6,13 +6,12 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 - HD44780 LCD library
 - interrupt-based millisecond delay function
 - ADC-read from a potentiometer to set the frequency
-- external port interrupts to read buttons, to select frequency range and waveshape
+- external port interrupts to read buttons: select frequency range and waveshape
 
 ### To-Do's
 - Op-amp to control amplitude (possibly use a peak detector and an ADC to display Vpp?)
 - Kicad drawings
 - PWM mode? (would need another control for duty cycle adjust)
-- Frequency pot function tweaks - maybe implement a software logarithmic taper?
 - Finish documentation and wiki pages
 
 ### Requirements:
