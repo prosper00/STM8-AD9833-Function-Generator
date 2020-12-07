@@ -24,6 +24,13 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 - I'm reading a pot on pin D2 (pot middle pin to D2, and the outer pins to Vcc and GND respectively), which will be used to control the frequency
 - Other than stm8flash and SDCC, everything you need to compile should be included. Do a 'git clone,' and then 'make' to compile and 'make flash' to compile and flash your board
 
+### Hardware:
+ - I used an STM8S103F3 breakout board, like these: https://www.ebay.com/sch/i.html?_from=R40&_nkw=stm8s103f3&_sacat=0&_sop=15
+ - 5V 16x2 HD44780 character LCD
+ - 10k pot
+ - 2 x tactile pushbutton switches
+ - CJMCU AD9833 breakout board
+
 ### Hardware Map:
 - Connect a potentiometer to pin D2
 - Two momentary switches (to ground) to pins D4 and D6
