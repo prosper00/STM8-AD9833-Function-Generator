@@ -50,15 +50,15 @@ There are a bunch of possible configurations of the AD9833 that I don't fully un
 ### Library Usage
 #include AD9833.h in your project. It's up to you to setup hardware SPI before using this library (see the SPI_Config() in 'main.c'). Functions provided:
 #### AD9833_Init(void);
-  Initializes the AD9833 module to default values. Should be done on powerup.
+	Initializes the AD9833 module to default values. Should be done on powerup.
 #### AD9833_SetFreq(float frequency);
-  Programs the desired output frequency. 
+	Programs the desired output frequency. 
 #### AD9833_SetPhase(float phase);
-  Programs the desired phase (to 0.1 degrees)
+	Programs the desired phase (to 0.1 degrees)
 #### AD9833_SetMode(mode);
-  Programs the waveshape. Can choose from SINE, TRIANGLE, or SQUARE
+	Programs the waveshape. Can choose from SINE, TRIANGLE, or SQUARE
 #### AD9833_Reset(bool reset);
-  Sets the Reset bit - recommend to run AD9833_Reset(1), then change one (or more) parameters, then call AD9833_Reset(0), so as to prevent odd garbage from being produced while programming your settings
+	Sets the Reset bit - recommend to run AD9833_Reset(1), then change one (or more) parameters, then call AD9833_Reset(0), so as to prevent odd garbage from being produced while programming your settings
 
 ### Advanced
 the AD9833 is programmed via SPI. Each programming 'frame' is 16 bits long. The first few bits of each frame are the address of the register that you're writing to, and the remaining bits are the 'data' bits that your're sending.
