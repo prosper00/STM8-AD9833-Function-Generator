@@ -49,8 +49,5 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
 void delay_ms(uint16_t ms)
 {
 	uint16_t start = time_ms;
-	uint16_t t2;
-	do
-		t2 = time_ms;
-	while((t2 - start) < ms);
+	while((time_ms - start) < ms);
 }
