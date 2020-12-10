@@ -35,14 +35,22 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
 }
 
 /** Delay ms */
+/***********************************************************************
+ * NOTE: this function will delay until the _start_ of the next 
+ * millisecond. delay_ms(1) will NOT give you a full 1 ms of delay, but 
+ * an unpredictable delay between 0 and 1 depending on whether we start 
+ * the delay at (say) t=999us or t=0ms.
+ * 
+ * If a precision delay is needed, we'd want to start TIM4 within this 
+ * function, and stop it before returning. But, that would break our 1ms 
+ * 'tick' timer. ...I wonder if there's a way to read the current TIM4 
+ * counter value, which should be 1/125th of 1 ms...?
+************************************************************************/
 void delay_ms(uint16_t ms)
 {
 	uint16_t start = time_ms;
 	uint16_t t2;
-	while (1) {
+	do
 		t2 = time_ms;
-		if ((t2 - start) >= ms) {
-			break;
-		}
-	}
+	while((t2 - start) < ms);
 }
