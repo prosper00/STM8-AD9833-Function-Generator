@@ -28,16 +28,17 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=8
-FILE_NAME_0=1087;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
-FILE_NAME_1=7080;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
-FILE_NAME_2=1387;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FHD44780.h;0;4
-FILE_NAME_3=545;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.h;0;4
-FILE_NAME_4=1244;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
-FILE_NAME_5=531;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833_reg.h;0;4
-FILE_NAME_6=235;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
-FILE_NAME_7=577;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.c;0;4
-FILE_NAME_8=1568;Markdown;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FREADME.md;0;4
+current_page=0
+FILE_NAME_0=1182;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
+FILE_NAME_1=1977;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
+FILE_NAME_2=322;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FHD44780.h;0;4
+FILE_NAME_3=340;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.h;0;4
+FILE_NAME_4=2905;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
+FILE_NAME_5=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833_reg.h;0;4
+FILE_NAME_6=217;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
+FILE_NAME_7=710;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.c;0;4
+FILE_NAME_8=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fcommon%2Fstm8s_conf.h;0;4
+FILE_NAME_9=0;Markdown;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FREADME.md;0;4
 
 [VTE]
 last_dir=/home/bdroy

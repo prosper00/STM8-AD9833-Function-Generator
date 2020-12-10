@@ -39,6 +39,8 @@ int putchar(int c);
 #define MODE_BTN GPIOD,GPIO_PIN_4  // mode shift button
 #define RANGE_BTN GPIOD,GPIO_PIN_6 // coarse/med/fine button
 
+#define TICK_PIN GPIOD,GPIO_PIN_5  //output our systick frequency on this pin
+
 volatile uint8_t mode_btn_event = 0; // has the mode button been pressed?
 volatile uint8_t range_btn_event = 0;// has the range button been pressed?
 
