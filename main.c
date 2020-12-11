@@ -164,7 +164,7 @@ void GPIO_Config(void)
 {
 	GPIO_Init(MODE_BTN,GPIO_MODE_IN_PU_IT);       //our buttons as inputs
 	GPIO_Init(RANGE_BTN,GPIO_MODE_IN_PU_IT);
-	GPIO_Init(TICK_PIN,GPIO_MODE_OUT_PP_LOW_FAST);//initialize a pin to output a 4kHz systick
+	GPIO_Init(TICK_PIN,GPIO_MODE_OUT_PP_LOW_FAST);//initialize a pin to output a 2kHz systick
 	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST); //our SPI SS pin as an output
 
 	EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_FALL_ONLY);

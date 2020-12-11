@@ -10,8 +10,6 @@
   * 	- use delay_us(uint16_t n) to delat n microseconds
   * 	- millis() returns the number of milliseconds since bootup
   * 	- micros() returns the number of microseconds since bootup
-  * 	
-  * 
   *
   * @author  Brad Roy
   * @version V1.0 All major functions implemented and working.
@@ -29,7 +27,7 @@ void TIM4_Config(void)
 	CLK_PeripheralClockConfig (CLK_PERIPHERAL_TIMER4 , ENABLE); 
 
 	TIM4_DeInit();
-	TIM4_TimeBaseInit(TIM4_PRESCALER_32, 125); //TimerClock = 16000000 / 32 / 125 = 4000Hz
+	TIM4_TimeBaseInit(TIM4_PRESCALER_16, 250); //TimerClock = 16000000 / 16 / 250 = 4000Hz
 	TIM4_ClearFlag(TIM4_FLAG_UPDATE);
 	TIM4_ITConfig(TIM4_IT_UPDATE, ENABLE);
 
@@ -41,7 +39,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
 {
 	tick++;
 	TIM4_ClearITPendingBit(TIM4_IT_UPDATE);
-	GPIO_WriteReverse(TICK_PIN);            //toggle our systick pin (should be about 4kHz)
+	GPIO_WriteReverse(TICK_PIN);            //toggle our systick pin (should be about 2kHz)
 }
 
 /** Delay ms */
@@ -58,19 +56,21 @@ void delay_ms(uint16_t ms)
 void delay_us(uint16_t us)
 {
 	uint8_t start_us = TIM4_GetCounter();  //tim4 increments every us
-	uint16_t start_tick = (uint16_t)tick;  //the tick increments every 250us
-	uint16_t delay_ticks = us/250;
+	if(us>=250){   //we only need to bother with the following for delays greater than 1 tick (250us)
+		uint16_t start_tick = (uint16_t)tick;  //the tick increments every 250us
+		uint16_t delay_ticks = us/250;
 	
-	while(((uint16_t)tick - start_tick) < delay_ticks); // delay in multiples of 250us
+		while(((uint16_t)tick - start_tick) < delay_ticks); // delay in multiples of 250us
+	}
 	while(TIM4_GetCounter() < start_us); //now wait until our 1us counter matches our start us
 }
 
 /** returns the number of milliseconds that have passed since boot  **/
 uint16_t millis(void){
-	return((uint16_t)(tick >> 2));
+	return((uint16_t)(tick >> 2)); // divide tick by 4 returns milliseconds
 }
 
 /** returns the number of microseconds that have passed since boot  **/
 uint32_t micros(void){
-	return(tick + TIM4_GetCounter());
+	return(tick*250 + TIM4_GetCounter()); //each tick is worth 250us
 }
