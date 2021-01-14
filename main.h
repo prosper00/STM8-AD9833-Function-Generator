@@ -26,7 +26,7 @@ int putchar(int c);
 #define POTCH ADC1_CHANNEL_3      //make sure this corresponds to the pin chosed on previous
 
 /* Pin Assignment for AD9833. Assumes CLK and DAT are using hardware SPI pins */
-#define SPISS GPIOA, GPIO_PIN_3   //our slave select pin
+#define SPISS GPIOC, GPIO_PIN_7   //our slave select pin: defined in AD9833.c
 
 /* Pins Assignment for LCD module, 4-bit mode */
 #define LCD_DB7 GPIOC,GPIO_PIN_4 // C4

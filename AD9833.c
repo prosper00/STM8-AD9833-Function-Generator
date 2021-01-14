@@ -26,7 +26,7 @@
 #include "AD9833.h"
 #include "AD9833_reg.h"
 
-#define SPISS GPIOA, GPIO_PIN_3   //our slave select pin
+#define SPISS GPIOC, GPIO_PIN_7   //our slave select pin
 
 /************************************************************************
 * void AD9833_Init(void);

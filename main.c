@@ -23,10 +23,9 @@ void main(void)
 	ADC_Config();
 	TIM4_Config();
 	GPIO_Config();
-	LCD_Begin();
-	
 	SPI_Config();
 	AD9833_Init();
+	LCD_Begin();
 	
 	enableInterrupts();
 	
@@ -154,7 +153,7 @@ static void SPI_Config(void)
 			 SPI_CLOCKPHASE_1EDGE,    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
 			 SPI_DATADIRECTION_1LINE_TX,
 			 SPI_NSS_SOFT,            //use software SS pin
-			 (uint8_t) 0x00);
+			 0x00);
 	SPI_Cmd(ENABLE);
 }
 
