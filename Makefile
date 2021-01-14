@@ -23,6 +23,8 @@ PROGRAMMER = stlinkv2
 CC_ROOT =
 CC      = sdcc
 CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 --out-fmt-elf --debug
+# use pre-compiled and split SPL libs from sduino project:
+#CFLAGS += -L ../spl-splitter/lib
 
 # set output folder and target name
 OUTPUT_DIR = ./dist
@@ -42,6 +44,7 @@ SPL_ROOT    =
 #SPL_SRC_DIR = $(SPL_ROOT)/Libraries/STM8S_StdPeriph_Driver/src
 
 SPL_INC_DIR = inc
+#SPL_INC_DIR = ../spl/Libraries/STM8S_StdPeriph_Driver/inc/
 
 #SPL_SOURCE: not needed with the 'inline' library, *except* the stm8s_flash.c, if used
 #SPL_SOURCE  = stm8s_gpio.c stm8s_clk.c stm8s_uart1.c stm8s_tim1.c stm8s_adc1.c

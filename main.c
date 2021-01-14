@@ -21,11 +21,13 @@ void main(void)
 	//Initialize peripherals and libraries
 	CLK_Config();
 	ADC_Config();
-	SPI_Config();
 	TIM4_Config();
 	GPIO_Config();
-	AD9833_Init();
 	LCD_Begin();
+	
+	SPI_Config();
+	AD9833_Init();
+	
 	enableInterrupts();
 	
 	//Set output defaults
@@ -146,7 +148,7 @@ static void SPI_Config(void)
 {
 	SPI_DeInit();
 	SPI_Init(SPI_FIRSTBIT_MSB,        //datasheet : "MSBFIRST"
-			 SPI_BAUDRATEPRESCALER_2, //datasheet : "Up to 40MHz sck"
+			 SPI_BAUDRATEPRESCALER_16, //datasheet : "Up to 40MHz sck"
 			 SPI_MODE_MASTER,
 			 SPI_CLOCKPOLARITY_HIGH,  //datasheet : "SCK idles high between write operations (CPOL=1)"
 			 SPI_CLOCKPHASE_1EDGE,    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"

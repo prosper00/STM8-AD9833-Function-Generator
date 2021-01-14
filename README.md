@@ -9,6 +9,7 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 - external port interrupts to read buttons: select frequency range and waveshape
 
 ### To-Do's
+- Regression: Sometime after implementing timer functions, SPI no longer works. The SPI SS pin is toggling, but the SPI clock and MOSI aren't doing anything. Puzzling
 - Op-amp to control amplitude (possibly use a peak detector and an ADC to display Vpp?)
 - Kicad drawings
 - PWM mode? (would need another control for duty cycle adjust)
@@ -42,7 +43,7 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
  - AD9833 module:
 > - 'FNC': A3
 > - 'DAT': C6
-> - 'CLK': C7
+> - 'CLK': C5
  - Bridge/Connect STM8 'bluepill' pins '5V' to '3.3V', to run on 5V. (unless you're using a 3v3 LCD)
 
 ### Note
