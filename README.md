@@ -1,6 +1,8 @@
 # STM8-AD9833-Function-Generator
 A library and simple project for the STM8 processor, controlling an AD9833 Waveform generator. See the wiki here: https://github.com/prosper00/STM8-AD9833-Function-Generator/wiki
 
+![Prototype](20210122_142009.jpg?raw=true "Prototype")
+
 ### Implemented:
 - AD9833 control library
 - HD44780 LCD library
