@@ -28,19 +28,17 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=10
-FILE_NAME_0=1182;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
-FILE_NAME_1=1977;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
+current_page=0
+FILE_NAME_0=701;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.h;0;4
+FILE_NAME_1=651;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fmain.c;0;4
 FILE_NAME_2=322;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FHD44780.h;0;4
 FILE_NAME_3=340;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.h;0;4
-FILE_NAME_4=2905;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
+FILE_NAME_4=697;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833.c;0;4
 FILE_NAME_5=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FAD9833_reg.h;0;4
 FILE_NAME_6=217;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.h;0;4
 FILE_NAME_7=710;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fdelay.c;0;4
-FILE_NAME_8=0;C++;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2Fcommon%2Fstm8s_conf.h;0;4
-FILE_NAME_9=0;Markdown;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FREADME.md;0;4
-FILE_NAME_10=0;C;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2Fwhitenoise%2Fmain.c;0;4
-FILE_NAME_11=0;Make;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2Fwhitenoise%2FMakefile;0;4
+FILE_NAME_8=1792;Markdown;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2FSTM8-AD9833-Function-Generator%2FREADME.md;0;4
+FILE_NAME_9=0;Make;0;EUTF-8;1;1;1;%2Fhome%2Fbdroy%2FSTM8-base%2Fwhitenoise%2FMakefile;0;4
 
 [VTE]
 last_dir=/home/bdroy
