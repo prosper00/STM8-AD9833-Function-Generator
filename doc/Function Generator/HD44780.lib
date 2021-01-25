@@ -1,0 +1,56 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# HD44780
+#
+DEF HD44780 DIS 0 40 N N 1 L N
+F0 "DIS" 0 200 50 H V L BNN
+F1 "HD44780" 0 100 50 H V L BNN
+F2 "16026-16X2" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "5V" 0 0 50 H I L BNN "VOLTAGE"
+F5 "N/A" 0 0 50 H I L BNN "MGF#"
+DRAW
+T 0 40 -100 40 0 0 0 >VOLTAGE Normal 0 L C
+T 0 40 -200 40 0 0 0 VSS~(GND) Normal 0 L C
+T 0 40 -400 40 0 0 0 RS Normal 0 L C
+T 0 40 -500 40 0 0 0 R/W Normal 0 L C
+T 0 40 -601 40 0 0 0 E Normal 0 L C
+T 0 40 -801 40 0 0 0 DB0 Normal 0 L C
+T 0 40 -901 40 0 0 0 DB1 Normal 0 L C
+T 0 40 -1000 40 0 0 0 DB2 Normal 0 L C
+T 0 40 -1102 40 0 0 0 DB3 Normal 0 L C
+T 0 40 -1202 40 0 0 0 DB4 Normal 0 L C
+T 0 40 -1300 40 0 0 0 DB5 Normal 0 L C
+T 0 40 -1401 40 0 0 0 DB6 Normal 0 L C
+T 0 40 -1501 40 0 0 0 DB7 Normal 0 L C
+T 0 40 -1703 40 0 0 0 V0~(Contrast) Normal 0 L C
+T 0 40 -1903 40 0 0 0 LED_ANODE Normal 0 L C
+T 0 40 -2003 40 0 0 0 LED_CATHODE Normal 0 L C
+P 2 0 0 10 0 0 0 -2100 N
+P 2 0 0 10 0 -2100 500 -2100 N
+P 2 0 0 10 500 -2100 500 0 N
+P 2 0 0 10 500 0 0 0 N
+T 900 400 -1001 66 0 0 0 HD44780 Normal 0 C C
+X ~ P$1 -100 -200 100 R 40 40 0 0 B 
+X ~ P$2 -100 -100 100 R 40 40 0 0 B 
+X ~ P$4 -100 -400 100 R 40 40 0 0 B 
+X ~ P$5 -100 -500 100 R 40 40 0 0 B 
+X ~ P$6 -100 -600 100 R 40 40 0 0 B 
+X ~ P$7 -100 -800 100 R 40 40 0 0 B 
+X ~ P$8 -100 -900 100 R 40 40 0 0 B 
+X ~ P$9 -100 -1000 100 R 40 40 0 0 B 
+X ~ P$10 -100 -1100 100 R 40 40 0 0 B 
+X ~ P$11 -100 -1200 100 R 40 40 0 0 B 
+X ~ P$12 -100 -1300 100 R 40 40 0 0 B 
+X ~ P$13 -100 -1400 100 R 40 40 0 0 B 
+X ~ P$14 -100 -1500 100 R 40 40 0 0 B 
+X ~ P$16 -100 -2000 100 R 40 40 0 0 B 
+X ~ P$3 -100 -1700 100 R 40 40 0 0 B 
+X ~ P$15 -100 -1900 100 R 40 40 0 0 B 
+ENDDRAW
+ENDDEF
+#
+# End Library
