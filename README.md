@@ -10,7 +10,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 ### Implemented:
 - AD9833 control library
 - HD44780 LCD library
-- interrupt-based general-purpose interrupt-driven delay functions (millis, micros, delay_ms, delay_us);
+- Created interrupt-driven delay library functions (millis, micros, delay_ms, delay_us);
 - ADC-read from a potentiometer to set the frequency
 - external port interrupts to read buttons: select frequency range and waveshape
 - Op-amp to control amplitude and VOffset
