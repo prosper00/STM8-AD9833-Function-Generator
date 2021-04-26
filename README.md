@@ -21,6 +21,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 - Replace frequency pot, wave shape button and range button with a single rotary encoder
 - Finish documentation and wiki pages
 - PWM output on PA3
+- The AD9833 outputs sin and triangle waves at a few hundred mV, but square waves at full Vcc. This makes it difficult to implement a single simple solution for amplification and offset that works well for all modes
 
 ### Requirements:
 - sdcc - I used version 4.0.7
@@ -40,7 +41,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
  - CJMCU AD9833 breakout board
  - miscellaneous resistors and capacitors
  - +5V and +/-15V power supplies [I used a 5V USB adapter and a +/- dual buck/boost converter]
- - LT1364 or AD826 operational amplifier
+ - LT1364 or AD826 operational amplifier [These are fast opamps, but, not fast enough to produce full-range amplitude at maximum frequencies. Something with an even greater GBWP and slew rate would be called for, if such a thing could be found for a reasonable price. Alternatively, I could implement gain in multiple stages - this would address bandwidth limitations, but not slew rate limitations. More testing is needed to determine if I'm fighting slew limits or GBW limits, or both]
  - see schematic in /doc/Function Generator for details
 
 ### Hardware Map:
