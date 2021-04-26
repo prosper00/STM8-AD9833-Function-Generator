@@ -5,7 +5,7 @@ A library and simple project for the STM8 processor, controlling an AD9833 Wavef
 
 
 Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/Function%20Generator/Function%20Generator.pdf
-(Kicad source files are in /doc)
+(Kicad source files are in /doc/Function Generator)
 
 ### Implemented:
 - AD9833 control library
@@ -13,10 +13,12 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 - interrupt-based general-purpose interrupt-driven delay functions (millis, micros, delay_ms, delay_us);
 - ADC-read from a potentiometer to set the frequency
 - external port interrupts to read buttons: select frequency range and waveshape
+- Op-amp to control amplitude and VOffset
 
 ### To-Do's
-- Op-amp to control amplitude (possibly use a peak detector and an ADC to display Vpp?) [in progress]
+- (Maybe?) implement a peak detector and an ADC to display Vpp/offset on screen
 - PWM mode? (would need another control for duty cycle adjust)
+- Replace frequency pot, wave shape button and range button with a single rotary encoder
 - Finish documentation and wiki pages
 - PWM output on PA3
 
@@ -37,9 +39,9 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
  - 2 x tactile pushbutton switches
  - CJMCU AD9833 breakout board
  - miscellaneous resistors and capacitors
- - +5V and +/-15V power supplies
+ - +5V and +/-15V power supplies [I used a 5V USB adapter and a +/- dual buck/boost converter]
  - LT1364 or AD826 operational amplifier
- - see schematic in /doc for details
+ - see schematic in /doc/Function Generator for details
 
 ### Hardware Map:
 - see schematic here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/Function%20Generator/Function%20Generator.pdf
