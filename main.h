@@ -3,16 +3,15 @@
   * FuncGen - A function generator based on the AD9833, controlled by an STM8
   *
   * @author  Brad Roy
-  * @version V1.0 All major functions implemented and working.
+  * @version V1.1dev Rotary Encoder support
   * @date    04-Dec-2020
   *****************************************************************************/ 
 
 static void CLK_Config(void);
 static void SPI_Config(void);
-static void ADC_Config(void);
-static void UART1_Config(void);
 static void GPIO_Config(void);
-static uint32_t ReadPot(void);
+static void Setup(void);
+static int  enc_read(void);
 inline long map(long x, long in_min, long in_max, long out_min, long out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
@@ -36,12 +35,14 @@ int putchar(int c);
 #define LCD_EN  GPIOA,GPIO_PIN_2 // A2
 #define LCD_RS  GPIOA,GPIO_PIN_1 // A1
 
-#define MODE_BTN GPIOD,GPIO_PIN_4  // mode shift button
-#define RANGE_BTN GPIOD,GPIO_PIN_6 // coarse/med/fine button
+#define ENCODER_BTN GPIOD,GPIO_PIN_6  // mode shift button
+#define ENCODER_1   GPIOD,GPIO_PIN_3
+#define ENCODER_2   GPIOD,GPIO_PIN_4
 
 #define TICK_PIN GPIOD,GPIO_PIN_5  //output our systick frequency on this pin
 
-volatile uint8_t mode_btn_event = 0; // has the mode button been pressed?
-volatile uint8_t range_btn_event = 0;// has the range button been pressed?
+//globals for our ISR to use - probably better to set up a struct to represent our encoder....
+volatile unsigned int encoder_btn_event = 0, encoder_left = 0, encoder_right = 0, encoder_polled = 0;
 
+//strings for our display
 char modes[3][9]={"SINE    ","TRIANGLE","SQUARE  "};
