@@ -22,7 +22,7 @@ void main(void)
 	
 	//Variable setup and initialization
 	uint8_t Current_mode = SINE;
-	int32_t CurrentFreq=0, NewFreq=0;        
+	int32_t CurrentFreq=1000, NewFreq=1000;        
 	
 	while (1)	//Loop forever
 	{                                                
@@ -35,7 +35,7 @@ void main(void)
 		if (NewFreq!=CurrentFreq){	// if our (requested) frequency value has changed from current
 			CurrentFreq=NewFreq;	// increase/decrease current frequency according to input
 			LCD_Set_Cursor(2,7);
-			printf("%7ld",CurrentFreq); 
+			printf("%7lu",CurrentFreq); 
 			AD9833_SetFreq((float)CurrentFreq);
 		}//if (NewFreq!=CurrentFreq){
 
@@ -56,6 +56,7 @@ void main(void)
  **********************************************************************/
 static void Setup(void)
 {
+	
 	//Initialize peripherals and libraries
 	CLK_Config();
 	TIM4_Config();
@@ -74,8 +75,10 @@ static void Setup(void)
 	LCD_Clear();
 	LCD_Set_Cursor(2,1);
 	printf("Freq:"); 
+	LCD_Set_Cursor(2,7);
+	printf("%7u",1000);
 	LCD_Set_Cursor(1,1);
-	printf("Mode: SQUARE");
+	printf("Mode: SINE");
 }//static void Setup(void)
 
 /*********************************************************************** 
@@ -147,13 +150,16 @@ void GPIO_Config(void)
 	GPIO_Init(TICK_PIN,GPIO_MODE_OUT_PP_LOW_FAST);//initialize a pin to output a 2kHz systick
 	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST); //our SPI SS pin as an output
 
-	GPIO_Init(ENCODER_BTN,GPIO_MODE_IN_PU_IT);//trigger interrupt on button press
-	GPIO_Init(ENCODER_1,GPIO_MODE_IN_PU_IT); //need to trigger an interrupt on encoder 1, but not 2
-	GPIO_Init(ENCODER_2,GPIO_MODE_IN_PU_NO_IT);
+	GPIO_Init(ENCODER_BTN,GPIO_MODE_IN_PU_IT);  //trigger interrupt on button press
+	GPIO_Init(ENCODER_1,GPIO_MODE_IN_FL_NO_IT); //no interrupt on rotation - polling only
+	GPIO_Init(ENCODER_2,GPIO_MODE_IN_FL_NO_IT);
 
-	//configure interrupt for our encoder (which is on port d)
+	disableInterrupts();
+	//configure interrupt for our encoder button (which is on port d)
 	EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_FALL_ONLY);
-	EXTI_SetTLISensitivity(EXTI_TLISENSITIVITY_FALL_ONLY);
+	//EXTI_SetTLISensitivity(EXTI_TLISENSITIVITY_FALL_ONLY);
+	enableInterrupts();
+	
 }//void GPIO_Config(void)
 
 /*********************************************************************** 
@@ -178,24 +184,47 @@ uint32_t ReadPot(void)
 /*********************************************************************** 
  * int enc_read(void) - Reads rotation from the encoder
  * 
+ * Called as frequently as possible from main loop. Will poll the encoder
+ * each call, and then calculate the number of increment registered every
+ * POLLRATE ms. Velocity can be determined by the number of increments
+ * detected every POLLRATE
+ * 
  * Calculates velocity, and returns a delta value scaled according to velocity
  * return value range from -32785 to +32785 where 0 means no movement detected
  **********************************************************************/
 int enc_read(void) {
 	int Delta = 0;
 	
-	//check our encoder rotation every POLLRATE ms
-	#define POLLRATE 50
+	unsigned int encoder1 = (!GPIO_ReadInputPin(ENCODER_1)) ; 
+	unsigned int encoder2 = (!GPIO_ReadInputPin(ENCODER_2)) ; 
+
+//debounce by state analysis - ignore any inputs that are not in a valid sequence
+//i.e if there are multiple transitions of encoder1, while encoder2 stays the same
+//see doc/ReadingEncoderSwitches.pdf
+//this could use some additional optimization. Once a condition is met
+//no need to continue evaluating for other conditions.
+	if(encoder2_past == encoder2){
+		if((encoder2 == 1) && (encoder1_past < encoder1)) direction++; 
+		if((encoder2 == 1) && (encoder1_past > encoder1)) direction--;
+		if((encoder2 == 0) && (encoder1_past > encoder1)) direction++; 
+		if((encoder2 == 0) && (encoder1_past < encoder1)) direction--;
+	} 
+	if((encoder2_past < encoder2) && ((encoder1_past | encoder1) == 0)) direction++; 
+	if((encoder2_past < encoder2) && ((encoder1_past | encoder1) == 1)) direction--;
+	if((encoder2_past > encoder2) && ((encoder1_past | encoder1) == 1)) direction++; 
+	if((encoder2_past > encoder2) && ((encoder1_past | encoder1) == 0)) direction--;
+	
+	encoder2_past = encoder2;
+	encoder1_past = encoder1;
+	 
+//acceleration/velocity scaling
+	#define POLLRATE 100
 	if((millis() - encoder_polled) > POLLRATE){
 		encoder_polled = millis();
-		Delta=encoder_right-encoder_left; 
-		encoder_right=encoder_left=0;
-		
-		/*Read the clicks registered by the ISR here since our last poll
-		Scale them, and return a value from -32768 to +32768 */
-		
+		Delta=direction/2; 
+		direction=0;
 	}//if((millis() - encoder_polled) > POLLRATE){
-return Delta;
+return Delta*Delta*Delta*Delta*Delta; 
 }//int enc_read(void) {
 
 /*********************************************************************** 
@@ -231,10 +260,7 @@ int putchar(int c)
  **********************************************************************/
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
 {
-	if (!GPIO_ReadInputPin(ENCODER_BTN))
-		encoder_btn_event=1;
-	if (!GPIO_ReadInputPin(ENCODER_1)){
-		if (!GPIO_ReadInputPin(ENCODER_2)) encoder_left++; 	//if ENCODER_1 && ENCODER_2
-		else encoder_right++;								//if ENCODER_1 && !ENCODER_2
-	}//if (!GPIO_ReadInputPin(ENCODER_1))
+//	if (!GPIO_ReadInputPin(ENCODER_BTN)) //no need to check the pin if it's the only one configured for interrupts
+	encoder_btn_event=1;
+		
 }//INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)

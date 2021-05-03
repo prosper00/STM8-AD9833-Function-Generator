@@ -42,7 +42,15 @@ int putchar(int c);
 #define TICK_PIN GPIOD,GPIO_PIN_5  //output our systick frequency on this pin
 
 //globals for our ISR to use - probably better to set up a struct to represent our encoder....
-volatile unsigned int encoder_btn_event = 0, encoder_left = 0, encoder_right = 0, encoder_polled = 0;
+volatile unsigned int encoder_btn_event = 0;
+
+//should be in enc_read, but this crashes SDCC due to a bug
+//SDCC bug workaround: https://sourceforge.net/p/sdcc/bugs/2741/ https://sourceforge.net/p/sdcc/bugs/3161/
+static unsigned int encoder1_past = 0, encoder2_past = 0;
+static int direction = 0;
+
+//timer variables, used to track the last time a process has been run
+unsigned int encoder_polled = 0; //track encoder inputs, to determine velocity
 
 //strings for our display
 char modes[3][9]={"SINE    ","TRIANGLE","SQUARE  "};
