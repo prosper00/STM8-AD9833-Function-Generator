@@ -11,14 +11,14 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 - AD9833 control library
 - HD44780 LCD library
 - Created interrupt-driven delay library functions (millis, micros, delay_ms, delay_us);
-- ADC - read/filter/oversample/shape input from a potentiometer to set the output frequency
-- external port interrupts to read buttons: select frequency range and waveshape
+- ~~ADC - read/filter/oversample/shape input from a potentiometer to set the output frequency
+- replaced potentiometer/ADC routines with a rotary encoder to set mode and frequency
+- external port interrupts to read rotary encoder: select frequency range and waveshape
 - Op-amp circuit to control amplitude and offset
 
 ### To-Do's
 - (Maybe?) implement a peak detector and an ADC to display Vpp/offset on screen
 - PWM mode? (would need another control for duty cycle adjust)
-- Replace frequency pot, wave shape button and range button with a single rotary encoder
 - Finish documentation and wiki pages
 - PWM output on PA3
 - The AD9833 outputs sin and triangle waves at a few hundred mV, but square waves at full Vcc. This makes it difficult to implement a single simple solution for amplification and offset that works well for all modes
@@ -34,10 +34,11 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 ### Hardware:
  - I used an STM8S103F3 breakout board, like these: https://www.ebay.com/sch/i.html?_from=R40&_nkw=stm8s103f3&_sacat=0&_sop=15
  - 5V 16x2 HD44780 character LCD
- - 10k pot * 2 (to set frequency and v(offset))
+ - 10k pot (to set v(offset))
  - 100k pot (for gain adjustment)
+ - 5-pin rotary encoder w/pushbutton
  - 5k trim pot (for LCD contrast)
- - 2 x tactile pushbutton switches
+ - ~~2 x tactile pushbutton switches
  - CJMCU AD9833 breakout board
  - miscellaneous resistors and capacitors
  - +5V and +/-15V power supplies [I used a 5V USB adapter and a +/- dual buck/boost converter]
@@ -46,6 +47,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 
 ### Hardware Map:
 - see schematic here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/Function%20Generator/Function%20Generator.pdf
+- see STM8S3F103 pin assignment here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/STM8-pinouts.ods
 
 ### Note
 This is compiled against a modified version of STMicro's SPL library. Library has been modified for compatibility with SDCC, and has been altered to use inlined functions becasue SDCC can't otherwise trim out unused functions. This saves a ton of flash space (see https://github.com/MightyPork/stm8s_inline_spl). This should compile against the 'full' SPL as well, though I haven't tested it, and it's likely that such a version wouldn't fit into 8K of flash.
