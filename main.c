@@ -129,13 +129,13 @@ static void UART1_Config(void)  //SDCC can't prune out dead code, so we'll comme
 static void SPI_Config(void)
 {
 	SPI_DeInit();
-	SPI_Init(SPI_FIRSTBIT_MSB,        //datasheet : "MSBFIRST"
+	SPI_Init(SPI_FIRSTBIT_MSB,         //datasheet : "MSBFIRST"
 			 SPI_BAUDRATEPRESCALER_16, //datasheet : "Up to 40MHz sck"
 			 SPI_MODE_MASTER,
-			 SPI_CLOCKPOLARITY_HIGH,  //datasheet : "SCK idles high between write operations (CPOL=1)"
-			 SPI_CLOCKPHASE_1EDGE,    //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
+			 SPI_CLOCKPOLARITY_HIGH,   //datasheet : "SCK idles high between write operations (CPOL=1)"
+			 SPI_CLOCKPHASE_1EDGE,     //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
 			 SPI_DATADIRECTION_1LINE_TX,
-			 SPI_NSS_SOFT,            //use software SS pin
+			 SPI_NSS_SOFT,             //use software SS pin
 			 0x00);
 	SPI_Cmd(ENABLE);
 }//static void SPI_Config(void)
@@ -150,16 +150,14 @@ void GPIO_Config(void)
 	GPIO_Init(TICK_PIN,GPIO_MODE_OUT_PP_LOW_FAST);//initialize a pin to output a 2kHz systick
 	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST); //our SPI SS pin as an output
 
-	GPIO_Init(ENCODER_BTN,GPIO_MODE_IN_PU_IT);  //trigger interrupt on button press
-	GPIO_Init(ENCODER_1,GPIO_MODE_IN_FL_NO_IT); //no interrupt on rotation - polling only
-	GPIO_Init(ENCODER_2,GPIO_MODE_IN_FL_NO_IT);
+	GPIO_Init(ENCODER_BTN,GPIO_MODE_IN_PU_IT);    //interrupt on button press
+	GPIO_Init(ENCODER_1,GPIO_MODE_IN_FL_IT);      //interrupt on ENCODER_1 only.
+	GPIO_Init(ENCODER_2,GPIO_MODE_IN_FL_NO_IT);  
 
 	disableInterrupts();
-	//configure interrupt for our encoder button (which is on port d)
 	EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_FALL_ONLY);
-	//EXTI_SetTLISensitivity(EXTI_TLISENSITIVITY_FALL_ONLY);
 	enableInterrupts();
-	
+
 }//void GPIO_Config(void)
 
 /*********************************************************************** 
@@ -189,43 +187,20 @@ uint32_t ReadPot(void)
  * POLLRATE ms. Velocity can be determined by the number of increments
  * detected every POLLRATE
  * 
+ * 'direction' is incremented/decremented by the ISR each time a rotation
+ * movement is detected
+ * 
  * Calculates velocity, and returns a delta value scaled according to velocity
- * return value range from -32785 to +32785 where 0 means no movement detected
  **********************************************************************/
 int enc_read(void) {
+	#define POLLRATE 100 //ms
 	int Delta = 0;
-	
-	unsigned int encoder1 = (!GPIO_ReadInputPin(ENCODER_1)) ; 
-	unsigned int encoder2 = (!GPIO_ReadInputPin(ENCODER_2)) ; 
-
-//debounce by state analysis - ignore any inputs that are not in a valid sequence
-//i.e if there are multiple transitions of encoder1, while encoder2 stays the same
-//see doc/ReadingEncoderSwitches.pdf
-//this could use some additional optimization. Once a condition is met
-//no need to continue evaluating for other conditions.
-	if(encoder2_past == encoder2){
-		if((encoder2 == 1) && (encoder1_past < encoder1)) direction++; 
-		if((encoder2 == 1) && (encoder1_past > encoder1)) direction--;
-		if((encoder2 == 0) && (encoder1_past > encoder1)) direction++; 
-		if((encoder2 == 0) && (encoder1_past < encoder1)) direction--;
-	} 
-	if((encoder2_past < encoder2) && ((encoder1_past | encoder1) == 0)) direction++; 
-	if((encoder2_past < encoder2) && ((encoder1_past | encoder1) == 1)) direction--;
-	if((encoder2_past > encoder2) && ((encoder1_past | encoder1) == 1)) direction++; 
-	if((encoder2_past > encoder2) && ((encoder1_past | encoder1) == 0)) direction--;
-	
-	encoder2_past = encoder2;
-	encoder1_past = encoder1;
-	 
-//acceleration/velocity scaling
-	#define POLLRATE 100
-	if((millis() - encoder_polled) > POLLRATE){
-		encoder_polled = millis();
-		Delta=direction/2; 
-		direction=0;
-	}//if((millis() - encoder_polled) > POLLRATE){
-return Delta*Delta*Delta*Delta*Delta; 
-}//int enc_read(void) {
+	if((millis() - encoder_polled) > POLLRATE){ encoder_polled = millis();
+		Delta=direction*direction*direction; //cubic scaling. Still seems a bit too slow. A better curve is needed.
+		direction=0; //reset ISR counter
+	}//if
+return Delta; 
+}//int enc_read(void)
 
 /*********************************************************************** 
  * int putchar(int) - Directs printf() output to the LCD. 
@@ -256,11 +231,25 @@ int putchar(int c)
  * Determines which pin on the port triggered the interrupt
  * and assignes it to a global variable.
  * 
- * This is probably gonna depend on hardware debouncing
+ * No software debounce. Hardware debounce should be implemented
+ * so that we don't trigger an unnecessary volume of interrupts.
+ * 
+ * A simple RC filter where R=10k and C=10n works for me, where GPIO pullup
+ * is disabled and implemented in hardware as well. 2x10k resistors an 1x10n cap
+ * per side of the encoder:
+ * 
+ * Encoder pin A --> 10k --> Vcc
+ * Encoder pin A --> 10k --> GPIO
+ * GPIO --> 10n --> GND
+ * 
  **********************************************************************/
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
 {
-//	if (!GPIO_ReadInputPin(ENCODER_BTN)) //no need to check the pin if it's the only one configured for interrupts
-	encoder_btn_event=1;
+	if (!GPIO_ReadInputPin(ENCODER_BTN))
+		encoder_btn_event=1;
 		
+	if(!GPIO_ReadInputPin(ENCODER_1)) {
+		if((!GPIO_ReadInputPin(ENCODER_2))) direction++;
+		else direction--;
+	}//if
 }//INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
