@@ -11,7 +11,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 - AD9833 control library
 - HD44780 LCD library
 - Created interrupt-driven delay library functions (millis, micros, delay_ms, delay_us);
-- ~~ADC - read/filter/oversample/shape input from a potentiometer to set the output frequency
+- ~~ADC - read/filter/oversample/shape input from a potentiometer to set the output frequency~~
 - replaced potentiometer/ADC routines with a rotary encoder to set mode and frequency
 - external port interrupts to read rotary encoder: select frequency range and waveshape
 - Op-amp circuit to control amplitude and offset
@@ -38,7 +38,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
  - 100k pot (for gain adjustment)
  - 5-pin rotary encoder w/pushbutton
  - 5k trim pot (for LCD contrast)
- - ~~2 x tactile pushbutton switches
+ - ~~2 x tactile pushbutton switches~~
  - CJMCU AD9833 breakout board
  - miscellaneous resistors and capacitors
  - +5V and +/-15V power supplies [I used a 5V USB adapter and a +/- dual buck/boost converter]
@@ -47,7 +47,7 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 
 ### Hardware Map:
 - see schematic here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/Function%20Generator/Function%20Generator.pdf
-- see STM8S3F103 pin assignment here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/STM8-pinouts.ods
+- see STM8S103F3 pin assignment here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/STM8-pinouts.ods
 
 ### Note
 This is compiled against a modified version of STMicro's SPL library. Library has been modified for compatibility with SDCC, and has been altered to use inlined functions becasue SDCC can't otherwise trim out unused functions. This saves a ton of flash space (see https://github.com/MightyPork/stm8s_inline_spl). This should compile against the 'full' SPL as well, though I haven't tested it, and it's likely that such a version wouldn't fit into 8K of flash.
