@@ -49,6 +49,30 @@ Schematic diagram is here: https://github.com/prosper00/STM8-AD9833-Function-Gen
 - see schematic here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/Function%20Generator/Function%20Generator.pdf
 - see STM8S103F3 pin assignment here: https://github.com/prosper00/STM8-AD9833-Function-Generator/blob/main/doc/STM8-pinouts.ods
 
+|Project Assignment|Number|Name|Analog|Serial|Timer|Other|Type|floating|wpu|ext.i|High sink|speed|OD|PP|Function|AFR remap|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|`Encoder D2`|1|PD4| |UART1_CK|TIM2_CH1|BEEP|I/O|X|X|X|HS|O3|X|X|Port D4| |
+|`systick`|2|PD5|AIN5|UART1_TX| | |I/O|X|X|X|HS|O3|X|X|Port D5| |
+|`Encoder Button`|3|PD6|AIN6|UART1_RX| | |I/O|X|X|X|HS|O3|X|X|Port D6| |
+| |4|nRST| | | | |I/O| |X| | | | | |Reset| |
+|`LCD_RS`|5|PA1| | | | |I/O|X|X|X| |O1|X|X|Port A1| |
+|`LCD_EN`|6|PA2| | | | |I/O|X|X|X| |O1|X|X|Port A2| |
+| |7|VSS| | | | |S| | | | | | | |Digital Ground| |
+| |8|VCAP| | | | |S| | | | | | | |1.8V Regulator cap| |
+| |9|VDD| | | | |S| | | | | | | |Digital Power| |
+| |10|PA3| |SPI_NSS|TIM2_CH3| |I/O|X|X|X|HS|O3|X|X|Port A3|SPI MSS [AFR1]|
+|**Project Assignment**|**Number**|**Name**|**Analog**|**Serial**|**Timer**|**Other**|**Type**|**floating**|**wpu**|**ext.i**|**High sink**|**speed**|**OD**|**PP**|**Function**|**AFR remap**|
+|`LCD_D4`|11|PB5| |I2C_SDA|TIM1_BKIN| |I/O|X| | |X|O1|T| |Port B5|TIM1_BKIN [AFR4]|
+|`LCD_D5`|12|PB4| |I2S_SCL| | |I/O|X| | |X|O1|T| |Port B4|ADC_ETR [AFR4]|
+|`LCD_D6`|13|PC3| | |TIM1_CH3| |I/O|X|X|X|HS|O3|X|X|Port C3|TLI [AFR3] TIM1_CH1n[AFR7]|
+|`LCD_D7`|14|PC4|AIN2| |TIM1_CH4|CLK_CCO|I/O|X|X|X|HS|O3|X|X|Port C4|TIM1_CH2n [AFR7]|
+|`SPI_CLK`|15|PC5| |SPI_SCK|TIM2_CH1| |I/O|X|X|X|HS|O3|X|X|Port C5|TIM2_CH1 [AFR0]|
+|`SPI_MOSI`|16|PC6| |SPI_MOSI|TIM1_CH1| |I/O|X|X|X|HS|O3|X|X|Port C6|TIM1_CH1 [AFR0]|
+|`SS`|17|PC7| |SPI_MISO|TIM1_CH2| |I/O|X|X|X|HS|O3|X|X|Port C7|TIM1_CH2 [AFR0]|
+| |18|PD1| | | |SWIM|I/O|X|X|X|HS|O4|X|X|Port D1| |
+| |19|PD2|AIN3| |TIM2_CH3| |I/O|X|X|X|HS|O3|X|X|Port D2|TIM2_CH3 [AFR1]|
+|`Encoder D1`|20|PD3|AIN4| |TIM2_CH2|ADC_ETR|I/O|X|X|X|HS|O3|X|X|Port D3| |
+
 ### Note
 This is compiled against a modified version of STMicro's SPL library. Library has been modified for compatibility with SDCC, and has been altered to use inlined functions becasue SDCC can't otherwise trim out unused functions. This saves a ton of flash space (see https://github.com/MightyPork/stm8s_inline_spl). This should compile against the 'full' SPL as well, though I haven't tested it, and it's likely that such a version wouldn't fit into 8K of flash.
 
