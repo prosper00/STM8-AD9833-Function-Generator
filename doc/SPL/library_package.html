@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="File-List" href="library_package_files/filelist.xml">
+<link rel="Edit-Time-Data" href="library_package_files/editdata.mso"><!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><title>STM8S/A Standard Peripherals Library: Package description</title><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>STMicroelectronics</o:Author>
+  <o:LastAuthor>Raouf Hosni</o:LastAuthor>
+  <o:Revision>103</o:Revision>
+  <o:TotalTime>96</o:TotalTime>
+  <o:Created>2009-02-27T18:59:00Z</o:Created>
+  <o:LastSaved>2009-06-19T17:25:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1478</o:Words>
+  <o:Characters>8427</o:Characters>
+  <o:Company>STMicroelectronics</o:Company>
+  <o:Lines>70</o:Lines>
+  <o:Paragraphs>19</o:Paragraphs>
+  <o:CharactersWithSpaces>9886</o:CharactersWithSpaces>
+  <o:Version>11.8132</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+
+
+
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-noshow:yes;
+	mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#606420;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.StyleHeading1Arial135ptItalicBlack, li.StyleHeading1Arial135ptItalicBlack, div.StyleHeading1Arial135ptItalicBlack
+	{mso-style-name:"Style Heading 1 + Arial 13\.5 pt Italic Black";
+	mso-style-parent:"Heading 1";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	mso-bidi-font-size:24.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:18.0pt;
+	font-weight:bold;
+	font-style:italic;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="21506"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></head>
+<body style="" link="blue" vlink="#606420">
+
+<div class="Section1">
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<div align="center">
+
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+ <tbody><tr style="">
+  <td style="padding: 0in;" valign="top">
+  <p class="MsoNormal"><span style="font-size: 8pt; font-family: Arial; color: blue;"><a href="index.html">Back to main page</a><o:p></o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 1.5pt;">
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: rgb(51, 102, 255);">STM8S Standard
+    Peripherals Library: <i>Package description<o:p></o:p></i></span></strong></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: black;"><o:p>&nbsp;</o:p></span></strong></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">Copyright 2014
+    STMicroelectronics</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1025" src="resc/logo.bmp" border="0" height="65" width="86"></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: Arial; color: black;"><o:p>&nbsp;</o:p></span></strong></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="display: none;"><o:p>&nbsp;</o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+   <tbody><tr>
+    <td style="padding: 0in;" valign="top">
+    <h2><span style="color: rgb(51, 102, 255);">Package description<o:p></o:p></span></h2>
+    <h1><span style="font-size: 10pt; font-family: Arial; font-weight: normal;">The
+    STM8S/A Standard Peripherals library is supplied in one single zip file.
+    The extraction of the zip file generates one &nbsp;folder,&nbsp;</span><i><span style="font-size: 10pt; font-family: Arial;">STM8S_StdPeriph_Lib_V2.3.0</span></i><span style="font-size: 10pt; font-family: Arial; font-weight: normal;">, which
+    contains the following subfolders:</span><span style="font-weight: normal;"><o:p></o:p></span></h1>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt;"><o:p></o:p></span><img style="width: 262px; height: 687px;" alt="" src="resc/library_folder_structure.bmp"></p><p class="MsoNormal" style="text-align: center;" align="center"></p>
+    <p class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1027" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>_<span class="SpellE">htmresc</span>&nbsp;</i></b>folder<br>
+    &nbsp; &nbsp; &nbsp;This Folder&nbsp;contains all package html page
+    resources.<br>
+    <br>
+    <img id="_x0000_i1028" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>Libraries&nbsp;</i></b>folder<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;This folder contains all STM8S/A Standard Peripheral's Drivers.</span><span style="font-size: 10pt;">
+    <o:p></o:p></span></p>
+    <p style="margin-top: 4.5pt;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1030" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>&nbsp;STM8S_StdPeriph_Driver&nbsp;</i></b>subfolder
+    </span><br>
+    <span style="font-size: 10pt; font-family: Arial;">&nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;This folder contains all the subdirectories and files
+    that make up the core of the library:</span></p>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;<img id="_x0000_i1031" src="resc/ar_s.gif" border="0" height="12" width="14"> <span class="GramE"><b><i>inc</i></b></span><b><i> </i></b>sub-folder contains the
+    Peripheral's Drivers header files. They do not need to be modified by the
+    user:&nbsp;&nbsp;</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </div>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp;<img id="_x0000_i1033" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_ppp.h</i> (one header file per
+    peripheral): Function prototypes, data structures and enumeration.&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp;&nbsp; &nbsp; &nbsp;</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </div>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;<img id="_x0000_i1034" src="resc/ar_s.gif" border="0" height="12" width="14">&nbsp; <span class="SpellE"><span class="GramE"><b><i>src</i></b></span></span><b><i> </i></b>sub-folder
+    contains the Peripheral's Drivers source files. They do not need to be
+    modified by the user:</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </div>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp;<img id="_x0000_i1036" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;&nbsp;<i>stm8s_ppp.c </i>(one source file
+    per peripheral): Function bodies of each peripheral.</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </div>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; All&nbsp;STM8L15x Standard
+    Peripheral's&nbsp;drivers are coded in Strict ANSI-C and are independent
+    from the software toolchain.<br>
+</span></p>
+            <div style="text-align: right;"><span style="font-size: 10pt;"><o:p></o:p></span><small><a href="library_package.html#">Back to Top</a></small><br>
+            </div>
+            <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+
+    <p style="margin-bottom: 12pt;"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1037" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>Project </i></b>folder<i>&nbsp;</i><br>
+    This folder contains template projects and STM8S/A Standard Peripheral's
+    examples</span></p>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1038" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>STM8S_StdPeriph_Examples&nbsp;</i></b>subfolder
+    , <span style="color: blue;"><a href="library_examples.html"><i>complete list
+    of available examples</i></a></span></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </div>
+     <p style="margin: 1.35pt 0in 12pt;"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;This folder contains, for each peripheral
+    sub-folder, the minimum set of files needed to run a typical example on how
+    to use this peripheral:<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1046" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>readme.txt:</i>&nbsp;brief text file
+    describing the example and how to make it work.<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1047" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_conf.h:</i> header file allowing <span class="GramE">to configure</span> the peripherals that are used, and
+    containing miscellaneous DEFINE statements.<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1048" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_it.c:</i> <span class="GramE">source
+    file</span> containing the interrupt handlers (the function bodies, may be
+    emptied if not used).<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1049" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_it.h:</i> header file&nbsp;including
+    all interrupt handler prototypes.<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1050" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>main.c:</i> example of code.<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1051" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>main.h:</i> <span class="GramE">header file</span>
+    of the example main.c file (optional).</span></p>
+    <p class="MsoNormal" style="margin-left: 27.15pt;"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1032" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>Template&nbsp;</i></b> <i style="">folder</i></span></p>
+    
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; The folder contains
+    standard template projects for <span style="font-weight: bold;">STVD</span>, <span style="font-weight: bold;">RIDE7</span> and <span style="font-weight: bold;">EWSTM8</span> toolchains that compile the needed <span style="">&nbsp;</span>Standard Peripheral's drivers plus all the&nbsp;user-<span style=""></span><span class="GramE">modifiable</span>
+    files that are necessary to create a new project:</span><br>
+    <span style="font-size: 10pt; font-family: Arial;">&nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img id="_x0000_i1033" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_conf.h:</i>&nbsp;header
+    file allowing to configure the peripherals that are used, and containing
+    miscellaneous DEFINE statements.</span><br>
+    <span style="font-size: 10pt; font-family: Arial;">&nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img id="_x0000_i1034" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_it.c:</i>
+    <span class="GramE">source file</span> containing the interrupt handlers (the
+    function bodies are empty in this template).<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1035" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>stm8s_it.h:</i> header file including
+    all interrupt handlers prototypes.<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;<img id="_x0000_i1036" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>main.c:</i> main program body.<o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-left: 54.35pt;"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1037" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>STVD\Cosmic</i></b>&nbsp;sub-folder contains
+    template project for<b><i>&nbsp;ST Visual Develop (STVD)</i></b> toolchain&nbsp; with <b><i>Cosmic&nbsp;compiler</i></b></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    <div style="margin-left: 54.35pt;">
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1038" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>STVD\Raisonance</i></b>&nbsp;sub-folder
+    contains template project for&nbsp;<b><i>ST Visual Develop (STVD)</i></b>
+    toolchain with&nbsp;<b><i>Raisonance STM8/ST7 C compiler</i></b></span></p><p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1038" src="resc/ar_s.gif" border="0" height="12" width="14"> </span><span style="font-size: 10pt; font-family: Arial;"><b><i>RIDE</i></b>&nbsp;sub-folder
+    contains template project for <b><i>Raisonance Integrated Development Environment RIDE7</i></b>
+    toolchain with&nbsp;<b><i>Raisonance STM8/ST7 C compiler</i></b></span></p><p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1038" src="resc/ar_s.gif" border="0" height="12" width="14"></span><span style="font-size: 10pt; font-family: Arial;"><span style="font-style: italic;"><span style="font-weight: bold;">EWSTM8</span></span> sub-folder
+    contains template project for <span style="font-style: italic;"><span style="font-weight: bold;">IAR Embedded Workbench for STM8 (EWSTM8)</span></span>
+    toolchain with <span style="font-style: italic;"><span style="font-weight: bold;">IAR C/C++ compiler for STM8</span></span></span><span style="font-size: 10pt; font-family: Arial;"></span><span style="font-size: 10pt; font-family: Arial;"> <o:p></o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span></p>
+    </div>
+	 <div style="text-align: right;"><span style="font-size: 10pt;"><o:p></o:p></span><small><a href="library_package.html#">Back to Top</a></small><br>
+            </div>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1051" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>Utilities
+    </i></b><i>folder</i><o:p></o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+    
+	<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1052" src="resc/ar_s.gif" border="0" height="12" width="14"><b><i>STM8S_EVAL&nbsp;</i></b>Implements
+an abstraction layer to interact with the Human Interface resources; buttons, LEDs, LCD and COM ports (USARTs) available on
+</span><span style="font-size: 10pt; font-family: Arial;">STMicroelectronics
+STM8/128-EVAL evaluation board.
+The stm8s_eval.c driver provides a common API to interact with buttons,
+LEDs and COM ports, while these resources hardware&nbsp; definitions is
+made in the header file of each evaluation board (stm8_128_eval.h). </span></p>
+            <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <img id="_x0000_i1055" src="resc/bulb16.gif" border="0" height="13" width="16">&nbsp; <i>Common:
+    </i>contains common part for all STM8S EVAL board containing: Leds, push-buttons, COM ports, serial I2C EEPROM memory<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(sEE), SD Card memories and Mono LCD drivers.<br>
+            </span></p>
+            
+
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <img id="_x0000_i1055" src="resc/bulb16.gif" border="0" height="13" width="16"> &nbsp;<i>STM8-128_EVAL:
+    </i>contains <span class="SpellE">LEDs</span>,&nbsp;buttons and COM ports
+    hardware definition file and LCD galss driver for this boarrd</span><span style="font-size: 10pt;"><o:p></o:p></span></p><p style="text-align: right;" class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p><p style="text-align: right;" class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span><small><a href="library_package.html#">Back to Top</a></small></p>
+    <table class="MsoNormalTable" style="width: 96.22%;" border="0" cellpadding="0" cellspacing="5" width="96%">
+     <tbody><tr style="">
+      <td style="border-style: solid none none; border-color: -moz-use-text-color; border-width: 1pt medium medium; padding: 0in; width: 98.86%;" width="98%">
+      <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">For complete documentation on
+      STM8S 8-bit microcontrollers platform visit <span style="color: blue;"><a href="http://www.st.com/internet/mcu/family/141.jsp" target="_blank">www.st.com</a></span><o:p></o:p></span></p>
+      </td>
+     </tr>
+    </tbody></table>
+    <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body></html>

@@ -1,0 +1,754 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="File-List" href="library_rules_conventions_files/filelist.xml">
+<link rel="Edit-Time-Data" href="library_rules_conventions_files/editdata.mso"><!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+
+
+
+<title>STM8S/A Standard Peripherals Library: Coding rules and conventions</title><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>STMicroelectronics</o:Author>
+  <o:LastAuthor>Raouf Hosni</o:LastAuthor>
+  <o:Revision>51</o:Revision>
+  <o:TotalTime>34</o:TotalTime>
+  <o:Created>2009-02-27T18:59:00Z</o:Created>
+  <o:LastSaved>2009-07-21T14:06:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1141</o:Words>
+  <o:Characters>6510</o:Characters>
+  <o:Company>STMicroelectronics</o:Company>
+  <o:Lines>54</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>7636</o:CharactersWithSpaces>
+  <o:Version>11.8132</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;
+	mso-font-alt:"Courier New";
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:3 0 0 0 1 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#606420;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.StyleHeading1Arial135ptItalicBlack, li.StyleHeading1Arial135ptItalicBlack, div.StyleHeading1Arial135ptItalicBlack
+	{mso-style-name:"Style Heading 1 + Arial 13\.5 pt Italic Black";
+	mso-style-parent:"Heading 1";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	mso-bidi-font-size:24.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:18.0pt;
+	font-weight:bold;
+	font-style:italic;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:622151382;
+	mso-list-template-ids:1749707232;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:1898779232;
+	mso-list-template-ids:1443653894;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="4098"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></head>
+<body style="" link="blue" vlink="#606420">
+
+<div class="Section1">
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<div align="center">
+
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+ <tbody><tr style="">
+  <td style="padding: 0in;" valign="top">
+  <p class="MsoNormal"><span style="font-size: 8pt; font-family: Arial; color: blue;"><a href="index.html">Back to main page</a></span></p>
+  <p class="MsoNormal"><span style="font-size: 8pt; font-family: Arial; color: blue;"><o:p>&nbsp;</o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 1.5pt;">
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: rgb(51, 102, 255);">STM8S/A Standard
+    Peripherals Library: <i>Coding rules and conventions</i><o:p></o:p></span></strong></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">Copyright © 2014
+    STMicroelectronics<o:p></o:p></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1025" src="resc/logo.bmp" border="0" height="65" width="86"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="display: none;"><o:p>&nbsp;</o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 0in;" valign="top">
+    <p><span style="font-size: 10pt; font-family: Arial;">The Standard Peripherals
+    Library uses rules and conventions described in the sections below.</span></p>
+    <h2><span style="color: rgb(51, 102, 255);">Acronyms<o:p></o:p></span></h2>
+    <h1><span style="font-size: 10pt; font-family: Arial; font-weight: normal;">The
+    Table below&nbsp;describes the acronyms used in the Standard Peripherals
+    Library.</span><span style="font-weight: normal;"><o:p></o:p></span></h1>
+    <div align="center">
+    <table class="MsoNormalTable" style="width: 501.3pt;" border="1" cellpadding="0" width="668">
+     <tbody><tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="text-align: center;" align="center"><b><span style="font-size: 10pt; font-family: Arial;"><a name="_Acro"></a>Acronym<o:p></o:p></span></b></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="text-align: center;" align="center"><b><span style="font-size: 10pt; font-family: Arial;">Peripheral/unit</span></b><span style="font-size: 10pt; font-family: Arial;"><o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">ADC<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Analog to digital converter<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 11.05pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 11.05pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in; line-height: 11.05pt;"><span style="font-size: 10pt; font-family: Arial;">BEEP<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 11.05pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in; line-height: 11.05pt;"><span style="font-size: 10pt; font-family: Arial;">Beeper<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">CLK<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Clock controller<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">CAN<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">CAN <o:p></o:p></span></p>
+      </td>
+     </tr>
+     
+     
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">EXTI<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">External interrupt/event controller<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">FLASH<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Flash memory<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">GPIO<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">General purpose I/O<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">I2C<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Inter-integrated circuit<o:p></o:p></span></p>
+      </td>
+     </tr>
+     
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">ITC<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Interrupt controller<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">IWDG<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Independent watchdog<o:p></o:p></span></p>
+      </td>
+     </tr>
+     
+     
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">RST<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Reset controller<o:p></o:p></span></p>
+      </td>
+     </tr>
+     
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">SPI<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Serial peripheral interface<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">TIM1<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">16-bit advanced control timer<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">TIM2, TIM3, TIM5, TIM6<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">16-bit general purpose timers<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 13.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 13.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">TIM4<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 13.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">8-bit basic timer<o:p></o:p></span></p>
+      </td>
+     </tr>
+     <tr style="height: 26.6pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 26.6pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">UART<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 26.6pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Universal asynchronous receiver
+      transmitter<o:p></o:p></span></p>
+      </td>
+     </tr>
+     
+     <tr style="height: 12.3pt;">
+      <td style="padding: 1.5pt; width: 240.7pt; height: 12.3pt;" width="321">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">WWDG<o:p></o:p></span></p>
+      </td>
+      <td style="padding: 1.5pt; width: 256.1pt; height: 12.3pt;" width="341">
+      <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">Window watchdog<o:p></o:p></span></p>
+      </td>
+     </tr>
+    </tbody></table>
+    </div>
+    <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+	<p style="text-align: right;" class="MsoNormal"><o:p>&nbsp;</o:p><span style="font-size: 10pt;"><o:p></o:p></span><small><a href="library_rules_conventions.html#">Back to Top</a></small></p>
+    <h2><span style="color: rgb(51, 102, 255);"><a name="_Naming"></a>Naming conventions<o:p></o:p></span></h2>
+    <p style="text-align: justify;"><span style="font-size: 10pt; font-family: Arial;">The Standard Peripherals Library uses the following naming
+    conventions:</span></p>
+    <ul style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style=""><b><i><span style="font-size: 10pt; font-family: Arial;">PPP</span></i></b><i><span style="font-size: 10pt; font-family: Arial;"> </span></i><span style="font-size: 10pt; font-family: Arial;">refers to any peripheral
+         acronym, for example TIM2 and TIM3.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">System and source/header file
+         names are preceded by the prefix &#8216;<b><i>stm8s_</i></b>&#8217;.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Constants used in one file
+         are defined within this file. A constant used in more than one file is
+         defined in a header file. All constants are written in upper case.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Registers are considered as
+         constants. Their names are in upper case. In most cases, the same
+         acronyms as in the product reference manual document are used.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Names of peripheral
+         functions are preceded by the corresponding peripheral acronym in
+         upper case followed by an underscore. The first letter in each word is
+         in upper case, for example <b><i>SPI_SendData</i></b>. Only one
+         underscore is allowed in a function name to separate the peripheral
+         acronym from the rest of the function name.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to
+         initialize the PPP peripheral according to parameters specified in the
+         header file are named <b><i>PPP_Init</i></b>, for example <b><i>TIM2_Init</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to reset the
+         PPP peripheral registers to their default values are named <b><i>PPP_DeInit</i></b>,
+         for example <b><i>TIM2_DeInit</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to enable or
+         disable the specified PPP peripheral are named <b><i>PPP_Cmd</i></b>,
+         for example<b><i> SPI_Cmd</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to enable or
+         disable an interrupt source of the specified PPP peripheral are named <b><i>PPP_ITConfig</i></b>,
+         for example <b><i>SPI_ITConfig</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to configure
+         a peripheral function always end with the string &#8216;Config&#8217;,
+         for example&nbsp;<b><i>TIM2_ETRConfig</i></b></span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to check
+         whether the specified PPP flag is set or reset are named <b><i>PPP_GetFlagStatus</i></b>,
+         for example <b><i>I2C_GetFlagStatus</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to clear a
+         PPP flag are named <b><i>PPP_ClearFlag</i></b>, for example <b><i>I2C_ClearFlag</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to check
+         whether the specified PPP interrupt has occurred or not are named <b><i>PPP_GetITStatus</i></b>,
+         for example<b><i> TIM2_GetITStatus</i></b>.</span></li>
+     <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Arial;">Functions used to clear a
+         PPP interrupt pending bit are named <b><i>PPP_ClearITPendingBit</i></b>,
+         for example <b><i>TIM2_ClearITPendingBit</i></b>.</span></li>
+    </ul>
+    <p class="MsoNormal" style="margin-left: 0.25in;"><o:p>&nbsp;</o:p></p>
+	<p style="text-align: right;" class="MsoNormal"><o:p>&nbsp;</o:p><span style="font-size: 10pt;"><o:p></o:p></span><small><a href="library_rules_conventions.html#">Back to Top</a></small></p>
+    <h2><span style="color: rgb(51, 102, 255);"><a name="_Coding">Coding rules<o:p></o:p></a></span></h2>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">This section describes
+    the coding rules used in the Standard Peripherals Library.</a></span></p>
+<a name="_Coding">    </a><div>
+<a name="_Coding">    </a><h2><span style="font-size: 12pt;"><a name="_Coding">Variable types<o:p></o:p></a></span></h2>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">Specific variable types
+    are already defined with a fixed type and size. These types are defined in
+    the file <b><i>stm8s.h</i></b></a></span></p>
+<a name="_Coding">    </a><div style="margin-left: 30pt;">
+<a name="_Coding">    </a><p class="MsoNormal"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">#define&nbsp;&nbsp;&nbsp;&nbsp;
+    __I&nbsp;&nbsp;&nbsp;&nbsp; volatile
+    const&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    /*!&lt; defines 'read only' permissions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+    #define&nbsp;&nbsp;&nbsp;&nbsp; __O&nbsp;&nbsp;&nbsp;&nbsp;
+    volatile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    /*!&lt; defines 'write only' permissions&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+    #define&nbsp;&nbsp;&nbsp;&nbsp; __IO&nbsp;&nbsp;&nbsp;
+    volatile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    /*!&lt; defines 'read / write' permissions&nbsp;&nbsp; */<br>
+    <br>
+    /*!&lt; Constant qualifier */<br>
+    #ifdef _COSMIC_<br>
+    &nbsp;#define __CONST&nbsp; const<br>
+    #else /* _RAISONANCE_*/<br>
+    &nbsp;#define __CONST&nbsp; code<br>
+    #<span class="SpellE">endif</span> /*_COSMIC_*/<br>
+    <br>
+    /*!&lt; Signed integer types&nbsp; */<br>
+    typedef&nbsp;&nbsp; signed char&nbsp;&nbsp;&nbsp;&nbsp; int8_t;<br>
+    typedef&nbsp;&nbsp; signed short&nbsp;&nbsp;&nbsp; int16_t;<br>
+    typedef&nbsp;&nbsp; signed long&nbsp;&nbsp;&nbsp;&nbsp; int32_t;<br>
+    <br>
+    /*!&lt; Unsigned integer types&nbsp; */<br>
+    typedef unsigned char&nbsp;&nbsp;&nbsp;&nbsp; uint8_t;<br>
+    typedef unsigned short&nbsp;&nbsp;&nbsp; uint16_t;<br>
+    typedef unsigned long&nbsp;&nbsp;&nbsp;&nbsp; uint32_t;<br>
+    <br>
+    typedef enum {FALSE = 0, TRUE = !FALSE} bool;<br>
+    <br>
+    typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus, BitStatus, <span class="SpellE">BitAction</span>;<br>
+    <br>
+    typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;<br>
+    <br>
+    typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;</a></span></p>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><div>
+<a name="_Coding">    </a><h2><span style="font-size: 12pt;"><a name="_Coding">Peripheral registers<o:p></o:p></a></span></h2>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">Peripheral registers
+    are accessed through a pointer of structure. Each peripheral has its own
+    structure and pointer. All the structures and declarations are defined in
+    the <b><i>stm8s.h</i></b> file.</a></span></p>
+<a name="_Coding">    </a><p><a name="_Coding"><b><i><span style="font-size: 10pt; font-family: Arial;">Registers
+    structure</span></i></b><span style="font-size: 10pt; font-family: Arial;"><br>
+    The example below illustrates the Serial Peripheral Interface (SPI)&nbsp;
+    registers structure declaration:</span></a></p>
+<a name="_Coding">    </a><p style="margin-left: 30pt;"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">typedef struct SPI_struct<br>
+    {<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t CR1;&nbsp;&nbsp;&nbsp; /*!&lt; SPI control
+    register 1 */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t CR2;&nbsp;&nbsp;&nbsp; /*!&lt; SPI control
+    register 2 */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t CR3;&nbsp;&nbsp;&nbsp; /*!&lt; SPI DMA and
+    interrupt control register */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t SR;&nbsp;&nbsp;&nbsp;&nbsp; /*!&lt; SPI
+    status register */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t DR;&nbsp;&nbsp;&nbsp;&nbsp; /*!&lt; SPI
+    data I/O register */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t CRCPR;&nbsp; /*!&lt; SPI CRC polynomial
+    register */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t RXCRCR; /*!&lt; SPI Rx CRC register */<br>
+    &nbsp;&nbsp;&nbsp; __IO uint8_t TXCRCR; /*!&lt; SPI Tx CRC register */<br>
+    }<br>
+    SPI_TypeDef;</a></span></p>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">Register names are the
+    register acronyms written in upper case for each peripheral.<br>
+    RESERVEDi indicates a reserved field (i being an integer that indexes the
+    reserved field).</a></span></p>
+<a name="_Coding">    </a><p><a name="_Coding"><b><i><span style="font-size: 10pt; font-family: Arial;">Peripheral
+    declaration</span></i></b><span style="font-size: 10pt; font-family: Arial;"><br>
+    The following example shows the declaration of the SPI peripheral:</span></a></p>
+<a name="_Coding">    </a><div style="margin-left: 30pt;">
+<a name="_Coding">    </a><p class="MsoNormal"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">#define
+    SPI1_BaseAddress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(uint16_t)0x5200</a></span><span style="font-family: Courier;"><a name="_Coding"><br>
+    </a></span><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">...</a></span><span style="font-family: Courier;"><a name="_Coding"><br>
+    </a></span><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">#define SPI1
+    ((SPI_TypeDef *) SPI1_BaseAddress)</a></span></p>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">The peripheral
+    registers are accessed as follows:</a></span></p>
+<a name="_Coding">    </a><div style="margin-left: 30pt;">
+<a name="_Coding">    </a><p class="MsoNormal"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">SPI1-&gt;CR1
+    = 0x01;</a></span><span style="font-family: Courier;"><o:p></o:p></span></p>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">Each peripheral has
+    several dedicated registers which contain different flags. Registers are
+    defined within a dedicated structure for each peripheral. Flags are defined
+    as acronyms written in upper case and preceded by &#8216;<b><i>PPP_FLAG_</i></b>&#8217;.
+    Flag definition is adapted to each peripheral case and defined in <b><i>stm8l15x_ppp.h</i></b>
+    file.</a></span></p>
+<a name="_Coding">    </a><p><a name="_Coding"><b><i><span style="font-size: 10pt; font-family: Arial;">Registers reset
+    values</span></i></b><span style="font-size: 10pt; font-family: Arial;"><br>
+    The reset values of all peripheral registers are defined as constants in
+    the <b><i>stm8s.h</i></b> file. They are defined as acronyms written in
+    upper-case into the form: </span></a></p>
+<a name="_Coding">    </a><div style="margin-left: 30pt;">
+<a name="_Coding">    </a><p class="MsoNormal"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">PPP_&lt;register_name&gt;_RESET_VALUE</a></span></p>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">Example:</a></span></p>
+<a name="_Coding">    </a><div style="margin-left: 30pt;">
+<a name="_Coding">    </a><p class="MsoNormal"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">#define
+    SPI_CR1_RESET_VALUE&nbsp;&nbsp;&nbsp; ((uint8_t)0x00) /*!&lt; Control
+    Register 1 reset value */<br>
+    #define SPI_CR2_RESET_VALUE&nbsp;&nbsp;&nbsp; ((uint8_t)0x00) /*!&lt;
+    Control Register 2 reset value */<br>
+    #define SPI_CR3_RESET_VALUE&nbsp;&nbsp;&nbsp; ((uint8_t)0x00) /*!&lt; DMA
+    and Interrupt Control Register reset value */<br>
+    #define SPI_SR_RESET_VALUE&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x02) /*!&lt;
+    Status Register reset value */<br>
+    #define SPI_DR_RESET_VALUE&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x00) /*!&lt;
+    Data Register reset value */<br>
+    #define SPI_CRCPR_RESET_VALUE&nbsp; ((uint8_t)0x07) /*!&lt; Polynomial
+    Register reset value */<br>
+    #define SPI_RXCRCR_RESET_VALUE ((uint8_t)0x00) /*!&lt; RX CRC Register
+    reset value */<br>
+    #define SPI_TXCRCR_RESET_VALUE ((uint8_t)0x00) /*!&lt; TX CRC Register
+    reset value */</a></span></p>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><a name="_Coding"><b><i><span style="font-size: 10pt; font-family: Arial;">Registers bits</span></i></b><span style="font-size: 10pt; font-family: Arial;"><br>
+    All the peripheral registers bits are defined as constants in the <b><i>stm8s.h</i></b>
+    file. They are defined as acronyms written in upper-case into the form:</span></a></p>
+<a name="_Coding">    </a><div style="margin-left: 30pt;">
+<a name="_Coding">    </a><p class="MsoNormal"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">PPP_&lt;register_name&gt;_&lt;bit_name&gt;</a></span></p>
+<a name="_Coding">    </a></div>
+<a name="_Coding">    </a><p><span style="font-size: 10pt; font-family: Arial;"><a name="_Coding">Example:</a></span></p>
+<a name="_Coding">    </a><p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Courier;"><a name="_Coding">#define SPI_CR1_LSBFIRST ((uint8_t)0x80) /*!&lt; Frame
+    format mask */<br>
+    #define SPI_CR1_SPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x40) /*!&lt;
+    Enable bits mask */<br>
+    #define SPI_CR1_BR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x38)
+    /*!&lt; Baud rate control mask */<br>
+    #define SPI_CR1_MSTR&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x04) /*!&lt; Master
+    Selection mask */<br>
+    #define SPI_CR1_CPOL&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x02) /*!&lt; Clock
+    Polarity mask */<br>
+    #define SPI_CR1_CPHA&nbsp;&nbsp;&nbsp;&nbsp; ((uint8_t)0x01) /*!&lt; Clock
+    Phase mask */</a></span></p>
+<a name="_Coding">	
+	</a><p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Courier;"><o:p><a name="_Coding">&nbsp;</a></o:p></span></p>
+<a name="_Coding">    </a><p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-family: Courier;"><o:p><a name="_Coding">&nbsp;</a></o:p></span></p>
+<a name="_Coding">	</a><p style="text-align: right;" class="MsoNormal"><o:p><a name="_Coding">&nbsp;</a></o:p><span style="font-size: 10pt;"><o:p></o:p></span><a name="_Coding"><small></small></a><small><a href="library_rules_conventions.html#">Back to Top</a></small></p>
+	<h2><a name="_Run-time_checking"></a><span style="color: rgb(51, 102, 255);">Run-time
+    checking<o:p></o:p></span></h2>
+    <p><span style="font-size: 10pt; font-family: Arial;">The Standard
+    Peripherals Library implements run-time failure detection by checking the
+    input values of all library functions. The run-time checking is achieved by
+    using an <b><i>assert_param</i></b> macro. This macro is used in all
+    library functions which have at least an input parameter. It allows the
+    user to check that the input value lies within the defined parameter
+    values.<br>
+    <br>
+    <b>BEEP_Init function example</b></span></p>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><b><span style="font-size: 10pt; font-family: Arial;">stm8s_beep.c</span></b><span style="font-size: 10pt; font-family: Courier;"><br>
+    void BEEP_Init(BEEP_Frequency_TypeDef BEEP_Frequency)<br>
+    {<br>
+    &nbsp;/* Check parameter */<br>
+    &nbsp; assert_param(IS_BEEP_FREQUENCY(BEEP_Frequency));<br>
+    ...<br>
+    }</span></p>
+    </div>
+    <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+    <div style="margin-left: 30pt;">
+    <p class="MsoNormal"><b><span style="font-size: 10pt; font-family: Arial;">stm8s_beep.h</span></b><span style="font-size: 10pt; font-family: Arial;"><br>
+    </span><span style="font-size: 10pt; font-family: Courier;">#define
+    IS_BEEP_FREQUENCY(FREQ) \<br>
+    &nbsp; (((FREQ) == BEEP_Frequency_1KHz) || \<br>
+    &nbsp;&nbsp; ((FREQ) == BEEP_Frequency_2KHz) || \<br>
+    &nbsp;&nbsp; ((FREQ) == BEEP_Frequency_4KHz))</span></p>
+    </div>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><br>
+    If the expression passed to the <b><i>assert_param</i></b> macro is false,
+    the <b><i>assert_failed</i></b> function is called, otherwise nothing
+    happens.<br>
+    <br>
+    Two implementation of assert_failed function are provided, depending
+    on&nbsp;FULL_ASSERT define (declared in stm8l15x_conf.h file).</span></p>
+    <ul style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style=""><i><span style="font-size: 10pt; font-family: Arial;">#define FULL_ASSERT (1)</span></i><span style="font-size: 10pt; font-family: Arial;"> line is uncommented, if
+         the expression passed to the <b><i>assert_param</i></b> macro is
+         false, the <b><i>assert_failed</i></b> function will have&nbsp;as
+         input &nbsp;the name of the source file and the source line number of
+         the call that failed.</span></li>
+    </ul>
+    <ul style="margin-top: 0in;" type="disc">
+     <li class="MsoNormal" style=""><i><span style="font-size: 10pt; font-family: Arial;">#define FULL_ASSERT (1)</span></i><span style="font-size: 10pt; font-family: Arial;">&nbsp;line is commented, if
+         the expression passed to the <b><i>assert_param</i></b> macro is true,
+         the <b><i>assert_failed</i></b> function will have takes no does not
+         returns the name of the source file and the source line number of the
+         call that failed.</span></li>
+    </ul>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><br>
+    The <b><i>assert_param</i></b> macro is implemented in stm8l15x_conf.h as
+    follows:</span><span style="font-family: Courier;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Courier;">#ifdef&nbsp; USE_FULL_ASSERT<br>
+    <br>
+    /**<br>
+    &nbsp; * @brief&nbsp; The assert_param macro is used for function's
+    parameters check.<br>
+    &nbsp; * @param expr: If expr is false, it calls assert_failed function<br>
+    &nbsp; *&nbsp;&nbsp; which reports the name of the source file and the
+    source<br>
+    &nbsp; *&nbsp;&nbsp; line number of the call that failed. <br>
+    &nbsp; *&nbsp;&nbsp; If expr is true, it returns no value.<br>
+    &nbsp; * @retval : None<br>
+    &nbsp; */<br>
+    &nbsp; #define assert_param(expr) ((expr) ? (void)0 :
+    assert_failed((uint8_t *)__FILE__, __LINE__))<br>
+    /* Exported functions
+    ------------------------------------------------------- */<br>
+    &nbsp; void assert_failed(uint8_t* file, uint32_t line);<br>
+    #else<br>
+    &nbsp; #define assert_param(expr) ((void)0)<br>
+    #endif /* USE_FULL_ASSERT */</span></p>
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-family: Courier;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">The <b><i>assert_failed</i></b>
+    function is implemented in the <b><i>main.c</i></b> file or in any other
+    user C files&nbsp;and can be modified by the user in order to take action
+    when an error occurs.</span><span style="font-family: Courier;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Courier;">#ifdef&nbsp; USE_FULL_ASSERT<br>
+    <br>
+    /**<br>
+    &nbsp; * @brief&nbsp; Reports the name of the source file and the source
+    line number<br>
+    &nbsp; *&nbsp;&nbsp; where the assert_param error has occurred.<br>
+    &nbsp; * @param file: pointer to the source file name<br>
+    &nbsp; * @param line: assert_param error line source number<br>
+    &nbsp; * @retval : None<br>
+    &nbsp; */<br>
+    void assert_failed(uint8_t* file, uint32_t line)<br>
+    { <br>
+    &nbsp; /* User can add his own implementation to report the file name and
+    line number,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; ex: printf("Wrong parameters value: file %s
+    on line %d\r\n", file, line) */<br>
+    <br>
+    &nbsp; /* Infinite loop */<br>
+    &nbsp; while (1)<br>
+    &nbsp; {<br>
+    &nbsp; }<br>
+    }<br>
+    #endif</span><span style="font-family: Courier;"><o:p></o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">It is
+    recommended to use <b><i>run-time checking</i></b> during application code
+    development and debugging, and to remove it from the final application to
+    improve code size and speed (because of the overhead it introduces).<br>
+    However if the user wants to keep this functionality in his final
+    application, he can re-use the <b><i>assert_param</i></b> macro defined
+    within the library to test the parameter values before calling the library
+    functions.<o:p></o:p></span></p>
+	<p style="text-align: right;" class="MsoNormal"><o:p>&nbsp;</o:p><span style="font-size: 10pt;"><o:p></o:p></span><small><a href="library_rules_conventions.html#">Back to Top</a></small></p>
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Courier;"><o:p>&nbsp;</o:p></span></p>
+    <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-family: Courier;"><o:p>&nbsp;</o:p></span></p>
+    <table class="MsoNormalTable" style="width: 96.22%;" border="0" cellpadding="0" cellspacing="5" width="96%">
+     <tbody><tr style="">
+      <td style="border-style: solid none none; border-color: -moz-use-text-color; border-width: 1pt medium medium; padding: 0in; width: 98.86%;" width="98%">
+      <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">For complete documentation on
+      STM8S 8-bit microcontrollers platform visit <span style="color: blue;"><a href="http://www.st.com/mcu/inchtml-pages-stm8l.html" target="_blank">www.st.com</a></span><o:p></o:p></span></p>
+      </td>
+     </tr>
+    </tbody></table>
+    <p class="MsoNormal"><o:p></o:p></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><o:p></o:p></p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body></html>

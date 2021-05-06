@@ -10,6 +10,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
+#include "eeprom.h"
 #include "AD9833.h"
 #include "main.h"
 #include "delay.h"
@@ -29,7 +30,7 @@ void main(void)
 		//Poll for recent frequency input from the user
 		NewFreq += enc_read();
 		if (NewFreq < 0) NewFreq = 0; //bounds check (lower)
-		if (NewFreq >10000000) NewFreq = 10000000; //bounds check (upper)
+		if (NewFreq >9999999) NewFreq = 9999999; //bounds check (upper)
 		
 		//Update the programmed output frequency and display (if it's changed)
 		if (NewFreq!=CurrentFreq){	// if our (requested) frequency value has changed from current
@@ -56,7 +57,6 @@ void main(void)
  **********************************************************************/
 static void Setup(void)
 {
-	
 	//Initialize peripherals and libraries
 	CLK_Config();
 	TIM4_Config();
@@ -130,7 +130,7 @@ static void SPI_Config(void)
 {
 	SPI_DeInit();
 	SPI_Init(SPI_FIRSTBIT_MSB,         //datasheet : "MSBFIRST"
-			 SPI_BAUDRATEPRESCALER_16, //datasheet : "Up to 40MHz sck"
+			 SPI_BAUDRATEPRESCALER_2, //datasheet : "Up to 40MHz sck"
 			 SPI_MODE_MASTER,
 			 SPI_CLOCKPOLARITY_HIGH,   //datasheet : "SCK idles high between write operations (CPOL=1)"
 			 SPI_CLOCKPHASE_1EDGE,     //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
@@ -192,11 +192,18 @@ uint32_t ReadPot(void)
  * 
  * Calculates velocity, and returns a delta value scaled according to velocity
  **********************************************************************/
-int enc_read(void) {
-	#define POLLRATE 100 //ms
-	int Delta = 0;
+long enc_read(void) {
+	#define POLLRATE 50 //ms
+	long Delta = 0;
 	if((millis() - encoder_polled) > POLLRATE){ encoder_polled = millis();
-		Delta=direction*direction*direction; //cubic scaling. Still seems a bit too slow. A better curve is needed.
+		if(direction==0) { //if there's no input this poll
+			if (encoder_accel>1){ encoder_accel--;} //decay acceleration
+			return 0;
+		}//if
+		
+		Delta=direction*direction*direction*(signed int)encoder_accel*(signed int)encoder_accel; 
+		if(encoder_accel<10) encoder_accel++;
+		
 		direction=0; //reset ISR counter
 	}//if
 return Delta; 
@@ -217,8 +224,8 @@ int putchar(int c)
 /*********************************************************************** 
  * int getchar(int) - Determines where scanf() characters come from
  * Depends on stdio.h
- **********************************************************************/
-/*int getchar(void)
+ **********************************************************************
+int getchar(void)
 {
   int c = 0;
   while(UART1_GetFlagStatus(UART1_FLAG_RXNE)==RESET);

@@ -80,6 +80,7 @@ $(TARGET): $(PRJ_OBJECTS) $(SPL_OBJECTS)
 
 clean:
 	rm -rf $(OUTPUT_DIR)
+	rm $(PRJ_ROOT)/*.gch
 
 flash: all
 	stm8flash -c $(PROGRAMMER) -p $(PARTNO) -w $(TARGET).ihx
