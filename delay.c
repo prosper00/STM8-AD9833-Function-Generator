@@ -35,7 +35,8 @@ void TIM4_Config(void)
 	TIM4_Cmd(ENABLE);  //Start Timer 4
 }
 
-INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
+// INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23) // throws a warning w / SDCC >= 4.3.0
+void TIM4_UPD_OVF_IRQHandler(void) __interrupt(23) // now compiles w/SDCC 4.3.0. not tested for function, yet
 {
 	tick++;
 	TIM4_ClearITPendingBit(TIM4_IT_UPDATE);

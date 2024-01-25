@@ -7,6 +7,8 @@
  * https://github.com/lujji/stm8-bare-min
  * 
  * Adapted by Brad Roy
+ * Register definitions are for the STM8s103f3. Others will require 
+ * validating or updating against the datasheet
  ***********************************************************************/
 
 /*Macros*/

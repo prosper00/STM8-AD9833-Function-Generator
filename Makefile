@@ -22,7 +22,8 @@ PROGRAMMER = stlinkv2
 # set compiler path & parameters
 CC_ROOT =
 CC      = sdcc
-CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 --out-fmt-elf --debug
+# CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 --out-fmt-elf --debug
+CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 
 # use pre-compiled and split SPL libs from sduino project:
 #CFLAGS += -L ../spl-splitter/lib
 
