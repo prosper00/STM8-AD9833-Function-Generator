@@ -22,7 +22,10 @@ PROGRAMMER = stlinkv2
 # set compiler path & parameters
 CC_ROOT =
 CC      = sdcc
-CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 --out-fmt-elf --debug
+#CFLAGS  = -mstm8 -lstm8 --opt-code-size --out-fmt-elf --debug --all-callee-saves --verbose --stack-auto --fverbose-asm  --float-reent --no-peep
+# oddball SDCC linker errors - has bugs with debug and out-fmt-elf. --fverbose-asm seems to help in this case; don't know why
+CFLAGS  = -mstm8 -lstm8 --opt-code-size --out-fmt-elf --debug --verbose --fverbose-asm --disable-warning 126
+#CFLAGS  = -mstm8 -lstm8 --opt-code-size --disable-warning 126 --disable-warning 110 
 # use pre-compiled and split SPL libs from sduino project:
 #CFLAGS += -L ../spl-splitter/lib
 
@@ -80,6 +83,7 @@ $(TARGET): $(PRJ_OBJECTS) $(SPL_OBJECTS)
 
 clean:
 	rm -rf $(OUTPUT_DIR)
+	rm $(PRJ_ROOT)/*.gch
 
 flash: all
 	stm8flash -c $(PROGRAMMER) -p $(PARTNO) -w $(TARGET).ihx

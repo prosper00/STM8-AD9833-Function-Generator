@@ -1,0 +1,412 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="File-List" href="library_examples_files/filelist.xml">
+<link rel="Edit-Time-Data" href="library_examples_files/editdata.mso"><!--[if !mso]> <style> v\:* {behavior:url(#default#VML);} o\:* {behavior:url(#default#VML);} w\:* {behavior:url(#default#VML);} .shape {behavior:url(#default#VML);} </style> <![endif]-->
+
+
+
+<title>STM8S/A Standard Peripherals Drivers MISRA-C 2004 Compliance</title><!--[if gte mso 9]><xml> <o:DocumentProperties> <o:Author>STMicroelectronics</o:Author> <o:LastAuthor>Raouf Hosni</o:LastAuthor> <o:Revision>63</o:Revision> <o:TotalTime>184</o:TotalTime> <o:Created>2009-02-27T19:26:00Z</o:Created> <o:LastSaved>2009-06-19T17:40:00Z</o:LastSaved> <o:Pages>1</o:Pages> <o:Words>3368</o:Words> <o:Characters>19202</o:Characters> <o:Company>STMicroelectronics</o:Company> <o:Lines>160</o:Lines> <o:Paragraphs>45</o:Paragraphs> <o:CharactersWithSpaces>22525</o:CharactersWithSpaces> <o:Version>11.8132</o:Version> </o:DocumentProperties> </xml><![endif]--><!--[if gte mso 9]><xml> <w:WordDocument> <w:Zoom>110</w:Zoom> <w:SpellingState>Clean</w:SpellingState> <w:GrammarState>Clean</w:GrammarState> <w:ValidateAgainstSchemas/> <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid> <w:IgnoreMixedContent>false</w:IgnoreMixedContent> <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText> <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel> </w:WordDocument> </xml><![endif]--><!--[if gte mso 9]><xml> <w:LatentStyles DefLockedState="false" LatentStyleCount="156"> </w:LatentStyles> </xml><![endif]--><style>
+<!--
+/* Font Definitions */
+@font-face
+{font-family:Verdana;
+panose-1:2 11 6 4 3 5 4 4 2 4;
+mso-font-charset:0;
+mso-generic-font-family:swiss;
+mso-font-pitch:variable;
+mso-font-signature:536871559 0 0 0 415 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+{mso-style-parent:"";
+margin:0in;
+margin-bottom:.0001pt;
+mso-pagination:widow-orphan;
+font-size:12.0pt;
+font-family:"Times New Roman";
+mso-fareast-font-family:"Times New Roman";}
+h2
+{mso-style-next:Normal;
+margin-top:12.0pt;
+margin-right:0in;
+margin-bottom:3.0pt;
+margin-left:0in;
+mso-pagination:widow-orphan;
+page-break-after:avoid;
+mso-outline-level:2;
+font-size:14.0pt;
+font-family:Arial;
+font-weight:bold;
+font-style:italic;}
+a:link, span.MsoHyperlink
+{color:blue;
+text-decoration:underline;
+text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+{color:blue;
+text-decoration:underline;
+text-underline:single;}
+p
+{mso-margin-top-alt:auto;
+margin-right:0in;
+mso-margin-bottom-alt:auto;
+margin-left:0in;
+mso-pagination:widow-orphan;
+font-size:12.0pt;
+font-family:"Times New Roman";
+mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+{mso-style-name:"";
+mso-spl-e:yes;}
+span.GramE
+{mso-style-name:"";
+mso-gram-e:yes;}
+@page Section1
+{size:8.5in 11.0in;
+margin:1.0in 1.25in 1.0in 1.25in;
+mso-header-margin:.5in;
+mso-footer-margin:.5in;
+mso-paper-source:0;}
+div.Section1
+{page:Section1;}
+/* List Definitions */
+@list l0
+{mso-list-id:437943096;
+mso-list-template-ids:-1071874786;}
+ol
+{margin-bottom:0in;}
+ul
+{margin-bottom:0in;}
+-->
+</style><!--[if gte mso 10]> <style> /* Style Definitions */ table.MsoNormalTable {mso-style-name:"Table Normal"; mso-tstyle-rowband-size:0; mso-tstyle-colband-size:0; mso-style-noshow:yes; mso-style-parent:""; mso-padding-alt:0in 5.4pt 0in 5.4pt; mso-para-margin:0in; mso-para-margin-bottom:.0001pt; mso-pagination:widow-orphan; font-size:10.0pt; font-family:"Times New Roman"; mso-ansi-language:#0400; mso-fareast-language:#0400; mso-bidi-language:#0400;} </style> <![endif]--><!--[if gte mso 9]><xml> <o:shapedefaults v:ext="edit" spidmax="16386"/> </xml><![endif]--><!--[if gte mso 9]><xml> <o:shapelayout v:ext="edit"> <o:idmap v:ext="edit" data="1"/> </o:shapelayout></xml><![endif]--></head>
+<body style="" link="blue" vlink="blue">
+<div class="Section1">
+<p class="MsoNormal"><span style="font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+<div align="center">
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+<tbody>
+<tr style="">
+<td style="padding: 0in;" valign="top">
+<p class="MsoNormal"><span style="font-size: 8pt; font-family: Arial; color: blue;"><a href="index.html">Back to main page</a><o:p></o:p></span></p>
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+<tbody>
+<tr style="">
+<td style="padding: 1.5pt;">
+<p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: rgb(51, 102, 255);">STM8S/A Standard
+Peripherals <span style="font-style: italic;">Drivers
+MISRA-C
+2004 Compliance</span></span></strong><strong><span style="font-size: 18pt; color: rgb(51, 102, 255);"><o:p></o:p></span></strong></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">Copyright 2014
+STMicroelectronics<o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1025" src="resc/logo.bmp" border="0" height="65" width="86"></span><span style="font-family: Arial;"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="font-family: Arial; display: none;"><o:p>&nbsp;</o:p></span></p>
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+<tbody>
+<tr>
+<td style="padding: 0in;" valign="top">
+<table class="MsoNormalTable" style="width: 100%;" border="0" cellpadding="0" cellspacing="5" width="100%">
+<tbody>
+<tr style="height: 31.5pt;">
+<td style="padding: 0in; height: 31.5pt;" valign="top">
+<table class="MsoNormalTable" style="width: 100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr style="">
+<td style="padding: 1.5pt;">
+<p><span style="font-size: 10pt; font-family: Arial;">The
+C programming language is growing in importance and use for embedded
+systems, but when it comes to developing code for safety-critical
+systems, the language has many drawbacks. There are several
+unspecified, implementation-defined, and undefined aspects of the C
+language that make it unsuited for use when developing safety-critical
+systems.<br>
+The Motor Industry Software Reliability Association&#8217;s Guidelines for
+the use of the C language in critical systems <span style="font-weight: bold;">MISRA-C 2004</span> [1]
+describe a subset of C, suited for use when developing safety-critical
+systems.<br>
+The STM8S/A Standard Peripherals Drivers (<span style="font-style: italic; font-weight: bold;">STM8S_StdPeriph_Driver</span>)
+has been developed to be MISRA-C 2004 <span style="font-weight: bold;">compliant</span>. <br>
+</span></p>
+<p><span style="font-size: 10pt; font-family: Arial;"><br>
+The following section details how the </span><span style="font-size: 10pt; font-family: Arial;">StdPeriph_Driver</span><span style="font-size: 10pt; font-family: Arial;"> complies with
+MISRA-C 2004 (as described in <span style="font-style: italic;">section
+4.4 Claiming compliance of the standard</span> [1]):<br>
+</span></p>
+<ul>
+<li><span style="font-size: 10pt; font-family: Arial;">A compliance
+matrix has been completed to shows how compliance has been enforced.<br>
+</span></li>
+<li><span style="font-size: 10pt; font-family: Arial;">All the </span><span style="font-size: 10pt; font-family: Arial;">STM8S_StdPeriph_Driver</span><span style="font-size: 10pt; font-family: Arial;"> C code is
+compliant with the rules of MISRA-C 2004 or subject documented
+deviations.</span></li>
+<li><span style="font-size: 10pt; font-family: Arial;">A
+list of all instances of rules not being followed is being maintained,
+and for each instance there is an appropriately signed-off
+deviation.&nbsp;</span><span style="font-size: 10pt; font-family: Arial;"></span></li>
+<li><span style="font-size: 10pt; font-family: Arial;">All issues
+listed in </span><span style="font-size: 10pt; font-family: Arial;">the section <span style="font-style: italic;">"4.2 The programming language
+and coding context of the standard"</span>
+[1], that has to be checked during the phase of the firmware
+development process, have been addressed during the development of the
+STM8S/A </span><span style="font-size: 10pt; font-family: Arial;">Standard
+Peripherals Drivers</span><span style="font-size: 10pt; font-family: Arial;"> and
+appropriate measures have been taken.<br>
+</span></li>
+</ul>
+<h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><span style="font-size: 12pt; color: white;">Contents</span></h2>
+<ol style="margin-top: 0in;" start="1" type="1">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;"><a href="#examples">STM8S/A Standard Peripherals
+Drivers Compliance </a><o:p></o:p></span></li>
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;"><a href="#proceed">How to check your code for MISRA-C 2004
+Compliance?</a><o:p></o:p></span></li>
+</ol>
+<h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="examples"></a><span class="GramE"><span style="font-size: 12pt; color: white;">STM8S/A Standard
+Peripherals Drivers Compliance</span></span><span style="font-size: 12pt; color: white;"></span></h2>
+<p><span style="font-size: 10pt; font-family: Arial; font-weight: bold;">The
+STM8S/A Standard Peripherals Drivers (<span style="font-style: italic;">STM8S_StdPeriph_Driver</span>)
+has been checked for MISRA-C 2004 compliance using the IAR C/C++
+Compiler for STM8. MISRA compliancy applies only to STM8S/A Standard
+Peripherals Drivers </span><span style="font-size: 10pt; font-family: Arial;"><span style="font-weight: bold;">source file, examples and project
+files are not MISRA compliant.<br>
+<br>
+<br>
+</span>For the checking tool two options
+are available:<br>
+</span></p>
+<ul>
+<li><span style="font-size: 10pt; font-family: Arial;">The compiler:
+IAR C/C++ Compiler for STM8</span></li>
+<li><span style="font-size: 10pt; font-family: Arial;">Manual Checking
+(code review)</span></li>
+</ul>
+<span style="font-family: Arial;"><span style="font-style: italic;"><span style="font-weight: bold;"><br>
+</span></span></span><span style="font-size: 10pt; font-family: Arial;">The following
+table lists the MISRA-C 2004 rules that are violated frequently in the
+code.<br>
+<br>
+</span>
+<table style="text-align: left; width: 855px; height: 156px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center; font-weight: bold;">MISRA-C
+2004 <br>
+Rule No<br>
+</td>
+<td style="vertical-align: top; width: 123px; text-align: center; font-weight: bold;">Required/Advisory<br>
+</td>
+<td style="vertical-align: top; width: 383px; text-align: center; font-weight: bold;">Summary<br>
+</td>
+<td style="vertical-align: top; text-align: center; width: 205px; font-weight: bold;">Reason
+<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">1.1<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Required</td>
+<td style="vertical-align: top; width: 383px;">Compiler is
+configured to allow extensions - all code shall conform to ISO 9899
+standard C, with no extensions permitted<br>
+</td>
+<td style="vertical-align: top; width: 205px;">IAR compiler
+extensions are enabled.&nbsp;<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">5.1<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Required</td>
+<td style="vertical-align: top; width: 383px;">Identifiers
+(internal and external) shall not rely on significance of more than 31
+characters<br>
+</td>
+<td style="vertical-align: top; width: 205px;">Some long
+parameters names are defined for code readability.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">5.4<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Required</td>
+<td style="vertical-align: top; width: 383px;">Enumerated type
+mixed with another type - the use of a tag shall agree with its
+declaration.<br>
+</td>
+<td style="vertical-align: top; width: 205px;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">10.1<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Required<br>
+</td>
+<td style="vertical-align: top; width: 383px;">The value of an
+expression of integer type shall not be implicitly converted to a
+different underlying type.<br>
+</td>
+<td style="vertical-align: top; width: 205px;">Complexity<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">10.6<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Required</td>
+<td style="vertical-align: top; width: 383px;">A 'U' suffix
+shall be applied to all constants of 'unsigned' type <br>
+</td>
+<td style="vertical-align: top; width: 205px;"><span class="MsoNormal">The "stdint.h" defined types are used to
+be compatible w/ STM32.</span><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">11.2<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Required<br>
+</td>
+<td style="vertical-align: top; width: 383px;">Conversions
+shall not be performed between a pointer to object and any type other
+than an integral type, another pointer to object type or a pointer to
+void.<br>
+</td>
+<td style="vertical-align: top; width: 205px;">Needed when
+addressing memory mapped registers <br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">11.3<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Advisory<br>
+</td>
+<td style="vertical-align: top; width: 383px;">A cast should not
+be performed between a pointer type and an integral type.<br>
+</td>
+<td style="vertical-align: top; width: 205px;">Needed when
+addressing memory mapped registers<br>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">11.4</td>
+<td>Advisory</td>
+<td>A cast should not be performed
+between a pointer to object type and a different pointer to object type,</td>
+<td>Avoid complexity in Flash
+driver </td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">16.7<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Advisory<br>
+</td>
+<td style="vertical-align: top; width: 383px;">A
+pointer parameter in a function prototype should be declared as pointer
+to const if the pointer is not used to modify the addressed object.<br>
+</td>
+<td style="vertical-align: top; width: 205px;">Avoid complexity
+in Flash driver&nbsp; </td>
+</tr>
+<tr>
+<td style="text-align: center;">17.4</td>
+<td>Required</td>
+<td>Array indexing shall be the
+only allowed form of pointer arithmetic</td>
+<td>Avoid complexity in Flash driver</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 108px; text-align: center;">19.1<br>
+</td>
+<td style="vertical-align: top; width: 123px;">Advisory</td>
+<td style="vertical-align: top; width: 383px;">#include
+statements in a file shall only be preceded by other preprocessor
+directives or comments<br>
+</td>
+<td style="vertical-align: top; width: 205px;">This rule was
+violated to be inline with STM32.<br>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">19.13</td>
+<td>Advisory</td>
+<td># and ## preprosso operators
+shouldn't be used</td>
+<td>Needed for EWSTM8 macro
+interrupt routine definition</td>
+</tr>
+</tbody>
+</table>
+<br>
+<div style="text-align: right;"><small><a href="library_misra_c.html#">Back to Top</a></small></div>
+<h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="proceed"></a><span style="font-size: 12pt; color: white;">How to check your
+code for MISRA-C 2004 Compliance?</span></h2>
+<h2 style="margin-left: 0.5in;"><span style="font-size: 10pt; font-weight: normal;"><img id="_x0000_i1054" src="resc/ar_s.gif" border="0" height="12" width="14">The
+default IAR project template provided with the STM8S/A Standard
+Peripherals Library is already pre-configured for MISRA-C 2004
+Compliance. Then, user has to enable the MISRA-C 2004 checker if needed.</span><span style="font-size: 10pt; font-weight: normal; font-style: normal;"></span><span style="font-size: 10pt; font-weight: normal;"><o:p></o:p></span></h2>
+<h2 style="margin-left: 0.5in;"><span style="font-size: 10pt; font-weight: normal;"><img id="_x0000_i1055" src="resc/ar_s.gif" border="0" height="12" width="14"></span><span style="font-size: 10pt; font-weight: normal; font-style: normal;">To
+enable the IAR MISRA-C 2004 Checker, go to Project-&gt;Options
+(ALT+F7)
+and then in "General Options" Category select the "MISRA-C:2004" tab
+and
+check the "Enable MISRA-C" box. With the default
+EWSTM8&nbsp;project template,
+all violated rules described above are unchecked.<br>
+</span></h2>
+<span style="font-size: 10pt; font-family: Arial;"></span>
+<h2 style="margin-left: 0.5in;"><span style="font-size: 10pt; font-weight: normal; font-style: normal;"><img id="_x0000_i1059" src="resc/ar_s.gif" border="0" height="12" width="14">To check your code for MISRA-C
+2004 compliance using the IAR MISRA-C Checker, please follow the
+following steps<br>
+</span></h2>
+<span style="font-size: 10pt; font-family: Arial;"> </span>
+<p class="MsoNormal" style="margin-left: 65.75pt;"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1056" src="resc/bulb16.gif" border="0" height="13" width="16">Enable the IAR MISRA-C 2004
+Checker<b><i><span style="font-size-adjust: none; font-stretch: normal;"></span></i></b><span style=""></span></span><span style="font-size: 10pt; font-family: Arial;"></span><span style="font-size: 10pt; font-family: Arial;"><span style=""><b><i><o:p></o:p></i></b></span></span></p>
+<p class="MsoNormal" style="margin-left: 65.75pt;"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1057" src="resc/bulb16.gif" border="0" height="13" width="16"><b><i><span style="font-size-adjust: none; font-stretch: normal;"></span></i></b>Uncomment
+the "USE_FULL_ASSERT" inside the stm8s_conf.h file <o:p></o:p></span></p>
+<h2 style="margin-left: 0.5in;"><img id="_x0000_i1058" src="resc/ar_s.gif" border="0" height="12" width="14"><span style="font-size: 10pt; font-weight: normal; font-style: normal;"><span style="font-style: italic;"><span style="font-weight: bold;">Note: Only the STM8S/A Standard
+Peripherals Drivers are MISRA-C 2004 Compliant.</span></span></span><span style="font-family: Arial;"><o:p><br>
+</o:p></span></h2>
+<p style="text-align: right;" class="MsoNormal"><small><a href="library_misra_c.html#">Back to Top</a></small><span style="font-family: Arial;"><o:p> <br>
+</o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">[1]
+MISRA-C 2004 Guidelines for the use of the C language in critical
+systems, Motor Industry Software Reliability Association, October 2004<br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="font-family: Arial; display: none;"><o:p>&nbsp;</o:p></span></p>
+<table class="MsoNormalTable" style="width: 96.22%; top: 1547px;" border="0" cellpadding="0" cellspacing="5" width="96%">
+<tbody>
+<tr style="">
+<td style="border-style: solid none none; border-color: -moz-use-text-color; border-width: 1pt medium medium; padding: 0in; width: 98.84%;" width="98%">
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">For complete documentation on
+    STM8S 8-bit microcontrollers platform visit&nbsp;</span><span style="font-size: 10pt; font-family: Arial;">&nbsp;</span><a href="http://www.st.com/stm32" target="_blank"><span style="font-size: 10pt; font-family: Arial;"><span style="color: blue;"></span></span></a><a href="http://www.st.com/internet/mcu/family/141.jsp" target="_blank">www.st.com</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="font-family: Arial;"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="MsoNormal"><span style="font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="File-List" href="library_overview_files/filelist.xml">
+<link rel="Edit-Time-Data" href="library_overview_files/editdata.mso"><!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><title>STM8S/A Standard Peripherals Library: Overview</title><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>STMicroelectronics</o:Author>
+  <o:LastAuthor>Raouf Hosni</o:LastAuthor>
+  <o:Revision>153</o:Revision>
+  <o:TotalTime>156</o:TotalTime>
+  <o:Created>2009-02-27T18:59:00Z</o:Created>
+  <o:LastSaved>2009-06-19T18:19:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>605</o:Words>
+  <o:Characters>3455</o:Characters>
+  <o:Company>STMicroelectronics</o:Company>
+  <o:Lines>28</o:Lines>
+  <o:Paragraphs>8</o:Paragraphs>
+  <o:CharactersWithSpaces>4052</o:CharactersWithSpaces>
+  <o:Version>11.8132</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>MasterPages</w:View>
+  <w:Zoom>130</w:Zoom>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+
+
+
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-noshow:yes;
+	mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#606420;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.StyleHeading1Arial135ptItalicBlack, li.StyleHeading1Arial135ptItalicBlack, div.StyleHeading1Arial135ptItalicBlack
+	{mso-style-name:"Style Heading 1 + Arial 13\.5 pt Italic Black";
+	mso-style-parent:"Heading 1";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	mso-bidi-font-size:24.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:18.0pt;
+	font-weight:bold;
+	font-style:italic;}
+span.msonormal0
+	{mso-style-name:msonormal;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="43010"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></head>
+<body style="" link="blue" vlink="#606420">
+
+<div class="Section1">
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<div align="center">
+
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+ <tbody><tr style="">
+  <td style="padding: 0in;" valign="top">
+  <p class="MsoNormal"><span style="font-size: 8pt; font-family: Arial; color: blue;"><a href="index.html">Back to main page</a><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<span style="text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="library_rules_conventions.html">Next</a></span><o:p></o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 1.5pt;">
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: rgb(51, 102, 255);">STM8S/A Standard
+    Peripherals Library: <i>Overview</i><o:p></o:p></span></strong></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: black;"><o:p>&nbsp;</o:p></span></strong></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">Copyright 2014
+    STMicroelectronics</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1025" src="resc/logo.bmp" style="border-style: solid; border-width: 0px; height: 65px; width: 86px;" border="0" height="65" width="86"></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: Arial; color: black;"><o:p>&nbsp;</o:p></span></strong></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="display: none;"><o:p>&nbsp;</o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 0in;" valign="top">
+    <p style="text-align: justify;"><span style="font-size: 10pt; font-family: Arial;">The <b><i>STM8S/A Standard Peripherals library</i></b> covers 3
+    abstraction levels, and includes:<o:p></o:p></span></p>
+    <h1 style="margin-left: 32.95pt;"><span style="font-size: 10pt; font-family: Arial; font-weight: normal;"><img id="_x0000_i1026" src="resc/ar_s.gif" style="height: 12px; width: 14px;" border="0" height="12" width="14">A complete register
+    address mapping with all bits, bit fields and registers declared in
+    C.&nbsp; This avoids a cumbersome task and more important, it brings the</span><span style="font-size: 10pt; font-family: Arial;"> </span><span style="font-size: 10pt; font-family: Arial; font-weight: normal;">benefits of a bug free
+    reference mapping file, speeding up the early project phase. </span><span style="font-size: 10pt; font-family: Arial;"><o:p></o:p></span></h1>
+    <h1 style="margin-left: 32.95pt;"><span style="font-size: 10pt; font-family: Arial; font-weight: normal;"><img id="_x0000_i1027" src="resc/ar_s.gif" style="height: 12px; width: 14px;" border="0" height="12" width="14">A collection of routines
+    and data structures which covers all peripheral functions (drivers with
+    common API). It can directly be used as a reference framework, since it
+    also includes macros for supporting core-related intrinsic features and
+    common constants and data types definition. </span><span style="font-size: 10pt; font-family: Arial;"><o:p></o:p></span></h1>
+    <h1 style="margin-left: 32.95pt; text-indent: 3.05pt;"><span style="font-size: 10pt; font-family: Arial; font-weight: normal;"><img id="_x0000_i1028" src="resc/ar_s.gif" style="height: 12px; width: 14px;" border="0" height="12" width="14">A set of examples covering all available peripherals with
+    template projects for the most common development toolchains. With the
+    appropriate hardware evaluation board, this allows to get started with a
+    brand new micro within few hours.<o:p></o:p></span></h1>
+    <p style="text-align: justify;"><span style="font-size: 10pt; font-family: Arial;">Each&nbsp;driver consists of a set of functions covering all
+    peripheral functionalities. The development of each driver is driven by a
+    common API (application programming interface) which standardizes the
+    driver structure, the functions and the parameter names.<br>
+    The driver source code is developed in &#8216;Strict ANSI-C&#8217; (relaxed
+    ANSI-C for projects and example files). </span><span style="font-size: 10pt; font-family: Arial;">It is fully documented and is
+    <a href="library_misra_c.html">MISRA-C 2004 compliant</a> (the compliancy matrix is available upon request). </span><span style="font-size: 10pt; font-family: Arial;">Writing the whole library in &#8216;Strict ANSI-C&#8217; makes it
+    independent from the software toolchain. Only the start-up files depend on
+    the toolchain.</span></p>
+    <p style="text-align: justify;"><span style="font-size: 10pt; font-family: Arial;">The&nbsp;Standard Peripherals Library implements run-time failure
+    detection by checking the input values for all library functions. Such
+    dynamic checking contributes towards enhancing the robustness of the
+    software. Run-time detection is suitable for user application development
+    and debugging. It adds an overhead which can be removed from the final
+    application code to minimize code size and execution speed. For more
+    details refer to Section <span style="color: blue;"><a href="library_rules_conventions.html#_run-time_checking">Run-time checking.</a></span><o:p></o:p></span></p>
+    <p style="text-align: justify;"><span style="font-size: 10pt; font-family: Arial;">Since the Standard Peripherals Library is generic and covers all
+    peripheral functionalities, the size and/or execution speed of the
+    application code may not be optimized. For many applications, the library
+    may be used as is. However, for applications having tough constraints in
+    terms of code size and/or execution speed, the library drivers should be
+    used as a reference on how to configure the peripheral and tailor them to
+    specific application requirements. <o:p></o:p></span></p>
+    <p class="MsoNormal"><b><u><span style="font-size: 10pt; font-family: Arial;">Note</span></u></b><span style="font-size: 10pt; font-family: Arial; color: rgb(51, 102, 255);">:</span><span style="font-size: 10pt; font-family: Arial;"> The performance of application
+    code, in terms of size and/or speed, depends also from the C compiler
+    optimization settings. To help make the application code smaller, faster or
+    balanced between size and speed you should consider fine-tuning the
+    optimizations according to your application needs. For more information
+    please refer to your C compiler documentation.<o:p></o:p></span></p>
+    <p class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span></p>
+    <p style="text-align: right;" class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span><small><a href="library_overview.html#">Back to Top</a></small></p>
+    <table class="MsoNormalTable" style="width: 96.22%;" border="0" cellpadding="0" cellspacing="5" width="96%">
+     <tbody><tr style="">
+      <td style="border-style: solid none none; border-color: -moz-use-text-color; border-width: 1pt medium medium; padding: 0in; width: 98.86%;" width="98%">
+      <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+     <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">For complete documentation
+        on STM8S 8-bit microcontrollers platform visit <span style="color: blue;"><a href="http://www.st.com/internet/mcu/family/141.jsp" target="_blank">www.st.com</a></span><o:p></o:p></span></p>
+      </td>
+     </tr>
+    </tbody></table>
+    <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body></html>

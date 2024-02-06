@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  
+  <link rel="File-List" href="library_files_files/filelist.xml">
+
+  
+  <link rel="Edit-Time-Data" href="library_files_files/editdata.mso"><!--[if !mso]>
+
+<style>
+
+v\:* {behavior:url(#default#VML);}
+
+o\:* {behavior:url(#default#VML);}
+
+w\:* {behavior:url(#default#VML);}
+
+.shape {behavior:url(#default#VML);}
+
+</style>
+
+<![endif]-->
+
+
+  
+
+  
+
+  
+  <title>STM8S/A Standard Peripherals Library: Peripheral&#8217;s Drivers Description</title><!--[if gte mso 9]><xml>
+
+ <o:DocumentProperties>
+
+  <o:Author>STMicroelectronics</o:Author>
+
+  <o:LastAuthor>Raouf Hosni</o:LastAuthor>
+
+  <o:Revision>154</o:Revision>
+
+  <o:TotalTime>160</o:TotalTime>
+
+  <o:Created>2009-02-27T18:59:00Z</o:Created>
+
+  <o:LastSaved>2009-06-19T18:24:00Z</o:LastSaved>
+
+  <o:Pages>1</o:Pages>
+
+  <o:Words>589</o:Words>
+
+  <o:Characters>3363</o:Characters>
+
+  <o:Company>STMicroelectronics</o:Company>
+
+  <o:Lines>28</o:Lines>
+
+  <o:Paragraphs>7</o:Paragraphs>
+
+  <o:CharactersWithSpaces>3945</o:CharactersWithSpaces>
+
+  <o:Version>11.8132</o:Version>
+
+ </o:DocumentProperties>
+
+</xml><![endif]--><!--[if gte mso 9]><xml>
+
+ <w:WordDocument>
+
+  <w:View>MasterPages</w:View>
+
+  <w:Zoom>120</w:Zoom>
+
+  <w:ValidateAgainstSchemas/>
+
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+
+ </w:WordDocument>
+
+</xml><![endif]--><!--[if gte mso 9]><xml>
+
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+
+ </w:LatentStyles>
+
+</xml><![endif]--><style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-noshow:yes;
+	mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#606420;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.StyleHeading1Arial135ptItalicBlack, li.StyleHeading1Arial135ptItalicBlack, div.StyleHeading1Arial135ptItalicBlack
+	{mso-style-name:"Style Heading 1 + Arial 13\.5 pt Italic Black";
+	mso-style-parent:"Heading 1";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	mso-bidi-font-size:24.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	mso-font-kerning:18.0pt;
+	font-weight:bold;
+	font-style:italic;}
+span.msonormal0
+	{mso-style-name:msonormal;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:27536985;
+	mso-list-template-ids:1977262724;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:121270826;
+	mso-list-template-ids:72782204;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:926767399;
+	mso-list-template-ids:-944837768;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:1238369603;
+	mso-list-template-ids:977588110;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+  </style><!--[if gte mso 10]>
+
+<style>
+
+ /* Style Definitions */
+
+ table.MsoNormalTable
+
+	{mso-style-name:"Table Normal";
+
+	mso-tstyle-rowband-size:0;
+
+	mso-tstyle-colband-size:0;
+
+	mso-style-noshow:yes;
+
+	mso-style-parent:"";
+
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+
+	mso-para-margin:0in;
+
+	mso-para-margin-bottom:.0001pt;
+
+	mso-pagination:widow-orphan;
+
+	font-size:10.0pt;
+
+	font-family:"Times New Roman";
+
+	mso-ansi-language:#0400;
+
+	mso-fareast-language:#0400;
+
+	mso-bidi-language:#0400;}
+
+</style>
+
+<![endif]--><!--[if gte mso 9]><xml>
+
+ <o:shapedefaults v:ext="edit" spidmax="45058"/>
+
+</xml><![endif]--><!--[if gte mso 9]><xml>
+
+ <o:shapelayout v:ext="edit">
+
+  <o:idmap v:ext="edit" data="1"/>
+
+ </o:shapelayout></xml><![endif]--></head>
+<body link="blue" vlink="#606420">
+<div class="Section1">
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<div align="center">
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+  <tbody>
+    <tr style="">
+      <td style="padding: 0in;" valign="top">
+      <p class="MsoNormal"><span style="font-size: 8pt; font-family: Arial; color: blue;"><a href="index.html">Back to main page</a><o:p></o:p></span></p>
+      <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+        <tbody>
+          <tr style="">
+            <td style="padding: 1.5pt;">
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: rgb(51, 102, 255);">STM8S/A
+Standard Peripherals&nbsp;Library<o:p></o:p></span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: rgb(51, 102, 255);">Peripheral&#8217;s
+Drivers Description<o:p></o:p></span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-size: 18pt; font-family: Arial; color: black;"><o:p>&nbsp;</o:p></span></strong></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">Copyright
+2014 STMicroelectronics</span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><img id="_x0000_i1025" src="resc/logo.bmp" style="border-style: solid; border-width: 0px; height: 65px; width: 86px;" border="0" height="65" width="86"></span></p>
+            <p class="MsoNormal" style="text-align: center;" align="center"><strong><span style="font-family: Arial; color: black;"><o:p>&nbsp;</o:p></span></strong></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="MsoNormal"><span style="display: none;"><o:p>&nbsp;</o:p></span></p>
+      <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+        <tbody>
+          <tr style="">
+            <td style="padding: 0in;" valign="top">
+            <h2><span style="color: rgb(51, 102, 255);"><a name="_Archi"></a>STM8S/A
+Standard Peripheral's Library Architecture<br>
+            </span></h2>
+            <span style="font-size: 10pt; font-family: Arial;">The
+following figure provides a global view of the <span style="font-weight: bold;">STM8S/A Standard
+Peripherals Library </span>usage and interaction with other firmware
+conponents.<br>
+            </span><span style="font-size: 10pt; font-family: Arial;"><br>
+            </span>
+            <div style="text-align: center;"><span style="font-size: 10pt; font-family: Arial;"></span><br>
+            <img style="width: 871px; height: 472px;" alt="" src="resc/stm8s_archi.bmp"><br>
+            <br>
+            <span style="font-size: 10pt; font-family: Arial;"></span></div>
+            <span style="font-size: 10pt; font-family: Arial;"><br>
+            <br>
+            </span>
+            <p style="text-align: right;" class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span><span style="font-size: 10pt;"><o:p></o:p></span><span style="font-size: 10pt; font-family: Arial;"></span><small><a href="library_files.html#">Back to Top</a></small></p>
+            <h2><span style="color: rgb(51, 102, 255);"><a name="_drivers"></a>Description of the STM8S/A Standard Peripheral's
+Drivers files</span><span style="font-size: 10pt; color: rgb(51, 102, 255); font-weight: normal; font-style: normal;"><o:p></o:p></span></h2>
+            <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">The Standard Peripherals
+library file inclusions relationship is shown in the following figure:<br>
+            </span></p>
+            <p class="MsoNormal"><br>
+            <span style="font-size: 10pt; font-family: Arial;"></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+            <div style="text-align: center;"><img style="width: 761px; height: 604px;" alt="" src="resc/library_files_inclusion.bmp"></div>
+            <p><br>
+            <span style="font-size: 10pt; font-family: Arial;">Each
+peripheral has a source code file <b><i>stm8s_ppp.c</i></b>
+and a header file <b><i>stm8s_ppp.h</i></b>. The <b><i>stm8s_ppp.c</i></b>
+file contains all the firmware functions required to use the PPP
+peripheral. <br>
+A single memory mapping file, <b><i>stm8s.h</i></b>, is supplied
+for all peripherals. It contains all the register declarations and bits
+definition.</span> <span style="font-size: 10pt; font-family: Arial;">This
+is the only file that needs to be included in the user application to
+interface with the library. <br>
+The <b><i>stm8s_conf.h</i></b> file is used to specify the set of
+parameters to interface with the library drivers before running any
+application.</span></p>
+            <p><span style="font-size: 10pt; font-family: Arial;">The
+table bellow lists and describes the different files used by the
+Standard Peripherals library:<o:p></o:p></span></p>
+            <div align="center">
+            <table class="MsoNormalTable" style="width: 613.5pt;" border="1" cellpadding="0" width="818">
+              <tbody>
+                <tr style="">
+                  <td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p style="text-align: center;" align="center"><b><span style="font-size: 10pt; font-family: Arial;">File name</span><o:p></o:p></b></p>
+                  </td>
+                  <td style="padding: 1.5pt; width: 442.05pt;" width="589">
+                  <p style="text-align: center;" align="center"><b><span style="font-size: 10pt; font-family: Arial;">Description</span><o:p></o:p></b></p>
+                  </td>
+                </tr>
+                <tr style="">
+                  <td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">stm8s_conf.h<o:p></o:p></span></p>
+                  </td>
+                  <td style="padding: 1.5pt; width: 442.05pt;" width="589">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">Peripheral&#8217;s
+drivers&nbsp;configuration file<br>
+The user can enable or disable peripheral header file inclusion by
+using the template<br>
+This file can also be used to enable or disable the Library run-time
+failure detection&nbsp;before compiling the firmware library drivers,
+through the preprocessor define USE_FULL_ASSERT<o:p></o:p></span></p>
+                  </td>
+                </tr>
+                <tr style="">
+                  <td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">stm8s_ppp.h<o:p></o:p></span></p>
+                  </td>
+                  <td style="padding: 1.5pt; width: 442.05pt;" width="589">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">Header file of PPP
+peripheral<br>
+This file includes the PPP peripheral function and variable definitions
+used within these functions.<o:p></o:p></span></p>
+                  </td>
+                </tr>
+                <tr style="">
+                  <td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">stm8s_ppp.c<o:p></o:p></span></p>
+                  </td>
+                  <td style="padding: 1.5pt; width: 442.05pt;" width="589">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">Driver source code file
+of PPP peripheral written in C language<o:p></o:p></span></p>
+                  </td>
+                </tr>
+                <tr style="">
+                  <td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">stm8s_it.h<o:p></o:p></span></p>
+                  </td>
+                  <td style="padding: 1.5pt; width: 442.05pt;" width="589">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">Header file including all
+interrupt handlers prototypes</span></p>
+                  </td>
+                </tr>
+                <tr style="">
+                  <td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">stm8s_it.c<o:p></o:p></span></p>
+                  </td>
+                  <td style="padding: 1.5pt; width: 442.05pt;" width="589">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">Template source
+file&nbsp;containing the&nbsp;interrupt service routine (ISR) for
+CortexM3 exceptions.&nbsp;User can add&nbsp;additional ISR(s) for the
+used peripheral(s) (for the&nbsp;available peripheral interrupt
+handler's name, please refer to the startup&nbsp;file <i>startup_stm8s_md.s</i>).
+                  <o:p></o:p></span></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table><table class="MsoNormalTable" style="width: 613.5pt;" border="1" cellpadding="0" width="818"><tbody><tr style=""><td style="padding: 1.5pt; width: 166.95pt;" width="223">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">stm8s.h<o:p></o:p></span></p>
+                  </td><td style="padding: 1.5pt; width: 442.05pt; text-align: left;" width="589">
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">STM8S/A devices peripheral access layer header file.</span><span style="font-family: Arial;"><o:p></o:p></span></p>
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">The file is the unique
+include file that the application programmer is using in the C source
+code, usually in main.c. This file contains:<o:p></o:p></span></p>
+                  <ul style="margin-top: 0in;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">configuration section
+that allows to select:<o:p></o:p></span></li></ul>
+                  <p class="MsoNormal" style="margin-left: 0.5in;"><span style="font-size: 10pt; font-family: Arial;">- &nbsp;the device used
+in the target application<o:p></o:p></span></p>
+                  <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp; - &nbsp;to use or not the peripheral&#8217;s
+drivers in application code (i.e. code will be based on direct <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; access to
+peripheral&#8217;s registers rather than drivers API) , this option is
+controlled by the <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i>#define
+USE_STDPERIPH_DRIVER</i><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; - &nbsp;to&nbsp;change
+few application-specific parameters such as the HSE crystal frequency<o:p></o:p></span></p>
+                  <ul style="margin-top: 0in;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">data structures and the
+address mapping for all peripherals</span><span style="font-family: Arial;"><o:p></o:p></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">peripheral's&nbsp;registers
+declarations and bits definition</span><span style="font-family: Arial;"><o:p></o:p></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">macros to access
+peripheral&#8217;s registers hardware</span><span style="font-family: Arial;"><o:p></o:p></span></li></ul>
+                  </td></tr></tbody></table>
+            </div>
+            <p style="text-align: right;" class="MsoNormal"><span style="font-size: 10pt;"><o:p>&nbsp;</o:p></span><span style="font-size: 10pt; font-family: Arial;"></span><small><a href="library_files.html#">Back to Top</a></small></p>
+            
+            <p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><br>
+            <o:p></o:p></span></p>
+            <table class="MsoNormalTable" style="width: 96.22%;" border="0" cellpadding="0" cellspacing="5" width="96%">
+              <tbody>
+                <tr style="">
+                  <td style="border-style: solid none none; border-color: -moz-use-text-color; border-width: 1pt medium medium; padding: 0in; width: 98.86%;" width="98%">
+                  <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;"><o:p>&nbsp;</o:p></span></p>
+                  <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial;">For
+complete documentation on STM8S 8-bit Microcontrollers
+platform visit <span style="color: blue;"><a href="http://www.st.com/internet/mcu/family/141.jsp" target="_blank">www.st.com</a></span><o:p></o:p></span></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+
+</body></html>

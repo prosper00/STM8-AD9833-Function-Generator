@@ -10,9 +10,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
+#include "eeprom.h"
 #include "AD9833.h"
 #include "main.h"
 #include "delay.h"
+#include "TIM1PWM.h"
 #include "HD44780.h"
 #include <stdio.h> // ouch. this costs about 2k flash for one printf()
 
@@ -29,7 +31,7 @@ void main(void)
 		//Poll for recent frequency input from the user
 		NewFreq += enc_read();
 		if (NewFreq < 0) NewFreq = 0; //bounds check (lower)
-		if (NewFreq >10000000) NewFreq = 10000000; //bounds check (upper)
+		if (NewFreq >9999999) NewFreq = 9999999; //bounds check (upper)
 		
 		//Update the programmed output frequency and display (if it's changed)
 		if (NewFreq!=CurrentFreq){	// if our (requested) frequency value has changed from current
@@ -56,10 +58,10 @@ void main(void)
  **********************************************************************/
 static void Setup(void)
 {
-	
 	//Initialize peripherals and libraries
 	CLK_Config();
-	TIM4_Config();
+	TIM1_Config(); //PWM timer
+	TIM4_Config(); //delay() functions
 	GPIO_Config();
 	SPI_Config();
 	AD9833_Init();
@@ -130,7 +132,7 @@ static void SPI_Config(void)
 {
 	SPI_DeInit();
 	SPI_Init(SPI_FIRSTBIT_MSB,         //datasheet : "MSBFIRST"
-			 SPI_BAUDRATEPRESCALER_16, //datasheet : "Up to 40MHz sck"
+			 SPI_BAUDRATEPRESCALER_2,  //datasheet : "Up to 40MHz sck"
 			 SPI_MODE_MASTER,
 			 SPI_CLOCKPOLARITY_HIGH,   //datasheet : "SCK idles high between write operations (CPOL=1)"
 			 SPI_CLOCKPHASE_1EDGE,     //datasheet : "Data is valid on the SCK falling edge (CPHA=0)"
@@ -144,13 +146,13 @@ static void SPI_Config(void)
  * void GPIO_Config - Enables and Configures the GPIO pins we need, as well
  * as enables interrupts for those inputs
  **********************************************************************/
-void GPIO_Config(void)
+static void GPIO_Config(void)
 {
 	GPIO_DeInit(GPIOD);
 	GPIO_Init(TICK_PIN,GPIO_MODE_OUT_PP_LOW_FAST);//initialize a pin to output a 2kHz systick
 	GPIO_Init(SPISS, GPIO_MODE_OUT_PP_HIGH_FAST); //our SPI SS pin as an output
 
-	GPIO_Init(ENCODER_BTN,GPIO_MODE_IN_PU_IT);    //interrupt on button press
+	GPIO_Init(ENCODER_BTN,GPIO_MODE_IN_FL_IT);    //interrupt on button press
 	GPIO_Init(ENCODER_1,GPIO_MODE_IN_FL_IT);      //interrupt on ENCODER_1 only.
 	GPIO_Init(ENCODER_2,GPIO_MODE_IN_FL_NO_IT);  
 
@@ -190,13 +192,32 @@ uint32_t ReadPot(void)
  * 'direction' is incremented/decremented by the ISR each time a rotation
  * movement is detected
  * 
- * Calculates velocity, and returns a delta value scaled according to velocity
+ * Calculates velocity and acceleration, and returns a scaled delta value
+ * 
+ * Lots of crude 'guess and test' parameters and functions here to get the
+ * feel 'just right'. Will probably depend a great deal on your particular
+ * hardware. Even things as innocuous as the knob installed on the encoder
+ * will make a difference to overall feel.
  **********************************************************************/
-int enc_read(void) {
-	#define POLLRATE 100 //ms
-	int Delta = 0;
+static long enc_read(void) {
+	#define POLLRATE 50  //ms, how often to check for input and accelerate/decelerate
+	#define MIN_ACCEL 1  //lowest possible acceleration setting
+	#define MAX_ACCEL 10 //higest possible acceleration
+	
+	long Delta = 0;
 	if((millis() - encoder_polled) > POLLRATE){ encoder_polled = millis();
-		Delta=direction*direction*direction; //cubic scaling. Still seems a bit too slow. A better curve is needed.
+		if(direction==0) { //if there's no input this poll
+			if (encoder_accel>MIN_ACCEL){ encoder_accel--;} //decay acceleration
+			return 0;
+		}//if
+		
+		//add a bit of velocity
+		if(direction>2) direction+=2;
+		if(direction<-2) direction-=2;
+		
+		Delta=direction*direction*direction*(signed int)encoder_accel*(signed int)encoder_accel; 
+		if(encoder_accel<MAX_ACCEL) encoder_accel++;
+		
 		direction=0; //reset ISR counter
 	}//if
 return Delta; 
@@ -217,8 +238,8 @@ int putchar(int c)
 /*********************************************************************** 
  * int getchar(int) - Determines where scanf() characters come from
  * Depends on stdio.h
- **********************************************************************/
-/*int getchar(void)
+ **********************************************************************
+int getchar(void)
 {
   int c = 0;
   while(UART1_GetFlagStatus(UART1_FLAG_RXNE)==RESET);
@@ -243,7 +264,8 @@ int putchar(int c)
  * GPIO --> 10n --> GND
  * 
  **********************************************************************/
-INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
+//INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
+void EXTI_PORTD_IRQHandler(void) __interrupt(6)
 {
 	if (!GPIO_ReadInputPin(ENCODER_BTN))
 		encoder_btn_event=1;
