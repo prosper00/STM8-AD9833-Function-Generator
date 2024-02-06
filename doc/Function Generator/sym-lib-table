@@ -1,5 +1,7 @@
 (sym_lib_table
-  (lib (name STM8S103Blue)(type Legacy)(uri ${KIPRJMOD}/STM8S103Blue.lib)(options "")(descr ""))
-  (lib (name HD44780)(type Legacy)(uri ${KIPRJMOD}/HD44780.lib)(options "")(descr ""))
-  (lib (name "AD9833 Module")(type Legacy)(uri "${KIPRJMOD}/AD9833 Module.lib")(options "")(descr ""))
+  (version 7)
+  (lib (name "STM8S103Blue")(type "Legacy")(uri "${KIPRJMOD}/STM8S103Blue.lib")(options "")(descr ""))
+  (lib (name "HD44780")(type "Legacy")(uri "${KIPRJMOD}/HD44780.lib")(options "")(descr ""))
+  (lib (name "AD9833 Module")(type "Legacy")(uri "${KIPRJMOD}/AD9833 Module.lib")(options "")(descr ""))
+  (lib (name "Function Generator-rescue")(type "KiCad")(uri "${KIPRJMOD}/Function Generator-rescue.kicad_sym")(options "")(descr ""))
 )
